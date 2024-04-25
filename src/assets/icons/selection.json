@@ -3,6 +3,80 @@
   "icons": [
     {
       "icon": {
+        "paths": ["M768 256l-512 512M256 256l512 512"],
+        "attrs": [
+          {
+            "fill": "none",
+            "strokeLinejoin": "round",
+            "strokeLinecap": "round",
+            "strokeMiterlimit": "4",
+            "strokeWidth": 85.33333333333333
+          }
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": ["cross"],
+        "colorPermutations": {}
+      },
+      "attrs": [
+        {
+          "fill": "none",
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round",
+          "strokeMiterlimit": "4",
+          "strokeWidth": 85.33333333333333
+        }
+      ],
+      "properties": {
+        "order": 60,
+        "id": 29,
+        "name": "cross",
+        "prevSize": 32
+      },
+      "setIdx": 4,
+      "setId": 6,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": ["M128 512h768M128 256h768M128 768h768"],
+        "attrs": [
+          {
+            "fill": "none",
+            "strokeLinejoin": "round",
+            "strokeLinecap": "round",
+            "strokeMiterlimit": "4",
+            "strokeWidth": 85.33333333333333
+          }
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": ["menu"],
+        "colorPermutations": {}
+      },
+      "attrs": [
+        {
+          "fill": "none",
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round",
+          "strokeMiterlimit": "4",
+          "strokeWidth": 85.33333333333333
+        }
+      ],
+      "properties": {
+        "order": 59,
+        "id": 28,
+        "name": "menu",
+        "prevSize": 32
+      },
+      "setIdx": 4,
+      "setId": 6,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
         "paths": [
           "M512 56.905v82.749M512 884.346v82.749M190.171 190.171l58.758 58.758M775.168 775.168l58.758 58.758M56.905 512h82.749M884.346 512h82.749M190.171 833.877l58.758-58.758M775.119 248.881l58.758-58.758M718.897 512c0 114.252-92.62 206.872-206.872 206.872s-206.872-92.62-206.872-206.872v0c0-114.252 92.62-206.872 206.872-206.872s206.872 92.62 206.872 206.872v0z"
         ],
@@ -18,9 +92,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "sun"
-        ],
+        "tags": ["sun"],
         "colorPermutations": {}
       },
       "attrs": [
@@ -59,9 +131,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "moon"
-        ],
+        "tags": ["moon"],
         "colorPermutations": {}
       },
       "attrs": [
@@ -108,9 +178,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "home"
-        ],
+        "tags": ["home"],
         "colorPermutations": {}
       },
       "attrs": [
@@ -156,9 +224,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "heart"
-        ],
+        "tags": ["heart"],
         "colorPermutations": {}
       },
       "attrs": [
@@ -189,9 +255,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "calendar"
-        ],
+        "tags": ["calendar"],
         "colorPermutations": {}
       },
       "attrs": [],
@@ -214,9 +278,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "arrow"
-        ],
+        "tags": ["arrow"],
         "colorPermutations": {}
       },
       "attrs": [],
@@ -239,9 +301,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "search"
-        ],
+        "tags": ["search"],
         "colorPermutations": {}
       },
       "attrs": [],
@@ -272,9 +332,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "book"
-        ],
+        "tags": ["book"],
         "colorPermutations": {}
       },
       "attrs": [
@@ -313,9 +371,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "rounded-heart"
-        ],
+        "tags": ["rounded-heart"],
         "colorPermutations": {}
       },
       "attrs": [
@@ -346,9 +402,7 @@
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": [
-          "filled-heart"
-        ],
+        "tags": ["filled-heart"],
         "colorPermutations": {}
       },
       "attrs": [],

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
-import { roboto, poppins, manrope } from "./fonts";
 import "../styles/globals.scss";
+import { Header } from "./UI";
+import { roboto, poppins, manrope } from "./fonts";
 
 export const metadata: Metadata = {
   title: "News app",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${poppins.variable} ${manrope.variable}`}
       >
+        <Header />
         {children}
       </body>
     </html>

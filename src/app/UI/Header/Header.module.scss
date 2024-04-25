@@ -1,0 +1,7 @@
+.header {
+  @apply w-full;
+
+  &__container {
+    @apply flex items-center justify-between;
+  }
+}
