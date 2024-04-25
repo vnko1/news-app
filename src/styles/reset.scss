@@ -20,7 +20,7 @@ ol {
 }
 
 a:not([class]) {
-  @apply text-blue no-underline cursor-pointer;
+  @apply no-underline cursor-pointer;
 
   &:hover,
   &:focus {
