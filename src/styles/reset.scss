@@ -1,0 +1,29 @@
+html {
+  @apply text-base;
+}
+
+body {
+  @apply bg-white-1010 dark:bg-black-1010 text-sm tab:text-base;
+}
+
+* {
+  @apply m-0 p-0 box-border font-manrope font-normal text-black-1000 dark:text-white-1010;
+}
+
+button {
+  @apply border-transparent bg-transparent;
+}
+
+ul,
+ol {
+  @apply list-none;
+}
+
+a:not([class]) {
+  @apply text-blue no-underline cursor-pointer;
+
+  &:hover,
+  &:focus {
+    @apply no-underline;
+  }
+}
