@@ -2,7 +2,6 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -48,9 +47,9 @@ const config: Config = {
       },
       colors: {
         accent: "#4440F6",
-        black: "#111321",
         grey: "#A8A8A8",
-        white: "#FFFFFF",
+        black: { 1000: "#111321", 1010: "#2E2E2E" },
+        white: { 1000: "#FFFFFF", 1010: "#F4F4F4" },
       },
       fontSize: {
         xxs: "10px",
@@ -58,9 +57,11 @@ const config: Config = {
         sm: "14px",
         base: "16px",
         md: "18px",
-        lg: "24px",
-        xl: "32px",
-        xxl: "42px",
+        lg: "20px",
+        xl: "24px",
+        xxl: "32px",
+        h1_xl: "40px",
+        h1_xxl: "42px",
       },
       fontFamily: {
         manrope: ["var(--font-manrope)"],

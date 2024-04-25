@@ -1,0 +1,22 @@
+h1,
+.h1,
+h2,
+.h2 {
+  @apply font-manrope font-bold;
+}
+
+h1,
+.h1 {
+  @apply text-lg -tracking-[0.2px] tab:text-h1_xl tab:-tracking-[0.4px];
+}
+
+h2,
+.h2 {
+  @apply text-xl -tracking-[0.24px] tab:text-xxl tab:-tracking-[0.32px];
+}
+
+@layer components {
+  .text1 {
+    @apply text-sm font-normal tab:text-base;
+  }
+}
