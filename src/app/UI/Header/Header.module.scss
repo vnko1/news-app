@@ -1,5 +1,5 @@
 .header {
-  @apply w-full;
+  @apply w-full py-2-md border-b-[#00000033] dark:border-b-[#f4f4f433] border-b-[1px] tab:py-3-sm desc:py-2-xl;
 
   &__container {
     @apply flex items-center justify-between;

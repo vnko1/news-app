@@ -11,7 +11,7 @@ const config: Config = {
       screens: {
         mob: "320px",
         tab: "768px",
-        desc: "12800px",
+        desc: "1280px",
       },
 
       spacing: {
