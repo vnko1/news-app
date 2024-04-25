@@ -31,7 +31,7 @@ const Search: FC<SearchProps> = () => {
           defaultValue={searchParams.get("query")?.toString()}
           onChange={handleSearch}
         />
-        <Icon size={20} icon={IconsEnum.Search} className={styles["icon"]} />
+        <Icon size={20} icon={IconsEnum.Cross} className={styles["icon"]} />
       </div>
     </div>
   );

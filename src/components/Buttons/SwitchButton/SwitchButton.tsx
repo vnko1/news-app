@@ -6,10 +6,19 @@ import styles from "./SwitchButton.module.scss";
 
 const SwitchButton: FC<SwitchButtonProps> = ({ classNames }) => {
   const [checked, setChecked] = useState(false);
+  const onChange = () => {
+    setChecked(!checked);
+  };
   return (
     <label className={`${styles["switch"]} ${classNames}`}>
-      <input checked className={styles["field"]} type={styles["checkbox"]} />
-      <span className={styles["slider"]}></span>
+      <input
+        onChange={onChange}
+        // onChange={onHandleInputChange}
+        type="checkbox"
+        checked={checked}
+        // name={name}
+      />
+      <i></i>
     </label>
   );
 };

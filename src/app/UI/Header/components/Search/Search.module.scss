@@ -3,7 +3,7 @@
 }
 
 .search {
-  @apply absolute top-0 left-0 w-full h-full overflow-hidden flex justify-center items-center
+  @apply text-accent absolute top-0 left-0 w-full h-full overflow-hidden flex justify-center items-center
   bg-none;
 
   &:hover > .field {
@@ -25,5 +25,5 @@
 }
 
 .icon {
-  @apply bg-none outline-none cursor-pointer float-left transition-all duration-300 translate-x-[400%] tab:-translate-x-[80px] desc:-translate-x-[110px];
+  @apply outline-none cursor-pointer transition-all duration-300 translate-x-[400%] tab:-translate-x-[80px] desc:-translate-x-[110px];
 }

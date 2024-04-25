@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 import "../styles/globals.scss";
-import { Header } from "./UI";
+
 import { roboto, poppins, manrope } from "./fonts";
+import { Header } from "./ui";
 
 export const metadata: Metadata = {
   title: "News app",

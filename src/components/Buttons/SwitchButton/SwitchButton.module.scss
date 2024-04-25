@@ -1,20 +1,33 @@
 .switch {
-  @apply relative inline-block w-[40px] h-[20px];
-}
+  @apply inline-flex items-center gap-0-md cursor-pointer;
 
-.field {
-  @apply opacity-0 w-0 h-0;
-
-  &:checked + .slider:before {
-    @apply translate-x-[19px];
+  & input {
+    @apply hidden;
   }
-}
 
-.slider {
-  @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 transition-all duration-300 bg-white-1000 dark:bg-accent rounded-[34px] border-[0.605px] border-accent dark:border-white-1000;
+  & i {
+    @apply relative inline-block  w-[40px] h-[20px] bg-white-1000 dark:bg-accent border border-accent dark:border-white-1000 rounded-[23px] align-text-bottom transition-all duration-300;
 
-  &::before {
-    content: "";
-    @apply absolute w-[16px] h-[16px] left-[1px] bottom-[0.2px] bg-accent dark:bg-white-1000 rounded-[50%] transition-all duration-300;
+    &::after {
+      content: "";
+      @apply absolute -left-[2px] -top-[2px] w-[18px] h-[18px] bg-accent rounded-[11px] transition-all duration-300;
+      transform: translate3d(2px, 2px, 0);
+    }
+  }
+  &:active i::after {
+    transform: translate3d(2px, 2px, 0);
+  }
+  &:active input:checked + i::after {
+    transform: translate3d(16px, 2px, 0);
+  }
+
+  & input:checked + i {
+    &::before {
+      transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0);
+    }
+
+    &::after {
+      transform: translate3d(22px, 2px, 0);
+    }
   }
 }
