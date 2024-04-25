@@ -2,6 +2,26 @@
   @apply w-full py-2-md border-b-[#00000033] dark:border-b-[#f4f4f433] border-b-[1px] tab:py-3-sm desc:py-2-xl;
 
   &__container {
-    @apply flex items-center justify-between;
+    @apply flex items-center;
   }
+
+  &__nav {
+    @apply hidden tab:block tab:ml-4-xl desc:ml-[102px];
+  }
+
+  &__menu {
+    @apply flex items-center ml-1-xl tab:hidden;
+  }
+
+  &__theme {
+    @apply hidden tab:block ml-auto;
+  }
+}
+
+.nav__list {
+  @apply flex gap-4-md desc:gap-[68px];
+}
+
+.link {
+  @apply font-bold desc:text-md;
 }
