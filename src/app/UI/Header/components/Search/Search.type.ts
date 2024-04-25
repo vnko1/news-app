@@ -1,1 +1,1 @@
-export type SearchProps = { classNames: string };
+export type SearchProps = { classNames?: string };
