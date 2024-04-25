@@ -10,7 +10,6 @@ import styles from "./Search.module.scss";
 
 const Search: FC<SearchProps> = () => {
   const searchParams = useSearchParams();
-  console.log("🚀 ~ searchParams:", searchParams);
   const pathname = usePathname();
   const { replace } = useRouter();
 
