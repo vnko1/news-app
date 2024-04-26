@@ -1,15 +1,24 @@
 "use client";
 import React, { FC } from "react";
 
-import { ISwitchButton } from "./SwitchButton.type";
+import { SwitchButtonProps } from "./SwitchButton.type";
 import styles from "./SwitchButton.module.scss";
 
-const SwitchButton: FC<ISwitchButton> = ({ label, classNames }) => {
+const SwitchButton: FC<SwitchButtonProps> = ({
+  classNames,
+  name,
+  checked,
+  handleChange,
+}) => {
   return (
-    <label className={`${styles["switch"]} ${classNames}`}>
-      <input type="checkbox" checked name="theme" />
+    <label className={`${styles["switch"]} ${classNames} switch-t`}>
+      <input
+        onChange={handleChange}
+        type="checkbox"
+        checked={checked}
+        name={name}
+      />
       <i></i>
-      <span>{label}</span>
     </label>
   );
 };

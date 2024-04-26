@@ -1,4 +1,6 @@
-export interface ISwitchButton {
+export type SwitchButtonProps = {
   classNames?: string;
-  label: string;
-}
+  name: string;
+  checked: boolean;
+  handleChange: () => void;
+};

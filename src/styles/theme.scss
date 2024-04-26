@@ -1,0 +1,30 @@
+.header-t {
+  @apply border-b-[#00000033] dark:border-b-[#f4f4f433];
+}
+
+.search-t {
+  @apply border-black-1000 text-black-1000  dark:border-white-1010;
+}
+
+.icon-t {
+  @apply dark:fill-white-1010 dark:stroke-white-1010;
+}
+
+.switch-t {
+  & i {
+    @apply bg-white-1000 dark:bg-accent border border-accent dark:border-white-1000;
+
+    &::after {
+      @apply bg-accent dark:bg-white-1000;
+    }
+  }
+}
+
+.menu {
+  &-t {
+    @apply bg-white-1010 dark:bg-black-1010;
+  }
+  &-button-t {
+    @apply stroke-black-1000 dark:stroke-white-1010;
+  }
+}

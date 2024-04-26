@@ -9,4 +9,6 @@ export enum IconsEnum {
   Arrow = "arrow",
   Calendar = "calendar",
   Search = "search",
+  Menu = "menu",
+  Cross = "cross",
 }

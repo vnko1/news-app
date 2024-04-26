@@ -1,0 +1,57 @@
+.backdrop {
+  @apply top-0 left-0 w-screen h-screen translate-x-full;
+}
+
+.active {
+  @apply translate-x-0;
+}
+.menu {
+  @apply w-full h-full py-2-md flex flex-col;
+}
+
+.head {
+  @apply flex items-center justify-between mb-[68px] px-1-lg;
+}
+
+.cross {
+  @apply stroke-black-1000;
+}
+
+.content {
+  @apply flex flex-col justify-between items-start h-full;
+}
+
+.nav {
+  @apply w-full left-0;
+  &__list {
+    @apply flex flex-col gap-2-xl;
+  }
+}
+
+.link-btn {
+  @apply flex items-center text-base font-medium w-full px-1-lg py-0-lg;
+
+  & > span {
+    @apply inline-flex w-[32px] h-[32px] rounded-[50px] bg-accent mr-1-md justify-center items-center;
+  }
+
+  &.active {
+    @apply bg-accent text-white-1010;
+
+    & > span {
+      @apply border border-white-1010;
+    }
+  }
+}
+
+.icon {
+  @apply fill-white-1010 stroke-white-1010;
+
+  &__arrow {
+    @apply ml-auto -rotate-90;
+  }
+}
+
+.theme {
+  @apply pl-1-lg;
+}

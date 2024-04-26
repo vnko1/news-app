@@ -1,0 +1,25 @@
+.container {
+  @apply relative w-full max-w-[172px] h-[30px] tab:max-w-[212px] desc:max-w-[288px] ml-auto;
+}
+
+.search {
+  @apply absolute top-0 left-0 w-full h-full overflow-hidden flex justify-center items-center
+  bg-none;
+
+  &:hover > .field {
+    @apply scale-x-100;
+  }
+  &:hover > .icon {
+    @apply -translate-x-[60px] tab:-translate-x-[80px] desc:-translate-x-[110px];
+  }
+}
+
+.field {
+  @apply absolute top-0 left-0 bg-none outline-none float-left h-full w-full p-0-md pl-4-xl
+  font-poppins text-xs tracking-[0.02em] leading-[1.75] border rounded-[20px] scale-x-0
+  opacity-40 transition-all duration-300 tab:scale-x-100 tab:text-sm tab:leading-[1.71] origin-right;
+}
+
+.icon {
+  @apply outline-none cursor-pointer transition-all duration-300 translate-x-[400%] tab:-translate-x-[80px] desc:-translate-x-[110px];
+}
