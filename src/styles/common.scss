@@ -7,3 +7,7 @@
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
 }
+
+.icon-d {
+  @apply dark:stroke-white-1010 dark:text-white-1010 dark:fill-white-1010;
+}

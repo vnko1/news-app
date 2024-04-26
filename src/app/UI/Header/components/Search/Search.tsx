@@ -34,7 +34,7 @@ const Search: FC<SearchProps> = () => {
         <Icon
           size={20}
           icon={IconsEnum.Search}
-          className={styles["icon"]}
+          className={`${styles["icon"]} icon-d`}
           removeInlineStyle
         />
       </div>

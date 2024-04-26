@@ -8,15 +8,12 @@ const SwitchButton: FC<SwitchButtonProps> = ({
   classNames,
   name,
   checked,
-  setChecked,
+  handleChange,
 }) => {
-  const onChange = () => {
-    setChecked(!checked);
-  };
   return (
     <label className={`${styles["switch"]} ${classNames}`}>
       <input
-        onChange={onChange}
+        onChange={handleChange}
         type="checkbox"
         checked={checked}
         name={name}

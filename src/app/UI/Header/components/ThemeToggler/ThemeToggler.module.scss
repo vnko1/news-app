@@ -1,3 +1,23 @@
 .toggler {
   @apply flex items-center gap-0-xl desc:gap-1-sm;
 }
+
+.icon {
+  @apply desc:hidden;
+}
+
+.text {
+  @apply hidden desc:block text-md font-normal leading-[24px];
+}
+
+.color {
+  @apply text-[#5F6775] stroke-[#5F6775] fill-[#5F6775] transition-all duration-150;
+
+  &.active {
+    @apply text-[#4440F7] stroke-[#4440F7] fill-[#4440F7];
+
+    &.inactive {
+      @apply text-[#5F6775] stroke-[#5F6775] fill-[#5F6775];
+    }
+  }
+}
