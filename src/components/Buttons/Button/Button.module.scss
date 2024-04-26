@@ -1,0 +1,19 @@
+.button {
+  @apply px-2-xs py-0-xl rounded-[20px] text-sm font-normal border flex items-center gap-1-xs transition-all duration-150;
+
+  &.primary {
+    @apply bg-white-1000 border-accent text-accent stroke-accent fill-accent;
+
+    &:active {
+      @apply bg-accent text-white-1000 stroke-white-1000 fill-white-1000;
+
+      & .icon {
+        @apply rotate-180;
+      }
+    }
+  }
+}
+
+.icon {
+  @apply transition-all duration-150;
+}

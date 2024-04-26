@@ -1,0 +1,11 @@
+.section {
+  @apply pt-2-md;
+}
+
+.container {
+  @apply flex items-center justify-between;
+}
+
+.filters {
+  @apply flex items-center;
+}
