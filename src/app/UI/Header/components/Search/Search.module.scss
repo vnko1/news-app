@@ -25,5 +25,5 @@
 }
 
 .icon {
-  @apply outline-none cursor-pointer transition-all duration-300 translate-x-[400%] tab:-translate-x-[80px] desc:-translate-x-[110px];
+  @apply outline-none cursor-pointer transition-all duration-300 translate-x-[400%] tab:-translate-x-[80px] desc:-translate-x-[110px] fill-black-1000 dark:fill-white-1010;
 }

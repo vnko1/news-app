@@ -10,7 +10,7 @@
   }
 
   &__menu {
-    @apply flex items-center ml-1-xl tab:hidden;
+    @apply flex items-center ml-1-xl tab:hidden stroke-black-1000 dark:stroke-white-1010;
   }
 
   &__theme {

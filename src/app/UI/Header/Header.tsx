@@ -31,7 +31,7 @@ const Header: FC = () => {
         </nav>
         <Search />
         <button className={styles["header__menu"]}>
-          <Icon size={24} icon={IconsEnum.Menu} />
+          <Icon size={24} icon={IconsEnum.Menu} removeInlineStyle />
         </button>
         <SwitchButton classNames={styles["header__theme"]} />
       </div>
