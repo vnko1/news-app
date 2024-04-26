@@ -6,11 +6,11 @@
   }
 
   & i {
-    @apply relative inline-block  w-[40px] h-[20px] bg-white-1000 dark:bg-accent border border-accent dark:border-white-1000 rounded-[23px] align-text-bottom transition-all duration-300;
+    @apply relative inline-block  w-[40px] h-[20px]  rounded-[23px] align-text-bottom transition-all duration-300;
 
     &::after {
       content: "";
-      @apply absolute -left-[2px] -top-[2px] w-[18px] h-[18px] bg-accent rounded-[11px] transition-all duration-300;
+      @apply absolute -left-[2px] -top-[2px] w-[18px] h-[18px]  rounded-[11px] transition-all duration-300;
       transform: translate3d(2px, 2px, 0);
     }
   }

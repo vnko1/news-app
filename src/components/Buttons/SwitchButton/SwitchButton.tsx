@@ -11,7 +11,7 @@ const SwitchButton: FC<SwitchButtonProps> = ({
   handleChange,
 }) => {
   return (
-    <label className={`${styles["switch"]} ${classNames}`}>
+    <label className={`${styles["switch"]} ${classNames} switch-t`}>
       <input
         onChange={handleChange}
         type="checkbox"

@@ -27,14 +27,14 @@ const Search: FC<SearchProps> = () => {
           type="text"
           autoComplete="off"
           placeholder="Search |"
-          className={styles["field"]}
+          className={`${styles["field"]} search-t`}
           defaultValue={searchParams.get("query")?.toString()}
           onChange={handleSearch}
         />
         <Icon
           size={20}
           icon={IconsEnum.Search}
-          className={`${styles["icon"]} icon-d`}
+          className={`${styles["icon"]} icon-t`}
           removeInlineStyle
         />
       </div>

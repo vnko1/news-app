@@ -15,7 +15,7 @@ const links = [
 
 const Header: FC = () => {
   return (
-    <header className={styles["header"]}>
+    <header className={`${styles["header"]} header-t`}>
       <div className={`layout ${styles["header__container"]}`}>
         <Logo />
         <nav className={styles["header__nav"]}>
@@ -30,7 +30,7 @@ const Header: FC = () => {
           </ul>
         </nav>
         <Search />
-        <button className={styles["header__menu"]}>
+        <button className={`${styles["header__menu"]} menu-t`}>
           <Icon size={24} icon={IconsEnum.Menu} removeInlineStyle />
         </button>
         <ThemeToggler classNames={styles["header__theme"]} />
