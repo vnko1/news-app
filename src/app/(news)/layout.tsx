@@ -5,7 +5,6 @@ function NewsLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      NAV
       {children}
     </>
   );
