@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
@@ -55,7 +55,9 @@ const Header: FC = () => {
             ))}
           </ul>
         </nav>
-        <Search />
+        <Suspense>
+          <Search />
+        </Suspense>
         <button
           className={`${styles["header__menu"]} menu-button-t`}
           onClick={() => setActive(true)}

@@ -5,6 +5,7 @@ import "../styles/globals.scss";
 import { roboto, poppins, manrope } from "./fonts";
 import { Header } from "./ui";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const metadata: Metadata = {
   title: "News app",
   description: "Searching news",
