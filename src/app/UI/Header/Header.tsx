@@ -22,9 +22,6 @@ const Header: FC = () => {
 
   const pathName = usePathname();
 
-  function getActiveLink(path: string) {
-    return cn(styles["link"], { [styles["active-link"]]: path === pathName });
-  }
   return (
     <header className={`${styles["header"]} header-t`}>
       <div className={`layout ${styles["header__container"]}`}>
@@ -33,7 +30,12 @@ const Header: FC = () => {
           <ul className={styles["nav__list"]}>
             {links.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className={getActiveLink(link.href)}>
+                <Link
+                  href={link.href}
+                  className={cn(styles["link"], {
+                    [styles["active-link"]]: link.href === pathName,
+                  })}
+                >
                   {link.name}
                 </Link>
               </li>
