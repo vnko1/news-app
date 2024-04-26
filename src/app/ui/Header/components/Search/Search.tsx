@@ -24,6 +24,7 @@ const Search: FC = () => {
       <div className={styles["search"]}>
         <input
           type="text"
+          name="theme"
           autoComplete="off"
           placeholder="Search |"
           className={`${styles["field"]} search-t`}

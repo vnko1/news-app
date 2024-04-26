@@ -17,6 +17,7 @@ const SwitchButton: FC<SwitchButtonProps> = ({
         type="checkbox"
         checked={checked}
         name={name}
+        id={name}
       />
       <i></i>
     </label>
