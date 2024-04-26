@@ -1,6 +1,7 @@
 .backdrop {
   @apply top-0 left-0 w-screen h-screen translate-x-full;
 }
+
 .active {
   @apply translate-x-0;
 }
@@ -17,7 +18,7 @@
 }
 
 .content {
-  @apply flex flex-col justify-between items-start;
+  @apply flex flex-col justify-between items-start h-full;
 }
 
 .nav {

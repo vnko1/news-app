@@ -79,7 +79,7 @@ const Menu: FC<MenuProps> = ({ setActive, setVisible, links, ...props }) => {
           </ul>
         </nav>
         <div className={styles["theme"]}>
-          <ThemeToggler />
+          <ThemeToggler {...props} />
         </div>
       </div>
     </Modal>

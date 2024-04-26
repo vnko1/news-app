@@ -1,28 +1,19 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 
 import { IconsEnum } from "@/types";
 import { Icon, SwitchButton } from "@/components";
-import { getDataFromLS, setDataToLs } from "@/utils";
+import { setDataToLs } from "@/utils";
 
 import { ThemeTogglerProps } from "./ThemeToggler.type";
 import styles from "./ThemeToggler.module.scss";
 
-const ThemeToggler: FC<ThemeTogglerProps> = ({ classNames }) => {
-  const [checked, setChecked] = useState(false);
-
-  useEffect(() => {
-    const isDarkTheme = getDataFromLS<boolean>("darkTheme");
-    setChecked(isDarkTheme || false);
-  }, []);
-
-  useEffect(() => {
-    checked
-      ? document.documentElement.classList.add("dark")
-      : document.documentElement.classList.remove("dark");
-  }, [checked]);
-
+const ThemeToggler: FC<ThemeTogglerProps> = ({
+  classNames,
+  checked,
+  setChecked,
+}) => {
   const handleChange = () => {
     setChecked(!checked);
     setDataToLs({ darkTheme: !checked });

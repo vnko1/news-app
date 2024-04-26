@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
@@ -9,6 +9,7 @@ import { Icon, Logo } from "@/components";
 
 import { Menu, Search, ThemeToggler } from "./components";
 import styles from "./Header.module.scss";
+import { getDataFromLS } from "@/utils";
 
 const links = [
   { name: "Home", href: LinksEnum.Home, icon: IconsEnum.Home },
@@ -19,8 +20,20 @@ const links = [
 const Header: FC = () => {
   const [active, setActive] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   const pathName = usePathname();
+
+  useEffect(() => {
+    const isDarkTheme = getDataFromLS<boolean>("darkTheme");
+    setChecked(isDarkTheme || false);
+  }, []);
+
+  useEffect(() => {
+    checked
+      ? document.documentElement.classList.add("dark")
+      : document.documentElement.classList.remove("dark");
+  }, [checked]);
 
   return (
     <header className={`${styles["header"]} header-t`}>
@@ -49,7 +62,11 @@ const Header: FC = () => {
         >
           <Icon size={24} icon={IconsEnum.Menu} removeInlineStyle />
         </button>
-        <ThemeToggler classNames={styles["header__theme"]} />
+        <ThemeToggler
+          classNames={styles["header__theme"]}
+          checked={checked}
+          setChecked={setChecked}
+        />
       </div>
       <Menu
         active={active}
@@ -57,6 +74,8 @@ const Header: FC = () => {
         visible={visible}
         setVisible={setVisible}
         links={links}
+        checked={checked}
+        setChecked={setChecked}
       />
     </header>
   );
