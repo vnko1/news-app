@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-
-import { Icon, Logo, SwitchButton } from "@/components";
-
-import { Search } from "./components";
-import styles from "./Header.module.scss";
-import { IconsEnum, LinksEnum } from "@/types";
 import Link from "next/link";
+
+import { IconsEnum, LinksEnum } from "@/types";
+import { Icon, Logo } from "@/components";
+
+import { Search, ThemeToggler } from "./components";
+import styles from "./Header.module.scss";
 
 const links = [
   { name: "Home", href: LinksEnum.Home },
@@ -33,7 +33,7 @@ const Header: FC = () => {
         <button className={styles["header__menu"]}>
           <Icon size={24} icon={IconsEnum.Menu} removeInlineStyle />
         </button>
-        <SwitchButton classNames={styles["header__theme"]} />
+        <ThemeToggler classNames={styles["header__theme"]} />
       </div>
     </header>
   );
