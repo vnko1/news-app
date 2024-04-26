@@ -1,19 +1,30 @@
-import React, { FC } from "react";
+"use client";
+import React, { FC, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import cn from "classnames";
 
 import { IconsEnum, LinksEnum } from "@/types";
 import { Icon, Logo } from "@/components";
 
-import { Search, ThemeToggler } from "./components";
+import { Menu, Search, ThemeToggler } from "./components";
 import styles from "./Header.module.scss";
 
 const links = [
-  { name: "Home", href: LinksEnum.Home },
-  { name: "Favorite", href: LinksEnum.Favorite },
-  { name: "Read", href: LinksEnum.Read },
+  { name: "Home", href: LinksEnum.Home, icon: IconsEnum.Home },
+  { name: "Favorite", href: LinksEnum.Favorite, icon: IconsEnum.Heart },
+  { name: "Read", href: LinksEnum.Read, icon: IconsEnum.Book },
 ];
 
 const Header: FC = () => {
+  const [active, setActive] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const pathName = usePathname();
+
+  function getActiveLink(path: string) {
+    return cn(styles["link"], { [styles["active-link"]]: path === pathName });
+  }
   return (
     <header className={`${styles["header"]} header-t`}>
       <div className={`layout ${styles["header__container"]}`}>
@@ -22,7 +33,7 @@ const Header: FC = () => {
           <ul className={styles["nav__list"]}>
             {links.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className={styles["link"]}>
+                <Link href={link.href} className={getActiveLink(link.href)}>
                   {link.name}
                 </Link>
               </li>
@@ -30,11 +41,21 @@ const Header: FC = () => {
           </ul>
         </nav>
         <Search />
-        <button className={`${styles["header__menu"]} menu-t`}>
+        <button
+          className={`${styles["header__menu"]} menu-button-t`}
+          onClick={() => setActive(true)}
+        >
           <Icon size={24} icon={IconsEnum.Menu} removeInlineStyle />
         </button>
         <ThemeToggler classNames={styles["header__theme"]} />
       </div>
+      <Menu
+        active={active}
+        setActive={setActive}
+        visible={visible}
+        setVisible={setVisible}
+        links={links}
+      />
     </header>
   );
 };

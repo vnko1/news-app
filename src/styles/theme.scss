@@ -7,7 +7,7 @@
 }
 
 .icon-t {
-  @apply dark:fill-white-1010;
+  @apply dark:fill-white-1010 dark:stroke-white-1010;
 }
 
 .switch-t {
@@ -20,6 +20,11 @@
   }
 }
 
-.menu-t {
-  @apply stroke-black-1000 dark:stroke-white-1010;
+.menu {
+  &-t {
+    @apply bg-white-1010 dark:bg-black-1010;
+  }
+  &-button-t {
+    @apply stroke-black-1000 dark:stroke-white-1010;
+  }
 }

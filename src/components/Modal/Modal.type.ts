@@ -1,10 +1,12 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
-export type MenuProps = {
+export type ModalProps = {
+  children: ReactNode;
   backDropClassName?: string;
   modalClassName?: string;
   activeClassName?: string;
   active: boolean;
-  children: ReactNode;
+  visible: boolean;
   setActive: Dispatch<SetStateAction<boolean>>;
+  setVisible: Dispatch<SetStateAction<boolean>>;
 };

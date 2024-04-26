@@ -1,21 +1,23 @@
 "use client";
-import React, { FC, MouseEvent, useEffect, useState } from "react";
+import React, { FC, MouseEvent, useEffect } from "react";
 import cn from "classnames";
 
-import { MenuProps } from "./Modal.type";
-import styles from "./Modal.module.scss";
 import { useSwipe } from "@/hooks";
 
-const Menu: FC<MenuProps> = ({
-  setActive,
+import { ModalProps } from "./Modal.type";
+import styles from "./Modal.module.scss";
+import { createPortal } from "react-dom";
+
+const Modal: FC<ModalProps> = ({
   children,
+  visible,
   active,
   activeClassName,
   backDropClassName,
   modalClassName,
+  setActive,
+  setVisible,
 }) => {
-  const [visible, setVisible] = useState(false);
-
   useSwipe(close);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const Menu: FC<MenuProps> = ({
     return () => {
       document.body.classList.remove("no-scroll");
     };
-  }, [active]);
+  }, [active, setVisible]);
 
   useEffect(() => {
     const handlePressESC = (e: { code: string }) => {
@@ -46,7 +48,7 @@ const Menu: FC<MenuProps> = ({
     setVisible(false);
     setTimeout(() => {
       setActive(false);
-    }, 300);
+    }, 350);
   }
 
   const onHandleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -61,12 +63,14 @@ const Menu: FC<MenuProps> = ({
     [activeClassName || ""]: visible,
   });
 
-  if (!active) return null;
-  return (
+  const modal = (
     <div className={backDropClassNames} onClick={onHandleBackdropClick}>
       <div className={`${styles["modal"]} ${modalClassName}`}>{children}</div>
     </div>
   );
+
+  if (!active) return null;
+  return createPortal(modal, document.body);
 };
 
-export default Menu;
+export default Modal;

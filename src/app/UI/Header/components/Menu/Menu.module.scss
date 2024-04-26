@@ -1,0 +1,31 @@
+.backdrop {
+  @apply top-0 left-0 w-screen h-screen translate-x-full;
+}
+.active {
+  @apply translate-x-0;
+}
+.menu {
+  @apply w-full h-full py-2-md flex flex-col;
+}
+
+.head {
+  @apply flex items-center justify-between mb-[68px];
+}
+
+.icon {
+  @apply stroke-black-1000;
+}
+
+.content {
+  @apply flex flex-col justify-between items-start;
+}
+
+.nav {
+  &__list {
+    @apply flex flex-col gap-2-xl;
+  }
+}
+
+.link {
+  @apply flex items-center text-base font-medium;
+}

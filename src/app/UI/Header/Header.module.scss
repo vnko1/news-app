@@ -25,3 +25,10 @@
 .link {
   @apply font-bold desc:text-md;
 }
+
+.active-link {
+  &::after {
+    content: "";
+    @apply block w-full h-[1px] bg-accent mt-0-xl;
+  }
+}
