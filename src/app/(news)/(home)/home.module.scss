@@ -1,11 +1,7 @@
 .section {
-  @apply pt-2-md;
+  @apply pt-2-md tab:pt-2-xl;
 }
 
 .container {
   @apply flex items-center justify-between;
-}
-
-.filters {
-  @apply flex items-center;
 }

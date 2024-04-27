@@ -31,6 +31,7 @@ const Menu: FC<MenuProps> = ({ setActive, setVisible, links, ...props }) => {
   return (
     <Modal
       {...props}
+      portal
       setActive={setActive}
       setVisible={setVisible}
       backDropClassName={`${styles["backdrop"]} menu-t`}

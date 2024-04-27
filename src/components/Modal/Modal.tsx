@@ -15,6 +15,7 @@ const Modal: FC<ModalProps> = ({
   activeClassName,
   backDropClassName,
   modalClassName,
+  portal = false,
   setActive,
   setVisible,
 }) => {
@@ -70,7 +71,7 @@ const Modal: FC<ModalProps> = ({
   );
 
   if (!active) return null;
-  return createPortal(modal, document.body);
+  return portal ? createPortal(modal, document.body) : modal;
 };
 
 export default Modal;

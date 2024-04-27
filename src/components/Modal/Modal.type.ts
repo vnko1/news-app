@@ -7,6 +7,7 @@ export type ModalProps = {
   activeClassName?: string;
   active: boolean;
   visible: boolean;
+  portal?: boolean;
   setActive: Dispatch<SetStateAction<boolean>>;
   setVisible: Dispatch<SetStateAction<boolean>>;
 };

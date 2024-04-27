@@ -12,6 +12,7 @@ const Button: FC<ButtonProps> = ({
   classNames,
   icon = false,
   variant = "primary",
+  ...props
 }) => {
   const buttonClassNames = cn(
     styles["button"],
@@ -23,7 +24,7 @@ const Button: FC<ButtonProps> = ({
   );
 
   return (
-    <button className={buttonClassNames}>
+    <button className={buttonClassNames} {...props}>
       {children}
       {icon ? (
         <Icon
