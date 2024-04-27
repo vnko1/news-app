@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 
 import { CategoryResponse } from "@/types";
 import { getCategories } from "@/lib";
@@ -15,7 +15,9 @@ async function HomeLayout({ children }: { children: ReactNode }) {
     <>
       <section className={styles["section"]}>
         <div className={`${styles["container"]} layout`}>
-          <Categories categories={data.results} />
+          <Suspense>
+            <Categories categories={data.results} />
+          </Suspense>
         </div>
       </section>
       {children}
