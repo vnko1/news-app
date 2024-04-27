@@ -8,10 +8,10 @@ import { Button, RadioButton } from "@/components";
 
 import { Popup } from "./components";
 
-import { CategoriesProps } from "./Categories.type";
-import styles from "./Categories.module.scss";
+import { FiltersProps } from "./Filters.type";
+import styles from "./Filters.module.scss";
 
-const Categories: FC<CategoriesProps> = ({ categories = [] }) => {
+const Filters: FC<FiltersProps> = ({ categories = [] }) => {
   const props = useModal();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -24,18 +24,17 @@ const Categories: FC<CategoriesProps> = ({ categories = [] }) => {
   const [selectedValue, setSelectedValue] = useState<null | string>(null);
 
   useEffect(() => {
-    if (searchParams.has(ConstantsEnum.Category))
-      setSelectedValue(searchParams.get(ConstantsEnum.Category));
+    if (searchParams.has(ConstantsEnum.Filter))
+      setSelectedValue(searchParams.get(ConstantsEnum.Filter));
   }, [searchParams]);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
-
     if (selectedValue) {
       params.set(ConstantsEnum.Page, "1");
-      params.set(ConstantsEnum.Category, selectedValue);
+      params.set(ConstantsEnum.Filter, selectedValue);
     } else {
-      params.delete(ConstantsEnum.Category);
+      params.delete(ConstantsEnum.Filter);
     }
 
     replace(pathname + "?" + params.toString());
@@ -91,4 +90,4 @@ const Categories: FC<CategoriesProps> = ({ categories = [] }) => {
   return <div className={styles["categories"]}>{renderCategories}</div>;
 };
 
-export default Categories;
+export default Filters;
