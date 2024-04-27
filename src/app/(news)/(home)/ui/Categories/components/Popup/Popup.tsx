@@ -1,13 +1,21 @@
 "use client";
 import React, { FC, useRef } from "react";
-import { Modal } from "@/components";
-import { PopupProps } from "./Popup.type";
-import styles from "./Popup.module.scss";
+
+import { Modal, RadioButton } from "@/components";
 import { useOutsideEventHandler } from "@/hooks";
 
-const Popup: FC<PopupProps> = ({ close, ...props }) => {
+import { PopupProps } from "./Popup.type";
+import styles from "./Popup.module.scss";
+
+const Popup: FC<PopupProps> = ({
+  close,
+  categories,
+  selectedValue,
+  ...props
+}) => {
   const modalRef = useRef(null);
   useOutsideEventHandler(modalRef, close);
+
   return (
     <Modal
       nodeRef={modalRef}
@@ -16,7 +24,19 @@ const Popup: FC<PopupProps> = ({ close, ...props }) => {
       modalClassName={styles["popup__wrapper"]}
       {...props}
     >
-      MODAL
+      <ul className={styles["categories-list"]}>
+        {categories.map((category) => (
+          <li key={category.section}>
+            <RadioButton
+              onChange={props.onChange}
+              name="category"
+              value={category.section}
+              label={category.display_name}
+              checked={selectedValue === category.section}
+            />
+          </li>
+        ))}
+      </ul>
     </Modal>
   );
 };

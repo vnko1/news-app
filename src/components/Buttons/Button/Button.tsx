@@ -12,14 +12,14 @@ const Button: FC<ButtonProps> = ({
   children,
   classNames,
   icon = false,
-  variant = "primary",
+  color = "primary",
   ...props
 }) => {
   const buttonClassNames = cn(
     styles["button"],
     {
-      [styles["primary"]]: variant === "primary",
-      [styles["secondary"]]: variant === "secondary",
+      [styles["primary"]]: color === "primary",
+      [styles["secondary"]]: color === "secondary",
       [styles["active"]]: isActive,
     },
     classNames

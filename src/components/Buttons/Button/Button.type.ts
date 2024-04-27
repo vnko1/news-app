@@ -4,6 +4,6 @@ export type ButtonProps = {
   isActive?: boolean;
   classNames?: string;
   children: ReactNode;
-  variant?: "primary" | "secondary";
+  color?: "primary" | "secondary";
   icon?: boolean;
 } & Partial<ButtonHTMLAttributes<HTMLButtonElement>>;

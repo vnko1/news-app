@@ -1,10 +1,19 @@
 .popup {
-  @apply bg-[#f8f8f8] w-full max-w-[148px] rounded-[20px] -translate-y-full;
+  @apply bg-[#f8f8f8] w-full max-w-[148px] max-h-[380px] rounded-[20px] scale-0 overflow-y-auto;
+  &::-webkit-scrollbar {
+    @apply hidden;
+  }
   &__wrapper {
     @apply w-full h-full flex flex-col items-start p-1-md;
   }
 }
 
 .active {
-  @apply translate-y-0;
+  @apply scale-100;
+}
+
+.categories {
+  &-list {
+    @apply flex flex-col items-start gap-1-sm;
+  }
 }

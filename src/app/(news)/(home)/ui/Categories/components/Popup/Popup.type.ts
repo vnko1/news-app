@@ -1,3 +1,8 @@
-import { IModal } from "@/types";
+import { ChangeEvent } from "react";
+import { Category, IModal } from "@/types";
 
-export type PopupProps = IModal;
+export type PopupProps = {
+  categories: Array<Category>;
+  selectedValue: string | null;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+} & IModal;
