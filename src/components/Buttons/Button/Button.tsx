@@ -8,6 +8,7 @@ import Icon from "@/components/Icon/Icon";
 import { IconsEnum } from "@/types";
 
 const Button: FC<ButtonProps> = ({
+  isActive,
   children,
   classNames,
   icon = false,
@@ -19,6 +20,7 @@ const Button: FC<ButtonProps> = ({
     {
       [styles["primary"]]: variant === "primary",
       [styles["secondary"]]: variant === "secondary",
+      [styles["active"]]: isActive,
     },
     classNames
   );

@@ -16,6 +16,7 @@ const Modal: FC<ModalProps> = ({
   backDropClassName,
   modalClassName,
   portal = false,
+  nodeRef,
   setActive,
   setVisible,
 }) => {
@@ -65,7 +66,11 @@ const Modal: FC<ModalProps> = ({
   });
 
   const modal = (
-    <div className={backDropClassNames} onClick={onHandleBackdropClick}>
+    <div
+      ref={nodeRef}
+      className={backDropClassNames}
+      onClick={onHandleBackdropClick}
+    >
       <div className={`${styles["modal"]} ${modalClassName}`}>{children}</div>
     </div>
   );

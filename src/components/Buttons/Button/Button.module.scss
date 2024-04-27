@@ -4,6 +4,7 @@
   &.primary {
     @apply bg-white-1000 border-accent text-accent stroke-accent fill-accent;
 
+    &.active,
     &:active {
       @apply bg-accent text-white-1000 stroke-white-1000 fill-white-1000;
 

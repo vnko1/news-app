@@ -1,3 +1,7 @@
 .categories {
   @apply flex items-center;
 }
+
+.wrapper {
+  @apply relative;
+}
