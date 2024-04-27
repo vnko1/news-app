@@ -2,6 +2,7 @@
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { ConstantsEnum } from "@/types";
 import { useGetScreenSize, useModal } from "@/hooks";
 import { Button, RadioButton } from "@/components";
 
@@ -9,9 +10,8 @@ import { Popup } from "./components";
 
 import { CategoriesProps } from "./Categories.type";
 import styles from "./Categories.module.scss";
-import { ConstantsEnum } from "@/types";
 
-const Categories: FC<CategoriesProps> = ({ categories }) => {
+const Categories: FC<CategoriesProps> = ({ categories = [] }) => {
   const props = useModal();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -47,6 +47,7 @@ const Categories: FC<CategoriesProps> = ({ categories }) => {
   };
   const onHandleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
+    props.close();
   };
 
   const renderCategories = isMobScreen ? (
