@@ -2,8 +2,8 @@
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { useModal } from "@/hooks";
-import { Button } from "@/components";
+import { useGetScreenSize, useModal } from "@/hooks";
+import { Button, RadioButton } from "@/components";
 
 import { Popup } from "./components";
 
@@ -16,6 +16,10 @@ const Categories: FC<CategoriesProps> = ({ categories }) => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
+  const screenSize = useGetScreenSize();
+  const isMobScreen = screenSize < 768;
+
+  const endSliceValue = screenSize >= 1280 ? 6 : 4;
 
   const [selectedValue, setSelectedValue] = useState<null | string>(null);
 
@@ -45,21 +49,45 @@ const Categories: FC<CategoriesProps> = ({ categories }) => {
     setSelectedValue(event.target.value);
   };
 
-  return (
-    <div className={styles["categories"]}>
+  const renderCategories = isMobScreen ? (
+    <div className={styles["wrapper"]}>
+      <Button onClick={togglePopup} icon isActive={props.visible}>
+        Categories
+      </Button>
+      <Popup
+        {...props}
+        categories={categories}
+        selectedValue={selectedValue}
+        onChange={onHandleChange}
+      />
+    </div>
+  ) : (
+    <>
+      {categories.slice(0, endSliceValue).map((category) => (
+        <RadioButton
+          onChange={onHandleChange}
+          key={category.section}
+          variant="outlined"
+          name="category"
+          label={category.display_name}
+          value={category.section}
+          checked={selectedValue === category.section}
+        />
+      ))}
       <div className={styles["wrapper"]}>
         <Button onClick={togglePopup} icon isActive={props.visible}>
-          Categories
+          Others
         </Button>
         <Popup
           {...props}
-          categories={categories}
+          categories={categories.slice(endSliceValue)}
           selectedValue={selectedValue}
           onChange={onHandleChange}
         />
       </div>
-    </div>
+    </>
   );
+  return <div className={styles["categories"]}>{renderCategories}</div>;
 };
 
 export default Categories;

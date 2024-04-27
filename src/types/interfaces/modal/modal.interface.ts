@@ -9,5 +9,6 @@ export interface IModal {
   backDropClassName?: string;
   modalClassName?: string;
   activeClassName?: string;
+  classNames?: string;
   portal?: boolean;
 }

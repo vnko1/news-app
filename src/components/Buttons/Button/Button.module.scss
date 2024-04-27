@@ -1,8 +1,8 @@
 .button {
-  @apply px-2-xs py-0-xl rounded-[20px] text-sm font-normal border flex items-center gap-1-xs transition-all duration-150;
+  @apply px-2-xs py-0-xl rounded-[20px] text-xs font-normal border flex items-center gap-1-xs transition-all duration-150;
 
   &.primary {
-    @apply bg-white-1000 border-accent text-accent stroke-accent fill-accent;
+    @apply bg-transparent border-accent text-accent stroke-accent fill-accent;
 
     &.active,
     &:active {

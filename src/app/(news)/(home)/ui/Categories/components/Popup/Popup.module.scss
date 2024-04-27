@@ -1,5 +1,5 @@
 .popup {
-  @apply bg-[#f8f8f8] w-full max-w-[148px] max-h-[380px] rounded-[20px] scale-0 overflow-y-auto;
+  @apply bg-[#f8f8f8] w-full max-w-[148px] max-h-[380px] tab:max-w-[168px] rounded-[20px] scale-0 overflow-y-auto;
   &::-webkit-scrollbar {
     @apply hidden;
   }
