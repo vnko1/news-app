@@ -10,7 +10,9 @@ const Categories: FC<CategoriesProps> = ({ categories }) => {
   categories;
   const props = useModal();
   const togglePopup = () => {
-    props.setActive(!props.active);
+    if (!props.active) return props.setActive(true);
+
+    props.close();
   };
   return (
     <div className={styles["categories"]}>
