@@ -7,3 +7,11 @@ export async function getCategories() {
 
   return await res.json();
 }
+
+export async function getFilteredNews(filter: string | null, page: number) {
+  if (!filter) return null;
+  const params = new URLSearchParams({ page: page.toString() });
+
+  const res = await fetchData(EndpointsEnum.Filters + filter + ".json", params);
+  return await res.json();
+}

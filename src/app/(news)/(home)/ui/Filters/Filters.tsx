@@ -11,9 +11,7 @@ import { Popup } from "./components";
 import { FiltersProps } from "./Filters.type";
 import styles from "./Filters.module.scss";
 
-const Filters: FC<FiltersProps> = ({
-  categories = [{ display_name: "news", section: "news" }],
-}) => {
+const Filters: FC<FiltersProps> = ({ categories = [] }) => {
   const [selectedValue, setSelectedValue] = useState<null | string>(null);
   const props = useModal();
   const pathname = usePathname();
