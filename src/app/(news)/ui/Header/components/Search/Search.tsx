@@ -17,6 +17,7 @@ const Search: FC = () => {
     (event: ChangeEvent<HTMLInputElement>) => {
       const term = event.target.value;
       const params = new URLSearchParams(searchParams);
+      params.delete(ConstantsEnum.Filter);
       params.set(ConstantsEnum.Page, "1");
       term
         ? params.set(ConstantsEnum.Query, term)

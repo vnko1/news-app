@@ -1,5 +1,5 @@
 export enum ConstantsEnum {
-  Filter = "f",
+  Filter = "filter",
   Page = "page",
   Query = "q",
 }

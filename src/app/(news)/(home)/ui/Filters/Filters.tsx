@@ -11,7 +11,10 @@ import { Popup } from "./components";
 import { FiltersProps } from "./Filters.type";
 import styles from "./Filters.module.scss";
 
-const Filters: FC<FiltersProps> = ({ categories = [] }) => {
+const Filters: FC<FiltersProps> = ({
+  categories = [{ display_name: "news", section: "news" }],
+}) => {
+  const [selectedValue, setSelectedValue] = useState<null | string>(null);
   const props = useModal();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -21,24 +24,11 @@ const Filters: FC<FiltersProps> = ({ categories = [] }) => {
 
   const endSliceValue = screenSize >= 1280 ? 6 : 4;
 
-  const [selectedValue, setSelectedValue] = useState<null | string>(null);
-
   useEffect(() => {
     if (searchParams.has(ConstantsEnum.Filter))
-      setSelectedValue(searchParams.get(ConstantsEnum.Filter));
+      return setSelectedValue(searchParams.get(ConstantsEnum.Filter));
+    setSelectedValue(null);
   }, [searchParams]);
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    if (selectedValue) {
-      params.set(ConstantsEnum.Page, "1");
-      params.set(ConstantsEnum.Filter, selectedValue);
-    } else {
-      params.delete(ConstantsEnum.Filter);
-    }
-
-    replace(pathname + "?" + params.toString());
-  }, [pathname, replace, searchParams, selectedValue]);
 
   const togglePopup = () => {
     if (!props.active) return props.setActive(true);
@@ -46,6 +36,11 @@ const Filters: FC<FiltersProps> = ({ categories = [] }) => {
   };
   const onHandleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
+    const params = new URLSearchParams(searchParams);
+    params.set(ConstantsEnum.Page, "1");
+    params.set(ConstantsEnum.Filter, event.target.value);
+    params.delete(ConstantsEnum.Query);
+    replace(pathname + "?" + params.toString());
     props.close();
   };
 

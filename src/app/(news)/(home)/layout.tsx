@@ -10,6 +10,7 @@ import { JSONParser } from "@/utils";
 async function HomeLayout({ children }: { children: ReactNode }) {
   const res: CategoryResponse = await getCategories();
   const data = JSONParser(res);
+  console.log("🚀 ~ HomeLayout ~ data:", data);
 
   return (
     <>
