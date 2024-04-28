@@ -11,9 +11,6 @@ export default async function Home({
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
 
-  currentPage;
-  query;
-
   const res = await getQueryNews(query, currentPage);
 
   const articles = JSONParser(res.response?.docs);

@@ -2,7 +2,7 @@
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { ConstantsEnum } from "@/types";
+import { ConstantsEnum, LinksEnum } from "@/types";
 import { useGetScreenSize, useModal } from "@/hooks";
 import { Button, RadioButton } from "@/components";
 
@@ -24,22 +24,23 @@ const Filters: FC<FiltersProps> = ({ categories = [] }) => {
   const endSliceValue = width && width >= 1280 ? 6 : 4;
 
   useEffect(() => {
-    if (searchParams.has(ConstantsEnum.Filter))
-      return setSelectedValue(searchParams.get(ConstantsEnum.Filter));
+    const [, currentCategory] = pathname.split("/");
+
+    if (currentCategory) return setSelectedValue(currentCategory);
     setSelectedValue(null);
-  }, [searchParams]);
+  }, [pathname]);
 
   const togglePopup = () => {
     if (!props.active) return props.setActive(true);
     props.close();
   };
   const onHandleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
+    const term = event.target.value;
+    setSelectedValue(term);
     const params = new URLSearchParams(searchParams);
     params.set(ConstantsEnum.Page, "1");
-    params.set(ConstantsEnum.Filter, event.target.value);
     params.delete(ConstantsEnum.Query);
-    replace(pathname + "?" + params.toString());
+    replace(LinksEnum.Home + term + "?" + params.toString());
     props.close();
   };
 
