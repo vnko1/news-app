@@ -21,7 +21,7 @@ export default async function Home({
     data = res?.results;
   }
 
-  const articles = JSONParser(data);
+  const articles = JSONParser(data || []);
   if (!articles || !articles.length) return <NotFoundComponent />;
 
   return (

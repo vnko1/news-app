@@ -17,13 +17,14 @@ async function HomeLayout({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <section className={styles["section"]}>
-        <div className={`${styles["container"]} layout`}>
+      <section className={styles["section-layout"]}>
+        <div className={`${styles["container-layout"]} layout`}>
           <Suspense>
             <Filters categories={data.results} />
           </Suspense>
         </div>
       </section>
+      <section></section>
       {children}
     </>
   );
