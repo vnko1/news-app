@@ -1,13 +1,36 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+
+type Screen = { width: number | null; height: number | null };
 
 const useGetScreenSize = () => {
-  const screen = useRef(0);
+  const [windowSize, setWindowSize] = useState<Screen>({
+    width: 0,
+    height: 0,
+  });
+
   useEffect(() => {
-    screen.current = window?.innerWidth;
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
   }, []);
 
-  return screen.current;
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    addEventListener("resize", handleResize);
+
+    return () => {
+      removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return windowSize;
 };
 
 export default useGetScreenSize;

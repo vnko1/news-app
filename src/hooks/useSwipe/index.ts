@@ -10,7 +10,7 @@ const enableSwipeToScreen = 769;
 const useSwipe = (eventHandler: () => void) => {
   const [touchStart, setTouchStart] = useState(0);
 
-  const screenSize = useGetScreenSize();
+  const { width } = useGetScreenSize();
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) =>
@@ -24,7 +24,7 @@ const useSwipe = (eventHandler: () => void) => {
       }
     };
 
-    if (screenSize < enableSwipeToScreen) {
+    if (width && width < enableSwipeToScreen) {
       window.addEventListener("touchstart", handleTouchStart);
       window.addEventListener("touchend", handleTouchEnd);
     }
@@ -34,7 +34,7 @@ const useSwipe = (eventHandler: () => void) => {
       window.removeEventListener("touchend", handleTouchEnd);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [axis, enableSwipeToScreen, screenSize, touchDistinction, touchStart]);
+  }, [axis, enableSwipeToScreen, width, touchDistinction, touchStart]);
 };
 
 export default useSwipe;

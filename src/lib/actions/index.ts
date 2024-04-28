@@ -10,7 +10,7 @@ export async function getCategories() {
 
 export async function getFilteredNews(filter: string | null, page: number) {
   if (!filter) return null;
-  const params = new URLSearchParams({ page: page.toString() });
+  const params = new URLSearchParams({ offset: page.toString(), limit: "20" });
 
   const res = await fetchData(EndpointsEnum.Filters + filter + ".json", params);
   return await res.json();

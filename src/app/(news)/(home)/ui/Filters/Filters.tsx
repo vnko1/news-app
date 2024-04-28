@@ -17,10 +17,11 @@ const Filters: FC<FiltersProps> = ({ categories = [] }) => {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
-  const screenSize = useGetScreenSize();
-  const isMobScreen = screenSize < 768;
+  const { width } = useGetScreenSize();
 
-  const endSliceValue = screenSize >= 1280 ? 6 : 4;
+  const isMobScreen = width && width < 768;
+
+  const endSliceValue = width && width >= 1280 ? 6 : 4;
 
   useEffect(() => {
     if (searchParams.has(ConstantsEnum.Filter))
