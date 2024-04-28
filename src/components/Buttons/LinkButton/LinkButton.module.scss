@@ -1,0 +1,21 @@
+.button {
+  @apply relative flex items-center text-xs text-accent transition-all duration-150;
+
+  &.text {
+    @apply justify-start text-left;
+  }
+
+  &.outlined {
+    @apply justify-center px-2-xs py-0-xl border border-accent rounded-[20px];
+  }
+
+  &:active + .text,
+  &.active + .text {
+    @apply border-b border-b-accent;
+  }
+
+  &:active + .outlined,
+  &.active + .outlined {
+    @apply bg-accent text-white-1000;
+  }
+}

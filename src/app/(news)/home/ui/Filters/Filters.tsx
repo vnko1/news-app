@@ -6,7 +6,7 @@ import { ConstantsEnum } from "@/types";
 import { useGetScreenSize, useModal } from "@/hooks";
 import { Button, RadioButton } from "@/components";
 
-import { Popup } from "./components";
+import { Popup } from "..";
 
 import { FiltersProps } from "./Filters.type";
 import styles from "./Filters.module.scss";

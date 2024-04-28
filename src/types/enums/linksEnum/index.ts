@@ -1,5 +1,5 @@
 export enum LinksEnum {
-  Home = "/",
+  Home = "/home",
   Favorite = "/favorite",
   Read = "/read",
 }

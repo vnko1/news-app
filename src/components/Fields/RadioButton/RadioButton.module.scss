@@ -14,7 +14,7 @@
 }
 
 .custom-field {
-  @apply flex  items-center text-xs text-accent transition-all duration-150;
+  @apply flex items-center text-xs text-accent transition-all duration-150;
 
   &.text {
     @apply justify-start text-left;

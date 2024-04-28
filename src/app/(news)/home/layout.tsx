@@ -2,13 +2,14 @@ import { ReactNode, Suspense } from "react";
 
 import { CategoryResponse } from "@/types";
 import { getCategories } from "@/lib";
-import { Filters } from "./ui";
+import { LinkFilters } from "./ui";
 
 import styles from "./home.module.scss";
 import { JSONParser } from "@/utils";
 
 async function HomeLayout({ children }: { children: ReactNode }) {
   const res: CategoryResponse = await getCategories();
+
   const data = JSONParser(res);
 
   return (
@@ -16,7 +17,7 @@ async function HomeLayout({ children }: { children: ReactNode }) {
       <section className={styles["section"]}>
         <div className={`${styles["container"]} layout`}>
           <Suspense>
-            <Filters categories={data.results} />
+            <LinkFilters categories={data.results} />
           </Suspense>
         </div>
       </section>

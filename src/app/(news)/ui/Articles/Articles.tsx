@@ -5,7 +5,7 @@ import { ArticlesProps } from "./Articles.type";
 const Articles: FC<ArticlesProps> = ({ articles }) => {
   console.log("🚀 ~ articles:", articles);
 
-  return <div>News</div>;
+  return <div>Articles</div>;
 };
 
 export default Articles;

@@ -1,6 +1,11 @@
 // "use server";
+
 import { fetchData } from "@/services";
-import { ApiResponseType, EndpointsEnum } from "@/types";
+import {
+  CategoryApiResponseType,
+  EndpointsEnum,
+  SearchApiResponseType,
+} from "@/types";
 
 export async function getCategories() {
   const res = await fetchData(EndpointsEnum.Category);
@@ -9,14 +14,27 @@ export async function getCategories() {
 }
 
 export async function getFilteredNews(
-  filter: string | null,
+  filter: string,
   page: number
-): Promise<ApiResponseType | null> {
-  if (!filter) return null;
+): Promise<CategoryApiResponseType> {
   const params = new URLSearchParams({
     offset: (page - 1).toString(),
     limit: "20",
   });
   const res = await fetchData(EndpointsEnum.Filters + filter + ".json", params);
+  return await res.json();
+}
+
+export async function getQueryNews(
+  query: string,
+  page: number
+): Promise<SearchApiResponseType> {
+  const params = new URLSearchParams({
+    page: (page - 1).toString(),
+    q: query,
+  });
+
+  const res = await fetchData(EndpointsEnum.Search, params);
+
   return await res.json();
 }
