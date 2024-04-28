@@ -93,3 +93,38 @@ export type SearchArticleType = {
   word_count: number;
   uri: string;
 };
+
+type Media = {
+  type: string;
+  subtype: string;
+  caption: string;
+  copyright: string;
+  approved_for_syndication: string;
+  "media-metadata": Array<{
+    url: string;
+    format: string;
+    height: number;
+    width: number;
+  }>;
+};
+
+export type PopularArticleType = {
+  url: string;
+  adx_keywords: string;
+  column: string;
+  section: string;
+  byline: string;
+  type: string;
+  title: string;
+  abstract: string;
+  published_date: string;
+  source: string;
+  id: number;
+  asset_id: number;
+  des_facet: string[];
+  org_facet: string[];
+  per_facet: string[];
+  geo_facet: string[];
+  media: Media[];
+  uri: string;
+};

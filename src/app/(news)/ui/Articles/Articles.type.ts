@@ -1,5 +1,9 @@
-import { CategoryArticleType, SearchArticleType } from "@/types";
+import {
+  CategoryArticleType,
+  PopularArticleType,
+  SearchArticleType,
+} from "@/types";
 
 export type ArticlesProps = {
-  articles: Array<SearchArticleType | CategoryArticleType>;
+  articles: Array<SearchArticleType | CategoryArticleType | PopularArticleType>;
 };

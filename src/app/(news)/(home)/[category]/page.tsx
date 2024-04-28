@@ -19,10 +19,11 @@ const CategoryPage = async ({
   if (!data || !data.results) notFound();
 
   return (
-    <div>
-      {params.category} {currentPage}
-      <Articles articles={data.results} />
-    </div>
+    <section>
+      <div className="layout">
+        <Articles articles={data.results} />
+      </div>
+    </section>
   );
 };
 

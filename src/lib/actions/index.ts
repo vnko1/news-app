@@ -4,6 +4,7 @@ import { fetchData } from "@/services";
 import {
   CategoryApiResponseType,
   EndpointsEnum,
+  PopularApiResponseType,
   SearchApiResponseType,
 } from "@/types";
 
@@ -35,6 +36,12 @@ export async function getQueryNews(
   });
 
   const res = await fetchData(EndpointsEnum.Search, params);
+
+  return await res.json();
+}
+
+export async function getPopularNews(): Promise<PopularApiResponseType> {
+  const res = await fetchData(EndpointsEnum.Popular);
 
   return await res.json();
 }

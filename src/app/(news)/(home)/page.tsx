@@ -1,25 +1,34 @@
 import { Articles } from "@/app/(news)/ui";
 import { JSONParser } from "@/utils";
-import { getQueryNews } from "@/lib";
+import { getPopularNews, getQueryNews } from "@/lib";
 import { NotFoundComponent } from "@/components";
+import { PopularArticleType, SearchArticleType } from "@/types";
 
 export default async function Home({
   searchParams,
 }: {
   searchParams?: { page?: string; query?: string };
 }) {
+  let data: PopularArticleType[] | SearchArticleType[] = [];
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
 
-  const res = await getQueryNews(query, currentPage);
+  if (query) {
+    const res = await getQueryNews(query, currentPage);
+    data = res.response?.docs;
+  } else {
+    const res = await getPopularNews();
+    data = res?.results;
+  }
 
-  const data = JSONParser(res);
-  if (!data.response?.docs.length) return <NotFoundComponent />;
+  const articles = JSONParser(data);
+  if (!articles || !articles.length) return <NotFoundComponent />;
 
   return (
     <section>
-      News
-      <Articles articles={data.response.docs} />
+      <div className="layout">
+        <Articles articles={articles} />
+      </div>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import {
   CategoryArticleType,
+  PopularArticleType,
   SearchArticleType,
 } from "../article/article.type";
 
@@ -15,4 +16,9 @@ export type SearchApiResponseType = {
     meta: { hits: number; offset: number; time: number };
     docs: SearchArticleType[];
   };
+} & ApiResponseType;
+
+export type PopularApiResponseType = {
+  num_results: number;
+  results: PopularArticleType[];
 } & ApiResponseType;
