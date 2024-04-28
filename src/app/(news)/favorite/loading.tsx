@@ -1,8 +1,8 @@
 import { Loader } from "@/components";
 import React from "react";
 
-function HomeLoading() {
+function FavoriteLoading() {
   return <Loader loading />;
 }
 
-export default HomeLoading;
+export default FavoriteLoading;
