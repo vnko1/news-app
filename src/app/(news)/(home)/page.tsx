@@ -16,7 +16,7 @@ export default async function Home({
 
   const res = await getQueryNews(query, currentPage);
 
-  const articles = JSONParser(res.response.docs);
+  const articles = JSONParser(res.response?.docs);
   if (!articles.length) return <NotFoundComponent />;
 
   return (

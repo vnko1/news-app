@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import cn from "classnames";
 
-import { ConstantsEnum, LinksEnum } from "@/types";
+import { ConstantsEnum } from "@/types";
 
 import { LinkButtonProps } from "./LinkButton.type";
 import styles from "./LinkButton.module.scss";
@@ -22,7 +22,7 @@ const LinkButton: FC<LinkButtonProps> = ({
     const params = new URLSearchParams(searchParams);
     params.set(ConstantsEnum.Page, "1");
     params.delete(ConstantsEnum.Query);
-    replace(LinksEnum.Home + "/" + href + "?" + params.toString());
+    replace(pathname + href + "?" + params.toString());
   };
 
   const buttonClassNames = cn(

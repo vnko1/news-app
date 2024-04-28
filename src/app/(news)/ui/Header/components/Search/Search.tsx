@@ -25,7 +25,7 @@ const Search: FC = () => {
         ? params.set(ConstantsEnum.Query, term)
         : params.delete(ConstantsEnum.Query);
       replace(
-        `${pathLength === 3 ? LinksEnum.Home : pathname}?${params.toString()}`
+        `${pathLength === 2 ? LinksEnum.Home : pathname}?${params.toString()}`
       );
     },
     300
