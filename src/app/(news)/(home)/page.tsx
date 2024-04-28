@@ -13,13 +13,13 @@ export default async function Home({
 
   const res = await getQueryNews(query, currentPage);
 
-  const articles = JSONParser(res.response?.docs);
-  if (!articles.length) return <NotFoundComponent />;
+  const data = JSONParser(res);
+  if (!data.response?.docs.length) return <NotFoundComponent />;
 
   return (
     <section>
       News
-      <Articles articles={articles} />
+      <Articles articles={data.response.docs} />
     </section>
   );
 }

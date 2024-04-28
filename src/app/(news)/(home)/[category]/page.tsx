@@ -13,15 +13,15 @@ const CategoryPage = async ({
 }) => {
   const currentPage = Number(searchParams?.page) || 1;
 
-  const data = await getFilteredNews(params.category, currentPage);
+  const res = await getFilteredNews(params.category, currentPage);
+  const data = JSONParser(res);
 
   if (!data || !data.results) notFound();
-  const articles = JSONParser(data.results);
 
   return (
     <div>
       {params.category} {currentPage}
-      <Articles articles={articles} />
+      <Articles articles={data.results} />
     </div>
   );
 };
