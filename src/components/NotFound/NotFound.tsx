@@ -13,8 +13,10 @@ const NotFound: FC<NotFoundProps> = ({
       <Image
         width={600}
         height={478}
+        priority
         alt="not found"
         src="/not-found-desc@2x.webp"
+        className={styles["image"]}
       />
     </div>
   );

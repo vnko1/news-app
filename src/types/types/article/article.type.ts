@@ -1,0 +1,36 @@
+export type ArticleType = {
+  slug_name: string;
+  section: string;
+  subsection: string;
+  title: string;
+  abstract: string;
+  uri: string;
+  url: string;
+  short_url: string;
+  byline: string;
+  thumbnail_standard: string;
+  item_type: string;
+  source: string;
+  updated_date: string;
+  created_date: string;
+  published_date: string;
+  material_type_facet: string;
+  kicker: string;
+  headline: string;
+  des_facet: string;
+  org_facet: string;
+  per_facet: Array<unknown>;
+  geo_facet: Array<unknown>;
+  blog_name: string;
+  related_urls: { suggested_link_text: string; url: string }[];
+  multimedia: {
+    url: string;
+    format: string;
+    height: number;
+    width: number;
+    type: string;
+    subtype: string;
+    capyion: string;
+    copyright: string;
+  }[];
+};

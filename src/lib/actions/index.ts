@@ -1,6 +1,6 @@
-"use server";
+// "use server";
 import { fetchData } from "@/services";
-import { EndpointsEnum } from "@/types";
+import { ApiResponseType, EndpointsEnum } from "@/types";
 
 export async function getCategories() {
   const res = await fetchData(EndpointsEnum.Category);
@@ -8,10 +8,15 @@ export async function getCategories() {
   return await res.json();
 }
 
-export async function getFilteredNews(filter: string | null, page: number) {
+export async function getFilteredNews(
+  filter: string | null,
+  page: number
+): Promise<ApiResponseType | null> {
   if (!filter) return null;
-  const params = new URLSearchParams({ offset: page.toString(), limit: "20" });
-
+  const params = new URLSearchParams({
+    offset: (page - 1).toString(),
+    limit: "20",
+  });
   const res = await fetchData(EndpointsEnum.Filters + filter + ".json", params);
   return await res.json();
 }

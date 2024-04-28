@@ -1,8 +1,8 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 import styles from "./app.module.scss";
-import Image from "next/image";
 
 const NotFoundPage = () => {
   return (
@@ -15,8 +15,10 @@ const NotFoundPage = () => {
           <Image
             width={600}
             height={478}
+            priority
             alt="not found"
             src="/not-found-desc@2x.webp"
+            className={styles["image"]}
           />
         </div>
       </section>
