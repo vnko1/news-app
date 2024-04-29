@@ -10,6 +10,7 @@ export default async function Home({
   searchParams?: { page?: string; query?: string; date?: string };
 }) {
   let articles: PopularArticleType[] | SearchArticleType[] = [];
+  let total: number;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
   const date = searchParams?.date || null;
@@ -18,6 +19,7 @@ export default async function Home({
     const res = await getNews(query, date, currentPage);
     const data = JSONParser(res);
     articles = data.response?.docs;
+    total = data.response.meta.hits;
   } else {
     const res = await getPopularNews();
     const data = JSONParser(res);
