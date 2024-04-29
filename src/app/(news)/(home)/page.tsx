@@ -3,6 +3,7 @@ import { JSONParser } from "@/utils";
 import { getPopularNews, getNews } from "@/lib";
 import { NotFoundComponent } from "@/components";
 import { Articles } from "@/app/(news)/ui";
+import { Pagination } from "./ui";
 
 export default async function Home({
   searchParams,
@@ -29,5 +30,10 @@ export default async function Home({
   if (!articles || !articles.length) return <NotFoundComponent />;
   total;
 
-  return <Articles articles={articles} />;
+  return (
+    <>
+      <Articles articles={articles} />
+      <Pagination total={total} />
+    </>
+  );
 }
