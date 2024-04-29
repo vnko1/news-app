@@ -4,11 +4,12 @@ import { fetchData } from "@/services";
 import {
   CategoryApiResponseType,
   EndpointsEnum,
+  FiltersApiResponse,
   PopularApiResponseType,
   SearchApiResponseType,
 } from "@/types";
 
-export async function getCategories() {
+export async function getCategories(): Promise<FiltersApiResponse> {
   const res = await fetchData(EndpointsEnum.Category);
 
   return await res.json();

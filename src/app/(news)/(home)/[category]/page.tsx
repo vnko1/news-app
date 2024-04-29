@@ -18,13 +18,7 @@ const CategoryPage = async ({
 
   if (!data || !data.results) notFound();
 
-  return (
-    <section>
-      <div className="layout">
-        <Articles articles={data.results} />
-      </div>
-    </section>
-  );
+  return <Articles articles={data.results} />;
 };
 
 export default CategoryPage;

@@ -1,6 +1,5 @@
 import { ReactNode, Suspense } from "react";
 
-import { CategoryResponse } from "@/types";
 import { getCategories } from "@/lib";
 
 import { Filters } from "./ui";
@@ -11,21 +10,24 @@ import { JSONParser } from "@/utils";
 export const revalidate = 3600;
 
 async function HomeLayout({ children }: { children: ReactNode }) {
-  const res: CategoryResponse = await getCategories();
+  const res = await getCategories();
 
   const data = JSONParser(res);
 
   return (
     <>
-      <section className={styles["section-layout"]}>
-        <div className={`${styles["container-layout"]} layout`}>
+      <section className={styles["section-filters"]}>
+        <div className={`${styles["container-filters"]} layout`}>
           <Suspense>
             <Filters categories={data.results} />
           </Suspense>
         </div>
       </section>
-      <section></section>
-      {children}
+      <section className={styles["section-articles"]}>
+        <div className={`layout ${styles["container-articles"]}`}>
+          {children}
+        </div>
+      </section>
     </>
   );
 }

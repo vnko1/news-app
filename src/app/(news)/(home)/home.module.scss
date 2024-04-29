@@ -1,15 +1,18 @@
 .section {
-  &-layout {
+  &-filters {
     @apply pt-2-md tab:pt-2-xl;
   }
 
-  &-page {
+  &-articles {
     @apply pt-4-xs pb-[60px] tab:pt-4-xl tab:pb-[100px] desc:pt-[60px] desc:pb-[150px];
   }
 }
 
 .container {
-  &-layout {
+  &-filters {
     @apply flex items-center justify-between;
+  }
+
+  &-articles {
   }
 }

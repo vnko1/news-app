@@ -2,9 +2,19 @@ import {
   CategoryArticleType,
   PopularArticleType,
   SearchArticleType,
-} from "../article/article.type";
+  Category,
+} from "@/types";
 
 type ApiResponseType = { status: string; copyright: string };
+
+export type ErrorApiResponse = {
+  fault: { faultstring: string; detail: { errorcode: string } };
+};
+
+export type FiltersApiResponse = {
+  num_results: number;
+  results: Category[];
+} & ApiResponseType;
 
 export type CategoryApiResponseType = {
   num_results: number;

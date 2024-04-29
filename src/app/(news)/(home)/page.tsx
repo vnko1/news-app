@@ -24,11 +24,5 @@ export default async function Home({
   const articles = JSONParser(data || []);
   if (!articles || !articles.length) return <NotFoundComponent />;
 
-  return (
-    <section>
-      <div className="layout">
-        <Articles articles={articles} />
-      </div>
-    </section>
-  );
+  return <Articles articles={articles} />;
 }
