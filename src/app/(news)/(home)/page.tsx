@@ -28,12 +28,11 @@ export default async function Home({
   }
 
   if (!articles || !articles.length) return <NotFoundComponent />;
-  total;
 
   return (
     <>
       <Articles articles={articles} />
-      <Pagination total={total} />
+      <Pagination total={total} page={currentPage} />
     </>
   );
 }
