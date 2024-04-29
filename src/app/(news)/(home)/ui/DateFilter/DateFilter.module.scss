@@ -4,6 +4,7 @@
     @apply hidden desc:block text-md font-bold;
   }
 
-  &__button {
+  &__calendar {
+    @apply top-full right-0;
   }
 }

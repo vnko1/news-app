@@ -1,19 +1,40 @@
 "use client";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
 
-import { Button } from "@/components";
+import { useModal } from "@/hooks";
+import { IconsEnum } from "@/types";
+import { Button, Calendar } from "@/components";
 
 import { DateFilterProps } from "./DateFilter.type";
 import styles from "./DateFilter.module.scss";
-import { IconsEnum } from "@/types";
 
 const DateFilter: FC<DateFilterProps> = () => {
+  const [value, setValue] = useState<Dayjs | null>(dayjs(Date.now()));
+
+  const props = useModal();
+
+  const handleClick = () => {
+    if (!props.active) return props.setActive(true);
+    props.close();
+  };
+
   return (
     <div className={styles["filter"]}>
       <p className={styles["filter__label"]}>Search date news</p>
-      <Button icon customIcon={{ icon: IconsEnum.Calendar, size: 18 }}>
+      <Button
+        icon
+        customIcon={{ icon: IconsEnum.Calendar, size: 18 }}
+        onClick={handleClick}
+      >
         date
       </Button>
+      <Calendar
+        {...props}
+        value={value}
+        setValue={setValue}
+        classNames={styles["filter__calendar"]}
+      />
     </div>
   );
 };
