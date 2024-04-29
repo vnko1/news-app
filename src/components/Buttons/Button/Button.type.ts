@@ -6,4 +6,5 @@ export type ButtonProps = {
   children: ReactNode;
   color?: "primary" | "secondary";
   icon?: boolean;
+  customIcon?: { icon: string; size: number };
 } & Partial<ButtonHTMLAttributes<HTMLButtonElement>>;

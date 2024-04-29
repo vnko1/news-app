@@ -2,10 +2,11 @@
 import React, { FC } from "react";
 import cn from "classnames";
 
+import { IconsEnum } from "@/types";
+import { Icon } from "@/components";
+
 import { ButtonProps } from "./Button.type";
 import styles from "./Button.module.scss";
-import Icon from "@/components/Icon/Icon";
-import { IconsEnum } from "@/types";
 
 const Button: FC<ButtonProps> = ({
   isActive,
@@ -13,6 +14,7 @@ const Button: FC<ButtonProps> = ({
   classNames,
   icon = false,
   color = "primary",
+  customIcon,
   ...props
 }) => {
   const buttonClassNames = cn(
@@ -27,6 +29,14 @@ const Button: FC<ButtonProps> = ({
 
   return (
     <button className={buttonClassNames} {...props}>
+      {customIcon ? (
+        <Icon
+          icon={customIcon.icon}
+          size={customIcon.size}
+          removeInlineStyle
+          className={styles["custom-icon"]}
+        />
+      ) : null}
       {children}
       {icon ? (
         <Icon

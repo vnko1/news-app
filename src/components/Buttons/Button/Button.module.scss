@@ -1,5 +1,5 @@
 .button {
-  @apply px-2-xs py-0-xl rounded-[20px] text-xs font-normal border flex items-center gap-1-xs transition-all duration-150;
+  @apply px-2-xs py-0-xl rounded-[20px] text-xs font-normal border flex items-center gap-1-sm transition-all duration-150;
 
   &.primary {
     @apply bg-transparent border-accent text-accent stroke-accent fill-accent;
@@ -11,10 +11,18 @@
       & .icon {
         @apply rotate-180;
       }
+
+      & .custom-icon {
+        @apply text-white-1000 stroke-white-1000 fill-white-1000;
+      }
     }
   }
 }
 
 .icon {
   @apply transition-all duration-150;
+}
+
+.custom-icon {
+  @apply text-accent stroke-accent fill-accent;
 }
