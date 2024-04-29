@@ -9,19 +9,20 @@ export default async function Home({
 }: {
   searchParams?: { page?: string; query?: string; date?: string };
 }) {
-  let data: PopularArticleType[] | SearchArticleType[] = [];
+  let articles: PopularArticleType[] | SearchArticleType[] = [];
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
   const date = searchParams?.date || null;
 
   if (query) {
     const res = await getNews(query, date, currentPage);
-    data = res.response?.docs;
+    const data = JSONParser(res);
+    articles = data.response?.docs;
   } else {
     const res = await getPopularNews();
-    data = res?.results;
+    const data = JSONParser(res);
+    articles = data?.results;
   }
-  const articles = JSONParser(data || []);
 
   if (!articles || !articles.length) return <NotFoundComponent />;
 
