@@ -10,7 +10,7 @@ export default async function Home({
   searchParams?: { page?: string; query?: string; date?: string };
 }) {
   let articles: PopularArticleType[] | SearchArticleType[] = [];
-  let total: number;
+  let total: number = 0;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
   const date = searchParams?.date || null;
@@ -27,6 +27,7 @@ export default async function Home({
   }
 
   if (!articles || !articles.length) return <NotFoundComponent />;
+  total;
 
   return <Articles articles={articles} />;
 }
