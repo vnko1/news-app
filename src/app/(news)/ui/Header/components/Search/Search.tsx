@@ -20,6 +20,7 @@ const Search: FC = () => {
 
       const params = new URLSearchParams(searchParams);
       params.delete(ConstantsEnum.Filter);
+      params.delete(ConstantsEnum.Date);
       params.set(ConstantsEnum.Page, "1");
       term
         ? params.set(ConstantsEnum.Query, term)

@@ -40,6 +40,7 @@ const Filters: FC<FiltersProps> = ({ categories = [] }) => {
     const params = new URLSearchParams(searchParams);
     params.set(ConstantsEnum.Page, "1");
     params.delete(ConstantsEnum.Query);
+    params.delete(ConstantsEnum.Date);
     replace(LinksEnum.Home + term + "?" + params.toString());
     props.close();
   };
