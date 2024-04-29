@@ -3,7 +3,7 @@ import { ReactNode, Suspense } from "react";
 import { JSONParser } from "@/utils";
 import { getCategories } from "@/lib";
 
-import { DatePicker, Filters } from "./ui";
+import { Filters, DateFilter } from "./ui";
 
 import styles from "./home.module.scss";
 
@@ -17,11 +17,14 @@ async function HomeLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <section className={styles["section-filters"]}>
-        <div className={`${styles["container-filters"]} layout`}>
+        <div
+          className={`${styles["container-filters"]} layout`}
+          suppressHydrationWarning
+        >
           <Suspense>
             <Filters categories={data.results} />
           </Suspense>
-          <DatePicker />
+          <DateFilter />
         </div>
       </section>
       <section className={styles["section-articles"]}>
@@ -34,3 +37,8 @@ async function HomeLayout({ children }: { children: ReactNode }) {
 }
 
 export default HomeLayout;
+
+// import dynamic from "next/dynamic";
+// const NoSSR = dynamic(() => import("./ui/DateFilter/DateFilter"), {
+//   ssr: false,
+// });

@@ -3,6 +3,7 @@ import React, { FC, useRef } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import { Dayjs } from "dayjs";
 
 import { useOutsideEventHandler } from "@/hooks";
 import { Modal } from "@/components";
@@ -19,6 +20,11 @@ const Calendar: FC<CalendarProps> = ({
   const modalRef = useRef(null);
   useOutsideEventHandler(modalRef, props.close);
 
+  const onHandleChange = (newValue: Dayjs) => {
+    setValue(newValue);
+    props.close();
+  };
+
   return (
     <Modal
       {...props}
@@ -26,11 +32,7 @@ const Calendar: FC<CalendarProps> = ({
       backDropClassName={`${styles["calendar"]} ${classNames}`}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar
-          disableFuture
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
-        />
+        <DateCalendar disableFuture value={value} onChange={onHandleChange} />
       </LocalizationProvider>
     </Modal>
   );

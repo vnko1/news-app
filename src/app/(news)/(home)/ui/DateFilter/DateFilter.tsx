@@ -27,7 +27,7 @@ const DateFilter: FC<DateFilterProps> = () => {
         customIcon={{ icon: IconsEnum.Calendar, size: 18 }}
         onClick={handleClick}
       >
-        date
+        {value?.format("DD/MM/YYYY")}
       </Button>
       <Calendar
         {...props}
