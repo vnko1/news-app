@@ -24,7 +24,9 @@ async function HomeLayout({ children }: { children: ReactNode }) {
           <Suspense>
             <Filters categories={data.results} />
           </Suspense>
-          <DateFilter />
+          <Suspense>
+            <DateFilter />
+          </Suspense>
         </div>
       </section>
       <section className={styles["section-articles"]}>

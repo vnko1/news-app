@@ -39,15 +39,18 @@ export async function getFilteredNews(
 
 export async function getNews(
   query: string,
-  date: string,
+  date: string | null,
   page: number
 ): Promise<SearchApiResponseType> {
   const params = new URLSearchParams({
     page: (page - 1).toString(),
     q: query,
-    begin_date: date,
-    end_date: date,
   });
+
+  if (date) {
+    params.append("begin_date", date);
+    params.append("end_date", date);
+  }
 
   const res = await fetchData(EndpointsEnum.Search, params);
   const data: Promise<SearchApiResponseType | ErrorApiResponse> =

@@ -12,20 +12,18 @@ export default async function Home({
   let data: PopularArticleType[] | SearchArticleType[] = [];
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
-  const date = searchParams?.date || "";
+  const date = searchParams?.date || null;
 
   if (query) {
     const res = await getNews(query, date, currentPage);
-
     data = res.response?.docs;
-    console.log("🚀 ~ data:", data);
   } else {
     const res = await getPopularNews();
     data = res?.results;
   }
-
   const articles = JSONParser(data || []);
-  // if (!articles || !articles.length) return <NotFoundComponent />;
+
+  if (!articles || !articles.length) return <NotFoundComponent />;
 
   return <Articles articles={articles} />;
 }
