@@ -6,12 +6,11 @@ import { getCurrentWeather } from "@/lib";
 
 import { WeatherProps } from "./Weather.type";
 import styles from "./Weather.module.scss";
+import { Loader } from "@/components";
 
 const Weather: FC<WeatherProps> = () => {
   const [currentWeather, setCurrentWeather] =
     useState<null | CurrentWeatherApiResponseType>(null);
-
-  currentWeather;
 
   useEffect(() => {
     async function getPosition(position: GeolocationPosition) {
@@ -30,7 +29,11 @@ const Weather: FC<WeatherProps> = () => {
     navigator.geolocation.getCurrentPosition(getPosition, onErrorPosition);
   }, []);
 
-  return <div className={styles["weather"]}>Weather</div>;
+  return (
+    <div className={styles["weather"]}>
+      {currentWeather ? "Weather" : <Loader loading size={20} />}
+    </div>
+  );
 };
 
 export default Weather;
