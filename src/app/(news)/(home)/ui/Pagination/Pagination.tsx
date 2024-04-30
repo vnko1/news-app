@@ -2,9 +2,10 @@
 import React, { FC } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Pagination as MUIPagination } from "@mui/material";
+
+import { ConstantsEnum } from "@/types";
 import { PaginationProps } from "./Pagination.type";
 import styles from "./Pagination.module.scss";
-import { ConstantsEnum } from "@/types";
 
 const Pagination: FC<PaginationProps> = ({ total, page }) => {
   const count = Math.floor(total / 8);
@@ -27,12 +28,9 @@ const Pagination: FC<PaginationProps> = ({ total, page }) => {
         count={count}
         page={page}
         onChange={handleChange}
-        // boundaryCount={1}
-        siblingCount={2}
         variant="outlined"
         shape="rounded"
         size="medium"
-        // boundaryCount={2}
       />
     </div>
   );
