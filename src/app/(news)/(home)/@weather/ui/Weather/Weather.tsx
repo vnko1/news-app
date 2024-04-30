@@ -54,8 +54,8 @@ const Weather: FC<WeatherProps> = () => {
 
           <Image
             src={`https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`}
-            width={128}
-            height={120}
+            width={166}
+            height={166}
             alt="weather conditions"
             className={styles["image"]}
             priority
