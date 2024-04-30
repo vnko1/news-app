@@ -6,6 +6,6 @@ export enum NewsEndpointsEnum {
 }
 
 export enum WeatherEndpointsEnum {
-  Current = "",
-  Weekly = "1",
+  Current = "2.5/weather",
+  Weekly = "3.0/onecall",
 }

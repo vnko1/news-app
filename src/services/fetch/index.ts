@@ -1,6 +1,5 @@
 const BASE_URL = process.env.API_URL as string;
 const APi_KEY = process.env.API_KEY as string;
-
 const W_BASE_URL = process.env.W_API_URL as string;
 const W_API_KEY = process.env.W_API_KEY as string;
 
