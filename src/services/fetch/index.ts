@@ -1,7 +1,7 @@
 const BASE_URL = process.env.API_URL as string;
 const APi_KEY = process.env.API_KEY as string;
 
-async function fetchData(
+export async function fetchArticlesData(
   url: string,
   params?: URLSearchParams,
   reqParams?: RequestInit
@@ -14,5 +14,3 @@ async function fetchData(
     ...reqParams,
   });
 }
-
-export default fetchData;

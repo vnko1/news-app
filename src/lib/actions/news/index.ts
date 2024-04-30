@@ -1,9 +1,9 @@
 // "use server";
 
-import { fetchData } from "@/services";
+import { fetchArticlesData } from "@/services";
 import {
   CategoryApiResponseType,
-  EndpointsEnum,
+  NewsEndpointsEnum,
   ErrorApiResponse,
   FiltersApiResponse,
   PopularApiResponseType,
@@ -11,7 +11,7 @@ import {
 } from "@/types";
 
 export async function getCategories(): Promise<FiltersApiResponse> {
-  const res = await fetchData(EndpointsEnum.Category);
+  const res = await fetchArticlesData(NewsEndpointsEnum.Category);
   const data: Promise<FiltersApiResponse | ErrorApiResponse> = await res.json();
   if ("fault" in data)
     throw new Error((data as ErrorApiResponse).fault.detail.errorcode);
@@ -27,7 +27,10 @@ export async function getFilteredNews(
     offset: (page - 1).toString(),
     limit: "20",
   });
-  const res = await fetchData(EndpointsEnum.Filters + filter + ".json", params);
+  const res = await fetchArticlesData(
+    NewsEndpointsEnum.Filters + filter + ".json",
+    params
+  );
   const data: Promise<CategoryApiResponseType | ErrorApiResponse> =
     await res.json();
 
@@ -52,7 +55,7 @@ export async function getNews(
     params.append("end_date", date);
   }
 
-  const res = await fetchData(EndpointsEnum.Search, params);
+  const res = await fetchArticlesData(NewsEndpointsEnum.Search, params);
   const data: Promise<SearchApiResponseType | ErrorApiResponse> =
     await res.json();
 
@@ -63,7 +66,7 @@ export async function getNews(
 }
 
 export async function getPopularNews(): Promise<PopularApiResponseType> {
-  const res = await fetchData(EndpointsEnum.Popular);
+  const res = await fetchArticlesData(NewsEndpointsEnum.Popular);
   const data: Promise<PopularApiResponseType | ErrorApiResponse> =
     await res.json();
 
