@@ -6,4 +6,5 @@ export type LoaderProps = {
   width?: number | string;
   radius?: string | number;
   margin?: string | number;
+  color?: string;
 };

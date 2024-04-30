@@ -4,12 +4,17 @@ import { MoonLoader } from "react-spinners";
 import { LoaderProps } from "./Loader.type";
 import styles from "./Loader.module.scss";
 
-const Loader: FC<LoaderProps> = ({ loading = false, classNames, ...props }) => {
+const Loader: FC<LoaderProps> = ({
+  loading = false,
+  color = "#4440F6",
+  classNames,
+  ...props
+}) => {
   return (
     <div className={`${styles["loader"]} ${classNames}`}>
       <MoonLoader
         {...props}
-        color="#4440F6"
+        color={color}
         aria-label="Loading Spinner"
         loading={loading}
       />

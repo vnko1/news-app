@@ -11,4 +11,5 @@ export enum IconsEnum {
   Search = "search",
   Menu = "menu",
   Cross = "cross",
+  Location = "location",
 }

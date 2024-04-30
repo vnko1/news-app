@@ -1,3 +1,31 @@
 .weather {
-  @apply relative;
+  @apply relative w-full px-3-lg py-3-sm min-h-[468px] rounded-[10px] bg-accent flex flex-col justify-between tab:max-w-[352px] desc:max-w-[394px];
+
+  &__state {
+    @apply flex items-center justify-center;
+  }
+}
+
+.state {
+  @apply pl-1-xs border-l border-l-white-1000 gap-0-md flex flex-col;
+}
+
+.deg {
+  @apply text-[56px] text-white-1000;
+}
+
+.cond {
+  @apply text-xl text-white-1000;
+}
+
+.loc {
+  @apply flex items-center gap-0-md p-0-xl bg-[#fefeff4d] rounded-[10px] text-sm text-white-1000 stroke-white-1000 fill-white-1000;
+}
+
+.image {
+  @apply w-[128px] h-[120px] self-center;
+}
+
+.date {
+  @apply text-white-1000 text-center text-xl w-full max-w-[155px] self-center;
 }
