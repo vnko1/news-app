@@ -9,7 +9,13 @@ import styles from "./home.module.scss";
 
 export const revalidate = 3600;
 
-async function HomeLayout({ children }: { children: ReactNode }) {
+async function HomeLayout({
+  children,
+  weather,
+}: {
+  children: ReactNode;
+  weather: ReactNode;
+}) {
   const res = await getCategories();
 
   const data = JSONParser(res);
@@ -31,6 +37,7 @@ async function HomeLayout({ children }: { children: ReactNode }) {
       </section>
       <section className={styles["section-articles"]}>
         <div className={`layout ${styles["container-articles"]}`}>
+          {weather}
           {children}
         </div>
       </section>

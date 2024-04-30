@@ -5,8 +5,7 @@ import { NotFoundComponent } from "@/components";
 
 import { Articles } from "@/app/(news)/ui";
 
-import { Pagination, Weather } from "./ui";
-import styles from "./home.module.scss";
+import { Pagination } from "./ui";
 
 export default async function Home({
   searchParams,
@@ -34,10 +33,7 @@ export default async function Home({
 
   return (
     <>
-      <div className={styles["articles"]}>
-        <Weather />
-        <Articles articles={articles} />
-      </div>
+      <Articles articles={articles} />
       <Pagination total={total} page={currentPage} />
     </>
   );
