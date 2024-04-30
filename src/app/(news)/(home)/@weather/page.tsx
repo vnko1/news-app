@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 
 import { getCurrentWeather } from "@/lib";
 import { CurrentWeatherApiResponseType } from "@/types";
+import { Loader } from "@/components";
 
 import { Weather } from "./ui";
 import styles from "./weather.module.scss";
-import { Loader } from "@/components";
 
 function WeatherPage() {
   const [currentWeather, setCurrentWeather] =
