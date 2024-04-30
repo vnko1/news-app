@@ -2,8 +2,11 @@ import { PopularArticleType, SearchArticleType } from "@/types";
 import { JSONParser } from "@/utils";
 import { getPopularNews, getNews } from "@/lib";
 import { NotFoundComponent } from "@/components";
+
 import { Articles } from "@/app/(news)/ui";
+
 import { Pagination } from "./ui";
+import styles from "./home.module.scss";
 
 export default async function Home({
   searchParams,
@@ -31,7 +34,9 @@ export default async function Home({
 
   return (
     <>
-      <Articles articles={articles} />
+      <div className={styles["articles"]}>
+        <Articles articles={articles} />
+      </div>
       <Pagination total={total} page={currentPage} />
     </>
   );
