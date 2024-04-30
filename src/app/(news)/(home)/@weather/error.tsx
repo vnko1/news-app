@@ -1,19 +1,20 @@
 "use client";
-
 import React from "react";
 import Image from "next/image";
 
-const Error = ({
+import styles from "./weather.module.scss";
+
+function WeatherError({
   error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
-}) => {
+}) {
   return (
     <main>
       <section className="boundary">
-        <div className="boundary__container">
+        <div className={`"boundary__container" ${styles["error-wrapper"]}`}>
           <h1>Oh no! Something went wrong!</h1>
           <p>{error.message || error.digest}</p>
           <button onClick={() => reset()}>Reload page</button>
@@ -28,6 +29,6 @@ const Error = ({
       </section>
     </main>
   );
-};
+}
 
-export default Error;
+export default WeatherError;

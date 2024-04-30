@@ -3,13 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { LinksEnum } from "@/types";
-import styles from "./app.module.scss";
 
 const NotFoundPage = () => {
   return (
     <main>
-      <section className={styles["section"]}>
-        <div className={styles["container"]}>
+      <section className="boundary">
+        <div className="boundary__container">
           <h1>Oh no! Page not found</h1>
           <p>Sorry, we couldn`t find the page you are looking for.</p>
           <Link href={LinksEnum.Home}>Go to home page</Link>
@@ -19,7 +18,7 @@ const NotFoundPage = () => {
             priority
             alt="not found"
             src="/not-found-desc@2x.webp"
-            className={styles["image"]}
+            className="boundary__image"
           />
         </div>
       </section>
