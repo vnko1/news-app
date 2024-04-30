@@ -24,6 +24,8 @@ export async function fetchWeatherData(
 ) {
   const searchParams = new URLSearchParams(params);
   searchParams.append("appid", W_API_KEY);
+  searchParams.append("units", "metric");
+
   return await fetch(`${W_BASE_URL}${url}?${searchParams}`, {
     cache: "no-store",
     ...reqParams,
