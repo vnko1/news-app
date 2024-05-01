@@ -3,8 +3,6 @@ export enum IconsEnum {
   Light = "sun",
   Book = "book",
   Heart = "heart",
-  Filled_heart = "filled-heart",
-  Rounded_heart = "rounded-heart",
   Home = "home",
   Arrow = "arrow",
   Calendar = "calendar",
@@ -12,4 +10,5 @@ export enum IconsEnum {
   Menu = "menu",
   Cross = "cross",
   Location = "location",
+  FavHeart = "fav-heart",
 }
