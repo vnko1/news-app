@@ -22,4 +22,7 @@
       @apply tab:-order-1 desc:-order-1;
     }
   }
+  &-pagination {
+    @apply tab:col-span-2 desc:col-span-3;
+  }
 }

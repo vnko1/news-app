@@ -23,7 +23,7 @@ const Pagination: FC<PaginationProps> = ({ total, page }) => {
   if (total === 0) return null;
 
   return (
-    <div className={styles["wrapper"]}>
+    <div className={`${styles["wrapper"]} cards-pagination`}>
       <MUIPagination
         count={count}
         page={page}
