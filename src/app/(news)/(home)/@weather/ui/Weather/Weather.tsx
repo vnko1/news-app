@@ -36,7 +36,7 @@ const Weather: FC<WeatherProps> = () => {
   );
 
   return (
-    <div className={styles["weather"]}>
+    <div className={`${styles["weather"]} cards-item__weather`}>
       {currentWeather ? (
         <>
           <div className={styles["weather__state"]}>

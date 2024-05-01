@@ -36,7 +36,9 @@ async function HomeLayout({
         </div>
       </section>
       <section className={styles["section-articles"]}>
-        <div className={`layout ${styles["container-articles"]}`}>
+        <div
+          className={`layout ${styles["container-articles"]} cards-container`}
+        >
           {weather}
           {children}
         </div>

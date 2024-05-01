@@ -11,3 +11,15 @@
 .no-scroll {
   @apply overflow-hidden;
 }
+
+.cards {
+  &-container {
+    @apply flex flex-col items-center gap-2-xs tab:grid tab:grid-cols-[354px_354px] tab:gap-3-xs tab:justify-center desc:grid-cols-[396px_396px_396px] desc:gap-3-sm;
+  }
+
+  &-item {
+    &__weather {
+      @apply tab:-order-1 desc:-order-1;
+    }
+  }
+}
