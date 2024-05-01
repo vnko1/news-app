@@ -1,7 +1,6 @@
 import { PopularArticleType, SearchArticleType } from "@/types";
 import { JSONParser } from "@/utils";
 import { getPopularNews, getNews } from "@/lib";
-import { NotFoundComponent } from "@/components";
 
 import { Articles } from "@/app/(news)/ui";
 
@@ -12,8 +11,9 @@ export default async function Home({
 }: {
   searchParams?: { page?: string; query?: string; date?: string };
 }) {
-  let articles: PopularArticleType[] | SearchArticleType[] = [];
-  let total: number = 0;
+  let popularArticles: PopularArticleType[] | null = null;
+  let articlesByQuery: SearchArticleType[] | null = null;
+  let total = 0;
   const currentPage = Number(searchParams?.page) || 1;
   const query = searchParams?.query || "";
   const date = searchParams?.date || null;
@@ -21,19 +21,20 @@ export default async function Home({
   if (query) {
     const res = await getNews(query, date, currentPage);
     const data = JSONParser(res);
-    articles = data.response?.docs;
-    total = data.response.meta.hits;
+    articlesByQuery = data.response?.docs;
+    total = data.response?.meta.hits;
   } else {
     const res = await getPopularNews();
     const data = JSONParser(res);
-    articles = data?.results;
+    popularArticles = data?.results;
   }
-
-  if (!articles || !articles.length) return <NotFoundComponent />;
 
   return (
     <>
-      <Articles articles={articles} />
+      <Articles
+        popularArticles={popularArticles}
+        articlesByQuery={articlesByQuery}
+      />
       <Pagination total={total} page={currentPage} />
     </>
   );

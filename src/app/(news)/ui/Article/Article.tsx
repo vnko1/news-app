@@ -9,7 +9,16 @@ import { Icon } from "@/components";
 import { ArticleProps } from "./Article.type";
 import styles from "./Article.module.scss";
 
-const Article: FC<ArticleProps> = ({ classNames }) => {
+const Article: FC<ArticleProps> = ({
+  classNames,
+  image,
+  imageTag,
+  section,
+  title,
+  abstract,
+  pub_date,
+  url,
+}) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavClickButton = () => {
@@ -24,30 +33,26 @@ const Article: FC<ArticleProps> = ({ classNames }) => {
     <div className={`${styles["article"]} ${classNames}`}>
       <div className={styles["article__image"]}>
         <Image
-          src={""}
-          alt="im"
+          src={image}
+          alt={imageTag}
           width={395}
           height={395}
+          priority
           className={styles["image"]}
         />
-        <div className={styles["label"]}>Job searching</div>
+        <div className={styles["label"]}>{section}</div>
         <button className={favBtnClassNames} onClick={handleFavClickButton}>
           {isFavorite ? "Remove from favorite" : "Add to favorite"}
           <Icon size={16} icon={IconsEnum.FavHeart} removeInlineStyle />
         </button>
       </div>
-      <h2 className={styles["article__title"]}>
-        8 tips for passing an online interview that will help you get a job
-      </h2>
-      <p className={styles["article__text"]}>
-        Before you start looking for a job, it is useful to familiarize yourself
-        with the job prospects offered by these...
-      </p>
+      <h2 className={styles["article__title"]}>{title}</h2>
+      <p className={styles["article__text"]}>{abstract}</p>
       <div className={styles["article__wrapper"]}>
-        <p className={styles["wrapper__date"]}>20/02/2021</p>
+        <p className={styles["wrapper__date"]}>{pub_date}</p>
         <a
           className={styles["wrapper__link"]}
-          href="#"
+          href={url}
           target="_blank"
           rel="noreferrer noopener"
         >

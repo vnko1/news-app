@@ -5,5 +5,7 @@ import {
 } from "@/types";
 
 export type ArticlesProps = {
-  articles: Array<SearchArticleType | CategoryArticleType | PopularArticleType>;
+  articlesByQuery?: Array<SearchArticleType> | null;
+  articlesByCategory?: Array<CategoryArticleType> | null;
+  popularArticles?: Array<PopularArticleType> | null;
 };
