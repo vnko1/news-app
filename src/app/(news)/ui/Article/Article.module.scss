@@ -1,5 +1,5 @@
 .article {
-  @apply w-full tab:min-h-[676px] outline;
+  @apply w-full tab:min-h-[676px];
 
   &__image {
     @apply relative w-full h-[396px] rounded-[4px] overflow-hidden tab:h-[394px] mb-2-xs;
