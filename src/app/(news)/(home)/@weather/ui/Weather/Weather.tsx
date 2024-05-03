@@ -6,9 +6,9 @@ import { CurrentWeatherApiResponseType, IconsEnum } from "@/types";
 import { getCurrentWeather } from "@/lib";
 import { Icon, Loader } from "@/components";
 
+import { daysOfWeather } from "./utils";
 import { WeatherProps } from "./Weather.type";
 import styles from "./Weather.module.scss";
-import { daysOfWeather } from "./utils";
 
 const Weather: FC<WeatherProps> = () => {
   const [currentWeather, setCurrentWeather] =
@@ -20,6 +20,7 @@ const Weather: FC<WeatherProps> = () => {
       const lon = position.coords.longitude;
 
       const res = await getCurrentWeather(lat, lon);
+
       setCurrentWeather(res);
     }
     async function onErrorPosition() {

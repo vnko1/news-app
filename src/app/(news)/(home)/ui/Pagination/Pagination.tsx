@@ -8,7 +8,8 @@ import { PaginationProps } from "./Pagination.type";
 import styles from "./Pagination.module.scss";
 
 const Pagination: FC<PaginationProps> = ({ total, page }) => {
-  const count = Math.floor(total / 8);
+  console.log("🚀 ~ total:", total);
+  const count = Math.ceil(total / 10);
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
