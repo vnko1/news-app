@@ -8,8 +8,8 @@ import { PaginationProps } from "./Pagination.type";
 import styles from "./Pagination.module.scss";
 
 const Pagination: FC<PaginationProps> = ({ total, page }) => {
-  console.log("🚀 ~ total:", total);
   const count = Math.ceil(total / 10);
+  const totalPages = count <= 50 ? count : 50;
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -26,7 +26,7 @@ const Pagination: FC<PaginationProps> = ({ total, page }) => {
   return (
     <div className={`${styles["wrapper"]} cards-pagination`}>
       <MUIPagination
-        count={count}
+        count={totalPages}
         page={page}
         onChange={handleChange}
         variant="outlined"
