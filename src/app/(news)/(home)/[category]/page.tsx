@@ -17,9 +17,9 @@ const CategoryPage = async ({
   const res = await getFilteredNews(params.category, currentPage);
   const data = JSONParser(res);
   total = data.num_results;
-  if (!data || !data.results) notFound();
+  // if (!data || !data.results) notFound();
   total;
-  return <Articles articles={data.results} />;
+  return <Articles articlesByCategory={data.results} />;
 };
 
 export default CategoryPage;

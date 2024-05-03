@@ -9,7 +9,7 @@ const NotFoundPage = () => {
     <main>
       <section className="boundary">
         <div className="boundary__container">
-          <h1>Oh no! Page not found</h1>
+          <h1>Oh no!!!! Page not found</h1>
           <p>Sorry, we couldn`t find the page you are looking for.</p>
           <Link href={LinksEnum.Home}>Go to home page</Link>
           <Image

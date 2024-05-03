@@ -12,7 +12,11 @@ const getClassNames = (index: number) => {
   return "";
 };
 
-const Articles: FC<ArticlesProps> = ({ popularArticles, articlesByQuery }) => {
+const Articles: FC<ArticlesProps> = ({
+  popularArticles,
+  articlesByQuery,
+  articlesByCategory,
+}) => {
   if (popularArticles?.length)
     return popularArticles.map((article, index) => (
       <Article
@@ -53,7 +57,25 @@ const Articles: FC<ArticlesProps> = ({ popularArticles, articlesByQuery }) => {
       />
     ));
 
-  return <NotFoundComponent />;
+  if (articlesByCategory?.length)
+    return articlesByCategory.map((article, index) => {
+      return (
+        <Article
+          key={index}
+          classNames={getClassNames(index)}
+          title={article.title}
+          pub_date={article.published_date}
+          section={article.section}
+          abstract={article.abstract}
+          url={article.url}
+          image={article.multimedia[article.multimedia.length - 1].url}
+          imageTag={article.multimedia[article.multimedia.length - 1].caption}
+        />
+      );
+    });
+  return null;
+
+  // return <NotFoundComponent />;
 };
 
 export default Articles;

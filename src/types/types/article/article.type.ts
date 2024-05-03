@@ -30,7 +30,7 @@ export type CategoryArticleType = {
     width: number;
     type: string;
     subtype: string;
-    capyion: string;
+    caption: string;
     copyright: string;
   }[];
 };
