@@ -69,13 +69,14 @@ const Articles: FC<ArticlesProps> = ({
           abstract={article.abstract}
           url={article.url}
           image={article.multimedia[article.multimedia.length - 1].url}
-          imageTag={article.multimedia[article.multimedia.length - 1].caption}
+          imageTag={
+            article.multimedia[article.multimedia.length - 1].caption || "image"
+          }
         />
       );
     });
-  return null;
 
-  // return <NotFoundComponent />;
+  return <NotFoundComponent />;
 };
 
 export default Articles;

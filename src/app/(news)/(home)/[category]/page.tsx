@@ -1,8 +1,9 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import { getFilteredNews } from "@/lib";
 import { JSONParser } from "@/utils";
 import { Articles } from "../../ui";
-import { notFound } from "next/navigation";
+import { Pagination } from "../ui";
 
 const CategoryPage = async ({
   params,
@@ -17,9 +18,14 @@ const CategoryPage = async ({
   const res = await getFilteredNews(params.category, currentPage);
   const data = JSONParser(res);
   total = data.num_results;
-  // if (!data || !data.results) notFound();
-  total;
-  return <Articles articlesByCategory={data.results} />;
+  if (!data || !data.results) notFound();
+
+  return (
+    <>
+      <Articles articlesByCategory={data.results} />
+      <Pagination total={total} page={currentPage} />
+    </>
+  );
 };
 
 export default CategoryPage;

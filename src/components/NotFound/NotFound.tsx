@@ -8,7 +8,7 @@ const NotFound: FC<NotFoundProps> = ({
   message = "We haven’t found news from this category",
 }) => {
   return (
-    <div className={styles["container"]}>
+    <div className={`${styles["container"]} cards-not-found`}>
       <h1>{message}</h1>
       <Image
         width={600}
