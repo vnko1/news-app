@@ -1,15 +1,15 @@
 .article {
-  @apply w-full tab:min-h-[676px];
+  @apply w-full tab:min-h-[676px] flex flex-col justify-between;
 
   &__image {
     @apply relative w-full h-[396px] rounded-[4px] overflow-hidden tab:h-[394px] mb-2-xs;
   }
   &__title {
-    @apply mb-2-xs;
+    @apply mb-2-xs max-h-[96px] overflow-hidden;
   }
 
   &__text {
-    @apply mb-2-xs;
+    @apply mb-2-xs max-h-[92px] overflow-hidden;
   }
 
   &__wrapper {
@@ -18,7 +18,7 @@
 }
 
 .image {
-  @apply w-auto;
+  @apply w-auto h-full;
 }
 
 .label {

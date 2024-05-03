@@ -13,7 +13,7 @@ const getClassNames = (index: number) => {
 };
 
 const Articles: FC<ArticlesProps> = ({ popularArticles, articlesByQuery }) => {
-  if (popularArticles)
+  if (popularArticles?.length)
     return popularArticles.map((article, index) => (
       <Article
         key={article.id}
@@ -33,7 +33,7 @@ const Articles: FC<ArticlesProps> = ({ popularArticles, articlesByQuery }) => {
       />
     ));
 
-  if (articlesByQuery)
+  if (articlesByQuery?.length)
     return articlesByQuery.map((article, index) => (
       <Article
         key={article._id}

@@ -1,5 +1,5 @@
 .weather {
-  @apply relative w-full px-3-lg py-3-sm tab:px-3-sm tab:py-4-md min-h-[468px] tab:min-h-[676px] rounded-[10px] items-center bg-accent flex flex-col justify-between tab:max-w-[352px] desc:max-w-[394px] desc:px-[54px] desc:py-[54px];
+  @apply tab:ml-auto relative w-full px-3-lg py-3-sm tab:px-3-sm tab:py-4-md min-h-[468px] tab:min-h-[676px] rounded-[10px] items-center bg-accent flex flex-col justify-between tab:max-w-[352px] desc:max-w-[394px] desc:px-[54px] desc:py-[54px];
 
   &__state {
     @apply flex items-center justify-center gap-0-xl;
