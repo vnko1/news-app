@@ -11,6 +11,7 @@ import { useModal } from "@/hooks";
 
 import { Menu, Search, Theme } from "./components";
 import styles from "./Header.module.scss";
+import { currentUser } from "@/lib";
 
 const links = [
   { name: "Home", href: LinksEnum.Home, icon: IconsEnum.Home },
@@ -23,6 +24,10 @@ const Header: FC = () => {
   const props = useModal();
 
   const pathName = usePathname();
+
+  useEffect(() => {
+    currentUser();
+  }, []);
 
   useEffect(() => {
     const isDarkTheme = getDataFromLS<boolean>("darkTheme");
