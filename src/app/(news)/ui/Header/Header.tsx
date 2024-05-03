@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
 
+import { currentUser, login, register } from "@/lib";
 import { IconsEnum, LinksEnum } from "@/types";
 import { Icon, Logo } from "@/components";
 import { getDataFromLS } from "@/utils";
@@ -11,7 +12,6 @@ import { useModal } from "@/hooks";
 
 import { Menu, Search, Theme } from "./components";
 import styles from "./Header.module.scss";
-import { currentUser } from "@/lib";
 
 const links = [
   { name: "Home", href: LinksEnum.Home, icon: IconsEnum.Home },
@@ -26,7 +26,7 @@ const Header: FC = () => {
   const pathName = usePathname();
 
   useEffect(() => {
-    currentUser();
+    currentUser().then(console.log);
   }, []);
 
   useEffect(() => {
@@ -74,6 +74,22 @@ const Header: FC = () => {
           checked={checked}
           setChecked={setChecked}
         />
+        <button
+          onClick={async () => {
+            const res = await register();
+            console.log(res);
+          }}
+        >
+          REG
+        </button>
+        <button
+          onClick={async () => {
+            const res = await login();
+            console.log(res);
+          }}
+        >
+          LOG
+        </button>
       </div>
       <Menu
         links={links}

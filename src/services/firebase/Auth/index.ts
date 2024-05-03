@@ -48,10 +48,9 @@ class AuthApi extends FireBaseApi {
 
   async currentUser() {
     onAuthStateChanged(this.auth, (user) => {
-      console.log("🚀 ~ AuthApi ~ onAuthStateChanged ~ user:", user);
       this.user = user;
-      return this.user;
     });
+    return this.user;
   }
 
   async logOut() {
