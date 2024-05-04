@@ -1,11 +1,11 @@
 import { FirebaseApp, initializeApp, getApps, getApp } from "firebase/app";
 
-const apiKey = process.env.F_API_KEY;
-const authDomain = process.env.AUTH_DOMAIN;
-const projectId = process.env.PROJECT_ID;
-const storageBucket = process.env.STORAGE_BUCKET;
-const messagingSenderId = process.env.MESSAGING_SENDER_ID;
-const appId = process.env.APP_ID;
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+const authDomain = process.env.NEXT_PUBLIC_AUTH_DOMAIN;
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
+const storageBucket = process.env.NEXT_PUBLIC_STORAGE_BUCKET;
+const messagingSenderId = process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID;
+const appId = process.env.NEXT_PUBLIC_APP_ID;
 
 abstract class FireBaseApi {
   private firebaseConfig = {

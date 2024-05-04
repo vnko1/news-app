@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
 
-import { currentUser, login, register } from "@/lib";
+import { login, register } from "@/lib";
 import { IconsEnum, LinksEnum } from "@/types";
 import { Icon, Logo } from "@/components";
 import { getDataFromLS } from "@/utils";
@@ -26,9 +26,9 @@ const Header: FC = () => {
 
   const pathName = usePathname();
 
-  useEffect(() => {
-    currentUser().then(console.log);
-  }, []);
+  // useEffect(() => {
+  //   currentUser().then(console.log);
+  // }, []);
 
   useEffect(() => {
     const isDarkTheme = getDataFromLS<boolean>("darkTheme");
