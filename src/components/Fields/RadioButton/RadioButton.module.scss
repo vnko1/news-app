@@ -1,0 +1,26 @@
+.radio {
+  @apply cursor-pointer text-center inline-flex;
+  & > input {
+    @apply w-[0.1px] h-[0.1px] opacity-0 hidden absolute -z-[1];
+
+    &:checked + .text {
+      @apply underline;
+    }
+
+    &:checked + .outlined {
+      @apply bg-accent text-white-1000;
+    }
+  }
+}
+
+.custom-field {
+  @apply flex items-center text-xs text-accent transition-all duration-150;
+
+  &.text {
+    @apply justify-start text-left;
+  }
+
+  &.outlined {
+    @apply justify-center px-2-xs py-0-xl border border-accent rounded-[20px];
+  }
+}

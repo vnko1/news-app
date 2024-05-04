@@ -11,17 +11,16 @@ import { Theme } from "../";
 import { MenuProps } from "./Menu.type";
 import styles from "./Menu.module.scss";
 
-const Menu: FC<MenuProps> = ({ setActive, setVisible, links, ...props }) => {
+const Menu: FC<MenuProps> = ({
+  setActive,
+  setVisible,
+  close,
+  links,
+  ...props
+}) => {
   const { push } = useRouter();
 
   const pathName = usePathname();
-
-  function close() {
-    setVisible(false);
-    setTimeout(() => {
-      setActive(false);
-    }, 350);
-  }
 
   function navHandler(pathName: string) {
     close();
@@ -31,6 +30,7 @@ const Menu: FC<MenuProps> = ({ setActive, setVisible, links, ...props }) => {
   return (
     <Modal
       {...props}
+      portal
       setActive={setActive}
       setVisible={setVisible}
       backDropClassName={`${styles["backdrop"]} menu-t`}

@@ -1,12 +1,7 @@
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { IModal } from "@/types";
+import { ReactNode, RefObject } from "react";
 
 export type ModalProps = {
   children: ReactNode;
-  backDropClassName?: string;
-  modalClassName?: string;
-  activeClassName?: string;
-  active: boolean;
-  visible: boolean;
-  setActive: Dispatch<SetStateAction<boolean>>;
-  setVisible: Dispatch<SetStateAction<boolean>>;
-};
+  nodeRef?: RefObject<HTMLDivElement>;
+} & Omit<IModal, "close">;

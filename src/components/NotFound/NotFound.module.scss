@@ -1,3 +1,7 @@
 .container {
   @apply w-full max-w-[248px] mx-auto tab:max-w-[560px] desc:max-w-[600px] pt-4-xs tab:pt-[88px] desc:pt-[120px] flex flex-col items-center justify-center text-center gap-4-xs;
 }
+
+.image {
+  @apply w-auto h-auto;
+}

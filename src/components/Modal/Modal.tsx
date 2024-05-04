@@ -15,6 +15,9 @@ const Modal: FC<ModalProps> = ({
   activeClassName,
   backDropClassName,
   modalClassName,
+  portal = false,
+  nodeRef,
+  classNames,
   setActive,
   setVisible,
 }) => {
@@ -58,19 +61,28 @@ const Modal: FC<ModalProps> = ({
     }
   };
 
-  const backDropClassNames = cn(styles["backdrop"], backDropClassName, {
-    [styles["active"]]: visible,
-    [activeClassName || ""]: visible,
-  });
+  const backDropClassNames = cn(
+    styles["backdrop"],
+    backDropClassName,
+    {
+      [styles["active"]]: visible,
+      [activeClassName || ""]: visible,
+    },
+    classNames
+  );
 
   const modal = (
-    <div className={backDropClassNames} onClick={onHandleBackdropClick}>
+    <div
+      ref={nodeRef}
+      className={backDropClassNames}
+      onClick={onHandleBackdropClick}
+    >
       <div className={`${styles["modal"]} ${modalClassName}`}>{children}</div>
     </div>
   );
 
   if (!active) return null;
-  return createPortal(modal, document.body);
+  return portal ? createPortal(modal, document.body) : modal;
 };
 
 export default Modal;

@@ -1,7 +1,0 @@
-.container {
-  @apply w-full mx-auto max-w-[248px] tab:max-w-[560px] desc:max-w-[600px] pt-[60px] flex flex-col items-center justify-center text-center gap-2-xs;
-
-  & > a {
-    @apply underline;
-  }
-}

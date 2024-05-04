@@ -3,6 +3,50 @@
   "icons": [
     {
       "icon": {
+        "paths": [
+          "M512 164.864l-31.232-30.72c-50.338-47.679-118.487-76.997-193.485-76.997-155.523 0-281.6 126.077-281.6 281.6 0 74.87 29.219 142.916 76.875 193.356l-0.126-0.135 429.568 429.568 429.568-430.080c47.53-50.306 76.749-118.352 76.749-193.221 0-155.523-126.077-281.6-281.6-281.6-74.997 0-143.147 29.318-193.613 77.118l0.129-0.121-31.232 31.232z"
+        ],
+        "attrs": [{}],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": ["fav-heart"],
+        "grid": 20
+      },
+      "attrs": [{}],
+      "properties": {
+        "order": 1,
+        "id": 0,
+        "prevSize": 20,
+        "name": "fav-heart"
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M512 1024s-358.4-467.456-358.4-665.6c0-197.939 160.461-358.4 358.4-358.4s358.4 160.461 358.4 358.4v0c0 198.144-358.4 665.6-358.4 665.6zM512 460.8c56.554 0 102.4-45.846 102.4-102.4s-45.846-102.4-102.4-102.4v0c-56.554 0-102.4 45.846-102.4 102.4s45.846 102.4 102.4 102.4v0z"
+        ],
+        "attrs": [{}],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": ["location"],
+        "grid": 20
+      },
+      "attrs": [{}],
+      "properties": {
+        "order": 1,
+        "id": 0,
+        "prevSize": 20,
+        "name": "location"
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
         "paths": ["M768 256l-512 512M256 256l512 512"],
         "attrs": [
           {
@@ -353,68 +397,6 @@
       "setIdx": 0,
       "setId": 10,
       "iconIdx": 7
-    },
-    {
-      "icon": {
-        "paths": [
-          "M298.688 128c-117.824 0-213.376 94.528-213.376 211.2 0 94.144 37.376 317.632 404.864 543.552 6.219 3.835 13.756 6.107 21.824 6.107s15.605-2.272 22.006-6.211l-0.182 0.104c367.488-225.92 404.864-449.408 404.864-543.552 0-116.672-95.552-211.2-213.376-211.2-117.76 0-213.312 128-213.312 128s-95.552-128-213.312-128z"
-        ],
-        "attrs": [
-          {
-            "fill": "none",
-            "strokeLinejoin": "round",
-            "strokeLinecap": "round",
-            "strokeMiterlimit": "4",
-            "strokeWidth": 64
-          }
-        ],
-        "isMulticolor": false,
-        "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["rounded-heart"],
-        "colorPermutations": {}
-      },
-      "attrs": [
-        {
-          "fill": "none",
-          "strokeLinejoin": "round",
-          "strokeLinecap": "round",
-          "strokeMiterlimit": "4",
-          "strokeWidth": 64
-        }
-      ],
-      "properties": {
-        "order": 55,
-        "id": 1,
-        "name": "rounded-heart",
-        "prevSize": 32
-      },
-      "setIdx": 0,
-      "setId": 10,
-      "iconIdx": 8
-    },
-    {
-      "icon": {
-        "paths": [
-          "M298.688 128c-117.824 0-213.376 94.528-213.376 211.2 0 94.144 37.376 317.632 404.864 543.552 6.217 3.842 13.755 6.118 21.824 6.118s15.607-2.276 22.005-6.222l-0.181 0.104c367.488-225.92 404.864-449.408 404.864-543.552 0-116.672-95.552-211.2-213.376-211.2-117.76 0-213.312 128-213.312 128s-95.552-128-213.312-128z"
-        ],
-        "attrs": [],
-        "isMulticolor": false,
-        "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["filled-heart"],
-        "colorPermutations": {}
-      },
-      "attrs": [],
-      "properties": {
-        "order": 56,
-        "id": 0,
-        "name": "filled-heart",
-        "prevSize": 32
-      },
-      "setIdx": 0,
-      "setId": 10,
-      "iconIdx": 9
     }
   ],
   "height": 1024,

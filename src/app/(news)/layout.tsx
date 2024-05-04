@@ -5,7 +5,7 @@ function NewsLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      {children}
+      <main>{children}</main>
     </>
   );
 }

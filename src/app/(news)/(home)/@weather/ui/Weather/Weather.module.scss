@@ -1,0 +1,31 @@
+.weather {
+  @apply tab:ml-auto relative w-full px-3-lg py-3-sm tab:px-3-sm tab:py-4-md min-h-[468px] tab:min-h-[676px] rounded-[10px] items-center bg-accent flex flex-col justify-between tab:max-w-[352px] desc:max-w-[394px] desc:px-[54px] desc:py-[54px];
+
+  &__state {
+    @apply flex items-center justify-center gap-0-xl;
+  }
+}
+
+.state {
+  @apply pl-1-xs tab:pl-0-xl border-l border-l-white-1000 gap-0-md  flex flex-col;
+}
+
+.deg {
+  @apply text-[56px] text-white-1000 tab:text-[64px];
+}
+
+.cond {
+  @apply text-xl text-white-1000 tab:text-[36px];
+}
+
+.loc {
+  @apply flex items-center gap-0-md p-0-xl bg-[#fefeff4d] rounded-[10px] text-sm text-white-1000 stroke-white-1000 fill-white-1000 tab:text-lg;
+}
+
+.image {
+  @apply w-[128px] h-[120px] self-center tab:w-[166px] tab:h-[156px];
+}
+
+.date {
+  @apply text-white-1000 text-center text-xl w-full  self-center tab:text-[36px];
+}

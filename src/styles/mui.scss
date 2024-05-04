@@ -1,0 +1,31 @@
+.MuiPaginationItem-outlined {
+  @apply border border-accent bg-white-1010 rounded-[2px] text-black-1010;
+
+  &.Mui-selected {
+    @apply bg-accent text-white-1010;
+  }
+
+  &:hover,
+  &:focus {
+    @apply bg-accent text-white-1010 fill-white-1010 stroke-white-1010;
+  }
+}
+
+.MuiPaginationItem-ellipsis {
+  &.MuiPaginationItem-outlined.MuiPaginationItem-root.MuiPaginationItem-sizeMedium {
+    @apply border-none bg-transparent text-black-1010 dark:text-white-1010;
+    &:hover,
+    &:focus,
+    &:disabled {
+      @apply bg-transparent;
+    }
+  }
+}
+
+.MuiPaginationItem-previousNext {
+  @apply border border-accent bg-white-1010 rounded-[2px] text-black-1010 fill-black-1010 stroke-black-1010;
+}
+
+.MuiMenu-list {
+  @apply bg-white-1010 dark:bg-black-1010;
+}

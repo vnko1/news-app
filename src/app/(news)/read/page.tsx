@@ -1,7 +1,7 @@
 import React from "react";
 
 const ReadPage = () => {
-  return <div>ReadPage</div>;
+  return <section>ReadPage</section>;
 };
 
 export default ReadPage;

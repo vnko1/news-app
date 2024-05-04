@@ -6,10 +6,11 @@ import cn from "classnames";
 
 import { IconsEnum, LinksEnum } from "@/types";
 import { Icon, Logo } from "@/components";
-
-import { Menu, Search, Theme } from "./components";
-import styles from "./Header.module.scss";
 import { getDataFromLS } from "@/utils";
+import { useModal } from "@/hooks";
+
+import { Authenticate, Menu, Search, Theme } from "./components";
+import styles from "./Header.module.scss";
 
 const links = [
   { name: "Home", href: LinksEnum.Home, icon: IconsEnum.Home },
@@ -18,9 +19,9 @@ const links = [
 ];
 
 const Header: FC = () => {
-  const [active, setActive] = useState(false);
-  const [visible, setVisible] = useState(false);
   const [checked, setChecked] = useState(false);
+
+  const props = useModal();
 
   const pathName = usePathname();
 
@@ -60,7 +61,7 @@ const Header: FC = () => {
         </Suspense>
         <button
           className={`${styles["header__menu"]} menu-button-t`}
-          onClick={() => setActive(true)}
+          onClick={() => props.setActive(true)}
         >
           <Icon size={24} icon={IconsEnum.Menu} removeInlineStyle />
         </button>
@@ -69,15 +70,13 @@ const Header: FC = () => {
           checked={checked}
           setChecked={setChecked}
         />
+        <Authenticate />
       </div>
       <Menu
-        active={active}
-        setActive={setActive}
-        visible={visible}
-        setVisible={setVisible}
         links={links}
         checked={checked}
         setChecked={setChecked}
+        {...props}
       />
     </header>
   );
