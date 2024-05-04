@@ -4,15 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
 
-import { login, register } from "@/lib";
 import { IconsEnum, LinksEnum } from "@/types";
 import { Icon, Logo } from "@/components";
 import { getDataFromLS } from "@/utils";
 import { useModal } from "@/hooks";
 
-import { Menu, Search, Theme } from "./components";
+import { Authenticate, Menu, Search, Theme } from "./components";
 import styles from "./Header.module.scss";
-import SignIn from "../SignIn/SignIn";
 
 const links = [
   { name: "Home", href: LinksEnum.Home, icon: IconsEnum.Home },
@@ -22,13 +20,10 @@ const links = [
 
 const Header: FC = () => {
   const [checked, setChecked] = useState(false);
+
   const props = useModal();
 
   const pathName = usePathname();
-
-  // useEffect(() => {
-  //   currentUser().then(console.log);
-  // }, []);
 
   useEffect(() => {
     const isDarkTheme = getDataFromLS<boolean>("darkTheme");
@@ -75,23 +70,7 @@ const Header: FC = () => {
           checked={checked}
           setChecked={setChecked}
         />
-        <SignIn />
-        <button
-          onClick={async () => {
-            const res = await register();
-            console.log(res);
-          }}
-        >
-          REG
-        </button>
-        <button
-          onClick={async () => {
-            const res = await login();
-            console.log(res);
-          }}
-        >
-          LOG
-        </button>
+        <Authenticate />
       </div>
       <Menu
         links={links}
