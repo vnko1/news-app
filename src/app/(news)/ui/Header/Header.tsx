@@ -12,6 +12,7 @@ import { useModal } from "@/hooks";
 
 import { Menu, Search, Theme } from "./components";
 import styles from "./Header.module.scss";
+import SignIn from "../SignIn/SignIn";
 
 const links = [
   { name: "Home", href: LinksEnum.Home, icon: IconsEnum.Home },
@@ -74,6 +75,7 @@ const Header: FC = () => {
           checked={checked}
           setChecked={setChecked}
         />
+        <SignIn />
         <button
           onClick={async () => {
             const res = await register();

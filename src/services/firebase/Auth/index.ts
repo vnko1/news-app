@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  GoogleAuthProvider,
   signOut,
   User,
 } from "firebase/auth";
@@ -11,11 +12,13 @@ import FireBaseApi from "../Firebase";
 
 class AuthApi extends FireBaseApi {
   private authenticate: Auth;
+  private googleProvider: GoogleAuthProvider;
   private userData: User | null = null;
 
   constructor() {
     super();
     this.authenticate = getAuth(this.app);
+    this.googleProvider = new GoogleAuthProvider();
   }
 
   get user() {
@@ -27,6 +30,10 @@ class AuthApi extends FireBaseApi {
 
   get auth() {
     return this.authenticate;
+  }
+
+  get provider() {
+    return this.googleProvider;
   }
 
   async register(email: string, password: string) {
