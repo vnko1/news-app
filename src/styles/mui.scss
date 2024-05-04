@@ -25,3 +25,7 @@
 .MuiPaginationItem-previousNext {
   @apply border border-accent bg-white-1010 rounded-[2px] text-black-1010 fill-black-1010 stroke-black-1010;
 }
+
+.MuiMenu-list {
+  @apply bg-white-1010 dark:bg-black-1010;
+}

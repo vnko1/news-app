@@ -1,3 +1,7 @@
 .btn {
   @apply ml-1-xs;
+
+  & img {
+    @apply rounded-[20px];
+  }
 }

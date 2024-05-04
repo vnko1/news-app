@@ -11,7 +11,6 @@ export async function POST() {
   if (authorization?.startsWith("Bearer ")) {
     const idToken = authorization.split("Bearer ")[1];
     const decodedToken = await auth().verifyIdToken(idToken);
-    console.log("🚀 ~ POST ~ decodedToken:", decodedToken);
 
     if (decodedToken) {
       const expiresIn = 60 * 60 * 24 * 5 * 1000;
@@ -47,5 +46,8 @@ export async function GET() {
     return NextResponse.json({ isLogged: false }, { status: 401 });
   }
 
-  return NextResponse.json({ isLogged: true }, { status: 200 });
+  return NextResponse.json(
+    { isLogged: true, user: decodedClaims },
+    { status: 200 }
+  );
 }
