@@ -1,7 +1,6 @@
-import { FirebaseApp, initializeApp } from "firebase/app";
+import { FirebaseApp, initializeApp, getApps, getApp } from "firebase/app";
 
 abstract class FireBaseApi {
-  private static instance: FireBaseApi;
   private firebaseConfig = {
     apiKey: process.env.F_API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
@@ -13,12 +12,8 @@ abstract class FireBaseApi {
   protected app: FirebaseApp;
 
   constructor() {
-    if (!FireBaseApi.instance) {
-      FireBaseApi.instance = this;
-    }
-    this.app = initializeApp(this.firebaseConfig);
-
-    return FireBaseApi.instance;
+    this.app =
+      getApps().length > 0 ? getApp() : initializeApp(this.firebaseConfig);
   }
 }
 

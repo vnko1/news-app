@@ -10,18 +10,29 @@ import {
 import FireBaseApi from "../Firebase";
 
 class AuthApi extends FireBaseApi {
-  private auth: Auth;
-  user: User | null = null;
+  private authenticate: Auth;
+  private userData: User | null = null;
 
   constructor() {
     super();
-    this.auth = getAuth(this.app);
+    this.authenticate = getAuth(this.app);
+  }
+
+  get user() {
+    return this.userData;
+  }
+  set user(newUser: User | null) {
+    this.userData = newUser;
+  }
+
+  get auth() {
+    return this.authenticate;
   }
 
   async register(email: string, password: string) {
     try {
       const userCred = await createUserWithEmailAndPassword(
-        this.auth,
+        this.authenticate,
         email,
         password
       );
@@ -35,7 +46,7 @@ class AuthApi extends FireBaseApi {
   async login(email: string, password: string) {
     try {
       const userCred = await signInWithEmailAndPassword(
-        this.auth,
+        this.authenticate,
         email,
         password
       );
@@ -47,7 +58,7 @@ class AuthApi extends FireBaseApi {
   }
 
   async currentUser() {
-    onAuthStateChanged(this.auth, (user) => {
+    onAuthStateChanged(this.authenticate, (user) => {
       this.user = user;
     });
     return this.user;
@@ -55,7 +66,7 @@ class AuthApi extends FireBaseApi {
 
   async logOut() {
     try {
-      await signOut(this.auth);
+      await signOut(this.authenticate);
     } catch (error) {
       return error;
     }
