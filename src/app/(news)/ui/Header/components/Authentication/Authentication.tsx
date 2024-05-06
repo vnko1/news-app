@@ -14,7 +14,7 @@ const authProvider = new Auth();
 
 const Authentication: FC = () => {
   const router = useRouter();
-  const { user, setUser } = useProfileContext();
+  const { user, setUser, setFavId } = useProfileContext();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -57,6 +57,7 @@ const Authentication: FC = () => {
   const signOut = async () => {
     close();
     await fetch("/api/logout", { method: "POST" });
+    setFavId([]);
     setUser(null);
     router.refresh();
   };

@@ -3,11 +3,23 @@ import { customInitApp } from "../admin";
 
 class DB {
   private db: Database;
-  private ref: Reference;
+  private reference: Reference;
 
   constructor(ref: string) {
     this.db = getDatabase(customInitApp());
-    this.ref = this.db.ref(ref);
+    this.reference = this.db.ref(ref);
+  }
+
+  get ref() {
+    return this.reference;
+  }
+
+  getData(userId: string) {
+    let data: unknown;
+    this.reference.child(userId).on("value", (snapshot) => {
+      data = snapshot.val();
+    });
+    return data;
   }
 
   addData<T extends object>(
@@ -16,7 +28,7 @@ class DB {
     value: T,
     onComplete?: (error: Error | null) => void
   ) {
-    this.ref.child(userId).child(cardId).set(value, onComplete);
+    this.reference.child(userId).child(cardId).set(value, onComplete);
   }
 
   removeData(
@@ -24,7 +36,7 @@ class DB {
     cardId: string,
     onComplete?: (error: Error | null) => void
   ) {
-    this.ref.child(userId).child(cardId).remove(onComplete);
+    this.reference.child(userId).child(cardId).remove(onComplete);
   }
 }
 

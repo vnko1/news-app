@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import cn from "classnames";
 
@@ -22,13 +22,18 @@ const Article: FC<ArticleProps> = ({
   pub_date,
   url,
 }) => {
-  const { user } = useProfileContext();
+  const { user, favId } = useProfileContext();
   const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    setIsFavorite(favId.includes(id + ""));
+  }, [favId, id]);
 
   const handleFavClickButton = async () => {
     if (user) {
       if (!isFavorite) {
         setIsFavorite(true);
+
         addFavoriteCard(user.uid, {
           id,
           image,
