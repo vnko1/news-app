@@ -10,6 +10,7 @@ export async function POST() {
 
   if (authorization?.startsWith("Bearer ")) {
     const idToken = authorization.split("Bearer ")[1];
+
     const decodedToken = await auth().verifyIdToken(idToken);
 
     if (decodedToken) {
