@@ -2,8 +2,8 @@
 
 import DB from "@/services/firebase/DB";
 
-const db = new DB("server/data");
+const db = new DB("server");
 
 export async function addFavorites() {
-  db.addData("users", { andrii: { namde: "id" } });
+  db.addData("favorites", "Andrii", { name: "Andrii", age: 37 });
 }
