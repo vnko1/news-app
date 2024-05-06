@@ -3,6 +3,8 @@ import React, { FC, useState } from "react";
 import Image from "next/image";
 import cn from "classnames";
 
+import { addFavoriteCard, deleteFavoriteCard } from "@/lib";
+import { useUserContext } from "@/context";
 import { IconsEnum } from "@/types";
 import { Icon } from "@/components";
 
@@ -10,6 +12,7 @@ import { ArticleProps } from "./Article.type";
 import styles from "./Article.module.scss";
 
 const Article: FC<ArticleProps> = ({
+  id,
   classNames,
   image,
   imageTag,
@@ -19,10 +22,28 @@ const Article: FC<ArticleProps> = ({
   pub_date,
   url,
 }) => {
+  const { user } = useUserContext();
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleFavClickButton = () => {
-    setIsFavorite(!isFavorite);
+  const handleFavClickButton = async () => {
+    if (user) {
+      if (!isFavorite) {
+        setIsFavorite(true);
+        addFavoriteCard(user.uid, {
+          id,
+          image,
+          imageTag,
+          section,
+          title,
+          abstract,
+          pub_date,
+          url,
+        });
+      } else {
+        setIsFavorite(false);
+        deleteFavoriteCard(user.uid, id);
+      }
+    }
   };
 
   const favBtnClassNames = cn(styles["fav-btn"], {

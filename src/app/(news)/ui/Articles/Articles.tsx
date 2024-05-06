@@ -21,6 +21,7 @@ const Articles: FC<ArticlesProps> = ({
     return popularArticles.map((article, index) => (
       <Article
         key={article.id}
+        id={article.id}
         classNames={getClassNames(index)}
         url={article.url}
         section={article.section}
@@ -41,6 +42,7 @@ const Articles: FC<ArticlesProps> = ({
     return articlesByQuery.map((article, index) => (
       <Article
         key={article._id}
+        id={article._id}
         classNames={getClassNames(index)}
         url={article.web_url || "url"}
         section={article.section_name}
@@ -62,6 +64,7 @@ const Articles: FC<ArticlesProps> = ({
       return (
         <Article
           key={index}
+          id={article.slug_name}
           classNames={getClassNames(index)}
           title={article.title}
           pub_date={article.published_date}

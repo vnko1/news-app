@@ -1,5 +1,5 @@
 "use client";
-import { addFavorites } from "@/lib";
+
 import React from "react";
 
 const FavoritePage = () => {
@@ -7,13 +7,7 @@ const FavoritePage = () => {
     <section>
       <div className={`layout`}>
         FavoritePage
-        <button
-          onClick={async () => {
-            await addFavorites();
-          }}
-        >
-          Add
-        </button>
+        <button onClick={async () => {}}>Add</button>
       </div>
     </section>
   );
