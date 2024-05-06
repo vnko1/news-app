@@ -4,7 +4,7 @@ import Image from "next/image";
 import cn from "classnames";
 
 import { addFavoriteCard, deleteFavoriteCard } from "@/lib";
-import { useUserContext } from "@/context";
+import { useProfileContext } from "@/context";
 import { IconsEnum } from "@/types";
 import { Icon } from "@/components";
 
@@ -22,7 +22,7 @@ const Article: FC<ArticleProps> = ({
   pub_date,
   url,
 }) => {
-  const { user } = useUserContext();
+  const { user } = useProfileContext();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavClickButton = async () => {
@@ -41,7 +41,7 @@ const Article: FC<ArticleProps> = ({
         });
       } else {
         setIsFavorite(false);
-        deleteFavoriteCard(user.uid, id);
+        deleteFavoriteCard(user.uid, id + "");
       }
     }
   };

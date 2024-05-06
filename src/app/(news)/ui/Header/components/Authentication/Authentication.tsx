@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { getRedirectResult, signInWithRedirect } from "firebase/auth";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 
-import { useUserContext } from "@/context";
+import { useProfileContext } from "@/context";
 import Auth from "@/services/firebase/Auth";
 import styles from "./Authentication.module.scss";
 
@@ -14,7 +14,7 @@ const authProvider = new Auth();
 
 const Authentication: FC = () => {
   const router = useRouter();
-  const { user, setUser } = useUserContext();
+  const { user, setUser } = useProfileContext();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 

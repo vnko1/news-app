@@ -1,9 +1,9 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { IUser } from "@/types";
 
-export type UserContextType = {
+export type ProfileContextType = {
   user: null | IUser;
   setUser: Dispatch<SetStateAction<null | IUser>>;
 };
 
-export type UserProviderProps = { children: ReactNode };
+export type ProfileProviderProps = { children: ReactNode };

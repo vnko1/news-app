@@ -10,7 +10,7 @@ class DB {
     this.ref = this.db.ref(ref);
   }
 
-  addFavoriteCard<T extends object>(
+  addData<T extends object>(
     userId: string,
     cardId: string,
     value: T,
@@ -19,7 +19,7 @@ class DB {
     this.ref.child(userId).child(cardId).set(value, onComplete);
   }
 
-  removeFavoriteCard(
+  removeData(
     userId: string,
     cardId: string,
     onComplete?: (error: Error | null) => void

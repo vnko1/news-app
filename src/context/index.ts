@@ -1,2 +1,2 @@
-export { default as UserProvider } from "./User/User";
-export { useUserContext } from "./User/hooks";
+export { default as ProfileProvider } from "./Profile/Profile";
+export { useProfileContext } from "./Profile/hooks";

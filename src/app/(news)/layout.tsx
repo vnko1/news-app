@@ -1,13 +1,13 @@
 import React, { ReactNode } from "react";
-import { UserProvider } from "@/context";
+import { ProfileProvider } from "@/context";
 import { Header } from "./ui";
 
 function NewsLayout({ children }: { children: ReactNode }) {
   return (
-    <UserProvider>
+    <ProfileProvider>
       <Header />
       <main>{children}</main>
-    </UserProvider>
+    </ProfileProvider>
   );
 }
 
