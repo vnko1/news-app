@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies, headers } from "next/headers";
 import { auth } from "firebase-admin";
-import { customInitApp } from "@/services/firebase/adminConfig";
+import { customInitApp } from "@/services/firebase/admin";
 
 customInitApp();
 

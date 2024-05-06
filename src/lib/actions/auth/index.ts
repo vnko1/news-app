@@ -1,6 +1,6 @@
 "use server";
 
-import { Auth } from "@/services";
+import Auth from "@/services/firebase/Auth";
 import { JSONParser } from "@/utils";
 
 const authProvider = new Auth();

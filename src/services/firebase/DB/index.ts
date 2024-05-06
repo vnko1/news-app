@@ -1,5 +1,5 @@
 import { Database, getDatabase, Reference } from "firebase-admin/database";
-import { customInitApp } from "../adminConfig";
+import { customInitApp } from "../admin";
 
 class DB {
   db: Database;

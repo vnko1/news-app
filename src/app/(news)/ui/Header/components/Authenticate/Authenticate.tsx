@@ -1,12 +1,12 @@
 "use client";
 
 import React, { FC, useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { getRedirectResult, signInWithRedirect } from "firebase/auth";
 import { IUser } from "@/types";
-import { Auth } from "@/services";
+import Auth from "@/services/firebase/Auth";
 import styles from "./Authenticate.module.scss";
-import Image from "next/image";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 
 const authProvider = new Auth();

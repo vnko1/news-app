@@ -6,8 +6,7 @@ const firebaseAdminConfig = {
     clientEmail: process.env.CLIENT_EMAIL,
     privateKey: process.env.PRIVATE_KEY,
   }),
-  databaseURL:
-    "https://news-d8f1f-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: process.env.DB_URL,
 };
 
 export function customInitApp() {
