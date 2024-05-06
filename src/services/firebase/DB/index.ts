@@ -1,10 +1,12 @@
-import { getDatabase, Reference } from "firebase-admin/database";
+import { Database, getDatabase, Reference } from "firebase-admin/database";
+import { customInitApp } from "../adminConfig";
 
 class DB {
-  db = getDatabase();
+  db: Database;
   ref: Reference;
 
   constructor(ref: string) {
+    this.db = getDatabase(customInitApp());
     this.ref = this.db.ref(ref);
   }
 
