@@ -1,7 +1,7 @@
 "use client";
 import React, { FC, useEffect, useState } from "react";
 import { DBResponseType, IUser } from "@/types";
-import { data } from "@/lib";
+import { getFavoriteCards } from "@/lib";
 import { ProfileContext } from "./hooks";
 import { ProfileProviderProps } from "./Profile.type";
 
@@ -14,7 +14,7 @@ const ProfileProvider: FC<ProfileProviderProps> = ({ children }) => {
 
   useEffect(() => {
     if (user?.uid) {
-      data(user.uid).then((res) => {
+      getFavoriteCards(user.uid).then((res) => {
         setFavorites(res);
         setFavId(Object.keys(res || []));
       });

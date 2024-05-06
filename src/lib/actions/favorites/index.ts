@@ -14,7 +14,9 @@ export async function deleteFavoriteCard(userId: string, cardId: string) {
   db.removeData(userId, cardId);
 }
 
-export async function data(userId: string): Promise<DBResponseType> {
+export async function getFavoriteCards(
+  userId: string
+): Promise<DBResponseType> {
   const res = await db.getData(userId);
   return JSONParser((res as DBResponseType) || null);
 }
