@@ -11,12 +11,12 @@ class DB {
   }
 
   addData<T extends object>(
-    childName: string,
-    id: string,
+    userId: string,
+    cardId: string,
     value: T,
     onComplete?: (error: Error | null) => void
   ) {
-    this.ref.child(childName).child(id).set(value, onComplete);
+    this.ref.child(userId).child(cardId).set(value, onComplete);
   }
 }
 
