@@ -1,11 +1,12 @@
 "use client";
 import React, { FC, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import cn from "classnames";
 
 import { addFavoriteCard, deleteFavoriteCard } from "@/lib";
 import { useProfileContext } from "@/context";
-import { IconsEnum } from "@/types";
+import { IconsEnum, LinksEnum } from "@/types";
 import { Icon } from "@/components";
 
 import { ArticleProps } from "./Article.type";
@@ -22,6 +23,7 @@ const Article: FC<ArticleProps> = ({
   pub_date,
   url,
 }) => {
+  const router = useRouter();
   const { user, favId } = useProfileContext();
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -48,6 +50,8 @@ const Article: FC<ArticleProps> = ({
         setIsFavorite(false);
         deleteFavoriteCard(user.uid, id + "");
       }
+    } else {
+      router.replace(LinksEnum.Auth);
     }
   };
 
