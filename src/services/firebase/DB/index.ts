@@ -10,7 +10,7 @@ class DB {
     this.ref = this.db.ref(ref);
   }
 
-  addData<T extends object>(
+  addFavoriteCard<T extends object>(
     userId: string,
     cardId: string,
     value: T,

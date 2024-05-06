@@ -4,16 +4,18 @@ import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { getRedirectResult, signInWithRedirect } from "firebase/auth";
-import { IUser } from "@/types";
-import Auth from "@/services/firebase/Auth";
-import styles from "./Authenticate.module.scss";
 import { IconButton, Menu, MenuItem } from "@mui/material";
+
+import { useUserContext } from "@/context";
+import Auth from "@/services/firebase/Auth";
+import styles from "./Authentication.module.scss";
 
 const authProvider = new Auth();
 
-const Authenticate: FC = () => {
+const Authentication: FC = () => {
   const router = useRouter();
-  const [user, setUser] = useState<null | IUser>(null);
+  const { user, setUser } = useUserContext();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const Authenticate: FC = () => {
       const cred = await res.json();
       setUser(cred.user);
     });
-  }, []);
+  }, [setUser]);
 
   useEffect(() => {
     getRedirectResult(authProvider.auth).then(async (userCred) => {
@@ -39,13 +41,13 @@ const Authenticate: FC = () => {
         },
       });
     });
-  }, []);
+  }, [setUser]);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const close = () => {
     setAnchorEl(null);
   };
   const signIn = () => {
@@ -53,7 +55,7 @@ const Authenticate: FC = () => {
   };
 
   const signOut = async () => {
-    handleClose();
+    close();
     await fetch("/api/logout", { method: "POST" });
     setUser(null);
     router.refresh();
@@ -84,7 +86,7 @@ const Authenticate: FC = () => {
           horizontal: "right",
         }}
         open={Boolean(anchorEl)}
-        onClose={handleClose}
+        onClose={close}
       >
         <MenuItem onClick={signOut}>Log out</MenuItem>
       </Menu>
@@ -96,4 +98,4 @@ const Authenticate: FC = () => {
   );
 };
 
-export default Authenticate;
+export default Authentication;

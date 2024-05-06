@@ -9,7 +9,7 @@ import { Icon, Logo } from "@/components";
 import { getDataFromLS } from "@/utils";
 import { useModal } from "@/hooks";
 
-import { Authenticate, Menu, Search, Theme } from "./components";
+import { Authentication, Menu, Search, Theme } from "./components";
 import styles from "./Header.module.scss";
 
 const links = [
@@ -70,7 +70,7 @@ const Header: FC = () => {
           checked={checked}
           setChecked={setChecked}
         />
-        <Authenticate />
+        <Authentication />
       </div>
       <Menu
         links={links}
