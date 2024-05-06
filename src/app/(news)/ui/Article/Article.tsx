@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import cn from "classnames";
 
-import { addFavoriteCard, deleteFavoriteCard } from "@/lib";
+import { addFavoriteCard, deleteFavoriteCard, addReadCard } from "@/lib";
 import { useProfileContext } from "@/context";
 import { IconsEnum, LinksEnum } from "@/types";
 import { Icon } from "@/components";
@@ -24,19 +24,23 @@ const Article: FC<ArticleProps> = ({
   url,
 }) => {
   const router = useRouter();
-  const { user, favId } = useProfileContext();
+  const { user, favId, readId, setReadId } = useProfileContext();
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isRead, setIsRead] = useState(false);
 
   useEffect(() => {
     setIsFavorite(favId.includes(id + ""));
   }, [favId, id]);
 
+  useEffect(() => {
+    setIsRead(readId.includes(id + ""));
+  }, [readId, id]);
+
   const handleFavClickButton = async () => {
     if (user) {
       if (!isFavorite) {
         setIsFavorite(true);
-
-        addFavoriteCard(user.uid, {
+        const article = {
           id,
           image,
           imageTag,
@@ -45,7 +49,9 @@ const Article: FC<ArticleProps> = ({
           abstract,
           pub_date,
           url,
-        });
+        };
+
+        addFavoriteCard(user.uid, article);
       } else {
         setIsFavorite(false);
         deleteFavoriteCard(user.uid, id + "");
@@ -55,12 +61,34 @@ const Article: FC<ArticleProps> = ({
     }
   };
 
+  const handleReadArticle = async () => {
+    const article = {
+      id,
+      image,
+      imageTag,
+      section,
+      title,
+      abstract,
+      pub_date,
+      url,
+    };
+    if (user?.uid) {
+      addReadCard(user.uid, article);
+      setReadId((read) => [...read, id + ""]);
+    }
+  };
+  const articleClassNames = cn(
+    styles["article"],
+    { [styles["active"]]: isRead },
+    classNames
+  );
+
   const favBtnClassNames = cn(styles["fav-btn"], {
     [styles["active"]]: isFavorite,
   });
 
   return (
-    <div className={`${styles["article"]} ${classNames}`}>
+    <div className={articleClassNames}>
       <div className={styles["article__image"]}>
         <Image
           src={image}
@@ -71,6 +99,12 @@ const Article: FC<ArticleProps> = ({
           className={styles["image"]}
         />
         <div className={styles["label"]}>{section}</div>
+        {isRead && (
+          <div className={styles["check"]}>
+            Already read{" "}
+            <Icon size={18} icon={IconsEnum.Check} removeInlineStyle />
+          </div>
+        )}
         <button className={favBtnClassNames} onClick={handleFavClickButton}>
           {isFavorite ? "Remove from favorite" : "Add to favorite"}
           <Icon size={16} icon={IconsEnum.FavHeart} removeInlineStyle />
@@ -85,6 +119,7 @@ const Article: FC<ArticleProps> = ({
           href={url}
           target="_blank"
           rel="noreferrer noopener"
+          onClick={handleReadArticle}
         >
           Read more
         </a>

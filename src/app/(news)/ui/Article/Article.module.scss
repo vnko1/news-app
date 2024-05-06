@@ -1,5 +1,8 @@
 .article {
   @apply w-full tab:min-h-[676px] flex flex-col justify-between;
+  &.active {
+    @apply opacity-60;
+  }
 
   &__image {
     @apply relative w-full h-[396px] rounded-[4px] overflow-hidden tab:h-[394px] mb-2-xs;
@@ -30,6 +33,10 @@
   &.active {
     @apply fill-accent text-accent;
   }
+}
+
+.check {
+  @apply text-sm font-bold text-[#00DD73] fill-[#00DD73]  absolute top-[20px] right-[20px] flex gap-1;
 }
 
 .wrapper {

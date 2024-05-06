@@ -14,29 +14,38 @@ class DB {
     return this.reference;
   }
 
-  getData(userId: string) {
+  getData(userId: string, dataType: string) {
     let data: unknown;
-    this.reference.child(userId).on("value", (snapshot) => {
-      data = snapshot.val();
-    });
+    this.reference
+      .child(userId)
+      .child(dataType)
+      .on("value", (snapshot) => {
+        data = snapshot.val();
+      });
     return data;
   }
 
   addData<T extends object>(
     userId: string,
-    cardId: string,
+    dataType: string,
+    id: string,
     value: T,
     onComplete?: (error: Error | null) => void
   ) {
-    this.reference.child(userId).child(cardId).set(value, onComplete);
+    this.reference
+      .child(userId)
+      .child(dataType)
+      .child(id)
+      .set(value, onComplete);
   }
 
   removeData(
     userId: string,
-    cardId: string,
+    dataType: string,
+    id: string,
     onComplete?: (error: Error | null) => void
   ) {
-    this.reference.child(userId).child(cardId).remove(onComplete);
+    this.reference.child(userId).child(dataType).child(id).remove(onComplete);
   }
 }
 
