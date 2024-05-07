@@ -39,8 +39,7 @@ const Article: FC<ArticleProps> = ({
   const handleFavClickButton = async () => {
     if (user) {
       if (!isFavorite) {
-        // setIsFavorite(true);
-        setFavId((readId) => [...readId, id + ""]);
+        setIsFavorite(true);
         const article = {
           id,
           image,
@@ -52,11 +51,12 @@ const Article: FC<ArticleProps> = ({
           url,
         };
 
-        addFavoriteCard(user.uid, article);
+        await addFavoriteCard(user.uid, article);
+        setFavId((readId) => [...readId, id + ""]);
       } else {
-        // setIsFavorite(false);
+        setIsFavorite(false);
+        await deleteFavoriteCard(user.uid, id + "");
         setFavId((readId) => readId.filter((read) => read === id + ""));
-        deleteFavoriteCard(user.uid, id + "");
       }
     } else {
       router.replace(LinksEnum.Auth);
