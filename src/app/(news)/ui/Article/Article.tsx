@@ -5,6 +5,7 @@ import Image from "next/image";
 import cn from "classnames";
 
 import { addFavoriteCard, deleteFavoriteCard, addReadCard } from "@/lib";
+import { formatDate } from "@/utils";
 import { useProfileContext } from "@/context";
 import { IconsEnum, LinksEnum } from "@/types";
 import { Icon } from "@/components";
@@ -115,7 +116,7 @@ const Article: FC<ArticleProps> = ({
       <h2 className={styles["article__title"]}>{title}</h2>
       <p className={styles["article__text"]}>{abstract}</p>
       <div className={styles["article__wrapper"]}>
-        <p className={styles["wrapper__date"]}>{pub_date}</p>
+        <p className={styles["wrapper__date"]}>{formatDate(pub_date)}</p>
         <a
           className={styles["wrapper__link"]}
           href={url}
