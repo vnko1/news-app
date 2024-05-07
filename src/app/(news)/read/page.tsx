@@ -6,9 +6,7 @@ const ReadPage = () => {
   return (
     <section className={styles["read"]}>
       <div className="layout">
-        <div className="cards-container">
-          <Reads />
-        </div>
+        <Reads />
       </div>
     </section>
   );
