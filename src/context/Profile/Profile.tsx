@@ -15,7 +15,7 @@ const ProfileProvider: FC<ProfileProviderProps> = ({ children }) => {
 
   const [read, setRead] = useState<null | DBResponseType>(null);
   const [readId, setReadId] = useState<string[]>([]);
-  console.log(read);
+
   useEffect(() => {
     if (user?.uid) {
       setIsLoading(true);
