@@ -1,13 +1,14 @@
-"use client";
-
 import React from "react";
+import styles from "./favorite.module.scss";
+import { Favorites } from "./ui";
 
 const FavoritePage = () => {
   return (
-    <section>
+    <section className={styles["favorites"]}>
       <div className={`layout`}>
-        FavoritePage
-        <button onClick={async () => {}}>Add</button>
+        <div className="cards-container">
+          <Favorites />
+        </div>
       </div>
     </section>
   );

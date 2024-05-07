@@ -24,7 +24,7 @@ const Article: FC<ArticleProps> = ({
   url,
 }) => {
   const router = useRouter();
-  const { user, favId, readId, setReadId } = useProfileContext();
+  const { user, favId, readId, setFavId, setReadId } = useProfileContext();
   const [isFavorite, setIsFavorite] = useState(false);
   const [isRead, setIsRead] = useState(false);
 
@@ -39,7 +39,8 @@ const Article: FC<ArticleProps> = ({
   const handleFavClickButton = async () => {
     if (user) {
       if (!isFavorite) {
-        setIsFavorite(true);
+        // setIsFavorite(true);
+        setFavId((readId) => [...readId, id + ""]);
         const article = {
           id,
           image,
@@ -53,7 +54,8 @@ const Article: FC<ArticleProps> = ({
 
         addFavoriteCard(user.uid, article);
       } else {
-        setIsFavorite(false);
+        // setIsFavorite(false);
+        setFavId((readId) => readId.filter((read) => read === id + ""));
         deleteFavoriteCard(user.uid, id + "");
       }
     } else {

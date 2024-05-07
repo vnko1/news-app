@@ -1,17 +1,20 @@
 "use server";
+import { revalidatePath } from "next/cache";
 
-import DB from "@/services/firebase/DB";
-import { DBResponseType, IArticle } from "@/types";
+import { DBResponseType, IArticle, LinksEnum } from "@/types";
 import { JSONParser } from "@/utils";
+import DB from "@/services/firebase/DB";
 
 const db = new DB("server");
 
 export async function addFavoriteCard(userId: string, favoriteCard: IArticle) {
   db.addData(userId, "favorites", favoriteCard.id + "", favoriteCard);
+  revalidatePath(LinksEnum.Favorite);
 }
 
 export async function deleteFavoriteCard(userId: string, cardId: string) {
   db.removeData(userId, "favorites", cardId);
+  revalidatePath(LinksEnum.Favorite);
 }
 
 export async function getFavoriteCards(

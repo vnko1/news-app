@@ -1,8 +1,9 @@
 "use server";
+import { revalidatePath } from "next/cache";
 
-import DB from "@/services/firebase/DB";
-import { DBResponseType, IArticle } from "@/types";
+import { DBResponseType, IArticle, LinksEnum } from "@/types";
 import { JSONParser } from "@/utils";
+import DB from "@/services/firebase/DB";
 
 const db = new DB("server");
 
@@ -11,10 +12,12 @@ export async function addReadCard(userId: string, readCard: IArticle) {
     ...readCard,
     date: Date.now(),
   });
+  revalidatePath(LinksEnum.Read);
 }
 
 export async function deleteReadCard(userId: string, cardId: string) {
   db.removeData(userId, "read", cardId);
+  revalidatePath(LinksEnum.Read);
 }
 
 export async function getReadCards(userId: string): Promise<DBResponseType> {

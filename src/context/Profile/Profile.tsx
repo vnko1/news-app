@@ -18,7 +18,6 @@ const ProfileProvider: FC<ProfileProviderProps> = ({ children }) => {
   useEffect(() => {
     if (user?.uid) {
       getFavoriteCards(user.uid).then((res) => {
-        console.log("🚀 ~ getFavoriteCards ~ res:", res);
         setFavorites(res);
         setFavId(Object.keys(res || []));
       });
@@ -28,7 +27,6 @@ const ProfileProvider: FC<ProfileProviderProps> = ({ children }) => {
   useEffect(() => {
     if (user?.uid) {
       getReadCards(user.uid).then((res) => {
-        console.log("🚀 ~ getReadCards ~ res:", res);
         setRead(res);
         setReadId(Object.keys(res || []));
       });
