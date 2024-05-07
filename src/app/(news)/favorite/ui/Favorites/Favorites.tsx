@@ -1,11 +1,11 @@
 "use client";
-import { Article } from "@/app/(news)/ui";
-import { NotFoundComponent } from "@/components";
-import { useProfileContext } from "@/context";
 import React, { FC } from "react";
 
-const Favorites: FC = () => {
-  const { favorites } = useProfileContext();
+import { NotFoundComponent } from "@/components";
+import { Article } from "@/app/(news)/ui";
+import { FavoritesProps } from "./Favorites.type";
+
+const Favorites: FC<FavoritesProps> = ({ favorites }) => {
   const favArr = Object.keys(favorites || []);
 
   if (favorites)

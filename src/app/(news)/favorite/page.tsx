@@ -1,13 +1,19 @@
 import React from "react";
-import styles from "./favorite.module.scss";
-import { Favorites } from "./ui";
 
-const FavoritePage = () => {
+import { geFavoritesCards } from "@/lib";
+import { JSONParser } from "@/utils";
+
+import { Favorites } from "./ui";
+import styles from "./favorite.module.scss";
+
+const FavoritePage = async () => {
+  const favorites = await geFavoritesCards();
+
   return (
     <section className={styles["favorites"]}>
       <div className="layout">
         <div className="cards-container">
-          <Favorites />
+          <Favorites favorites={JSONParser(favorites)} />
         </div>
       </div>
     </section>

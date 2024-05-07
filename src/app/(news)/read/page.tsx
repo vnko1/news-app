@@ -1,12 +1,16 @@
 import React from "react";
-import styles from "./read.module.scss";
-import { Reads } from "./ui";
+import { getReadsCards } from "@/lib";
+import { JSONParser } from "@/utils";
 
-const ReadPage = () => {
+import { Reads } from "./ui";
+import styles from "./read.module.scss";
+
+const ReadPage = async () => {
+  const reads = await getReadsCards();
   return (
     <section className={styles["read"]}>
       <div className="layout">
-        <Reads />
+        <Reads reads={JSONParser(reads)} />
       </div>
     </section>
   );

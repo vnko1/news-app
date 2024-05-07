@@ -2,4 +2,4 @@ import { IArticle } from "@/types";
 
 export type ArticleProps = {
   classNames?: string;
-} & IArticle;
+} & Omit<IArticle, "read_date">;
