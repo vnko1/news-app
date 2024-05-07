@@ -4,6 +4,7 @@ import { DBResponseType, IUser } from "@/types";
 import { getFavoriteCards, getReadCards } from "@/lib";
 import { ProfileContext } from "./hooks";
 import { ProfileProviderProps } from "./Profile.type";
+import { Loader } from "@/components";
 
 const ProfileProvider: FC<ProfileProviderProps> = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);
@@ -17,21 +18,18 @@ const ProfileProvider: FC<ProfileProviderProps> = ({ children }) => {
 
   useEffect(() => {
     if (user?.uid) {
-      getFavoriteCards(user.uid).then((res) => {
-        setFavorites(res);
-        setFavId(Object.keys(res || []));
-      });
+      setIsLoading(true);
+      Promise.all([getFavoriteCards(user.uid), getReadCards(user.uid)])
+        .then((res) => {
+          const [fav, read] = res;
+          setFavorites(fav);
+          setFavId(Object.keys(fav || []));
+          setRead(read);
+          setReadId(Object.keys(read || []));
+        })
+        .finally(() => setIsLoading(false));
     }
-  }, [user?.uid, favId.length]);
-
-  useEffect(() => {
-    if (user?.uid) {
-      getReadCards(user.uid).then((res) => {
-        setRead(res);
-        setReadId(Object.keys(res || []));
-      });
-    }
-  }, [user?.uid, readId.length]);
+  }, [user?.uid, readId.length, favId.length]);
 
   return (
     <ProfileContext.Provider
@@ -51,6 +49,7 @@ const ProfileProvider: FC<ProfileProviderProps> = ({ children }) => {
       }}
     >
       {children}
+      <Loader loading={isLoading} />
     </ProfileContext.Provider>
   );
 };
