@@ -1,1 +1,1 @@
-export type NotFoundProps = { message?: string };
+export type NotFoundProps = { message?: string; classNames?: string };

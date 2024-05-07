@@ -1,5 +1,6 @@
 "use client";
 import { Article } from "@/app/(news)/ui";
+import { NotFoundComponent } from "@/components";
 import { useProfileContext } from "@/context";
 import React, { FC } from "react";
 
@@ -12,7 +13,12 @@ const Favorites: FC = () => {
       return <Article key={favorites[fav].id} {...favorites[fav]} />;
     });
 
-  return null;
+  return (
+    <NotFoundComponent
+      classNames="cards-not-found"
+      message="You haven't added anything to your favorites yet"
+    />
+  );
 };
 
 export default Favorites;
