@@ -1,19 +1,21 @@
 "use client";
 
 import React, { FC, useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { getRedirectResult, signInWithRedirect } from "firebase/auth";
-import { IUser } from "@/types";
-import { Auth } from "@/services";
-import styles from "./Authenticate.module.scss";
-import Image from "next/image";
 import { IconButton, Menu, MenuItem } from "@mui/material";
+
+import { useProfileContext } from "@/context";
+import Auth from "@/services/firebase/Auth";
+import styles from "./Authentication.module.scss";
 
 const authProvider = new Auth();
 
-const Authenticate: FC = () => {
+const Authentication: FC = () => {
   const router = useRouter();
-  const [user, setUser] = useState<null | IUser>(null);
+  const { user, setUser, setFavId } = useProfileContext();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const Authenticate: FC = () => {
       const cred = await res.json();
       setUser(cred.user);
     });
-  }, []);
+  }, [setUser]);
 
   useEffect(() => {
     getRedirectResult(authProvider.auth).then(async (userCred) => {
@@ -39,13 +41,13 @@ const Authenticate: FC = () => {
         },
       });
     });
-  }, []);
+  }, [setUser]);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const close = () => {
     setAnchorEl(null);
   };
   const signIn = () => {
@@ -53,8 +55,9 @@ const Authenticate: FC = () => {
   };
 
   const signOut = async () => {
-    handleClose();
+    close();
     await fetch("/api/logout", { method: "POST" });
+    setFavId([]);
     setUser(null);
     router.refresh();
   };
@@ -84,7 +87,7 @@ const Authenticate: FC = () => {
           horizontal: "right",
         }}
         open={Boolean(anchorEl)}
-        onClose={handleClose}
+        onClose={close}
       >
         <MenuItem onClick={signOut}>Log out</MenuItem>
       </Menu>
@@ -96,4 +99,4 @@ const Authenticate: FC = () => {
   );
 };
 
-export default Authenticate;
+export default Authentication;

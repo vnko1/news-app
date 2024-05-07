@@ -1,15 +1,19 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import cn from "classnames";
 
-import { IconsEnum } from "@/types";
+import { addFavoriteCard, deleteFavoriteCard, addReadCard } from "@/lib";
+import { useProfileContext } from "@/context";
+import { IconsEnum, LinksEnum } from "@/types";
 import { Icon } from "@/components";
 
 import { ArticleProps } from "./Article.type";
 import styles from "./Article.module.scss";
 
 const Article: FC<ArticleProps> = ({
+  id,
   classNames,
   image,
   imageTag,
@@ -19,18 +23,74 @@ const Article: FC<ArticleProps> = ({
   pub_date,
   url,
 }) => {
+  const router = useRouter();
+  const { user, favId, readId, setFavId, setReadId } = useProfileContext();
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isRead, setIsRead] = useState(false);
 
-  const handleFavClickButton = () => {
-    setIsFavorite(!isFavorite);
+  useEffect(() => {
+    setIsFavorite(favId.includes(id + ""));
+  }, [favId, id]);
+
+  useEffect(() => {
+    setIsRead(readId.includes(id + ""));
+  }, [readId, id]);
+
+  const handleFavClickButton = async () => {
+    if (user) {
+      if (!isFavorite) {
+        setFavId((readId) => [...readId, id + ""]);
+        setIsFavorite(true);
+        const article = {
+          id,
+          image,
+          imageTag,
+          section,
+          title,
+          abstract,
+          pub_date,
+          url,
+        };
+
+        await addFavoriteCard(user.uid, article);
+      } else {
+        setFavId((readId) => readId.filter((read) => read !== id + ""));
+        setIsFavorite(false);
+        await deleteFavoriteCard(user.uid, id + "");
+      }
+    } else {
+      router.replace(LinksEnum.Auth);
+    }
   };
+
+  const handleReadArticle = async () => {
+    const article = {
+      id,
+      image,
+      imageTag,
+      section,
+      title,
+      abstract,
+      pub_date,
+      url,
+    };
+    if (user?.uid) {
+      addReadCard(user.uid, article);
+      setReadId((read) => [...read, id + ""]);
+    }
+  };
+  const articleClassNames = cn(
+    styles["article"],
+    { [styles["active"]]: isRead },
+    classNames
+  );
 
   const favBtnClassNames = cn(styles["fav-btn"], {
     [styles["active"]]: isFavorite,
   });
 
   return (
-    <div className={`${styles["article"]} ${classNames}`}>
+    <div className={articleClassNames}>
       <div className={styles["article__image"]}>
         <Image
           src={image}
@@ -41,6 +101,12 @@ const Article: FC<ArticleProps> = ({
           className={styles["image"]}
         />
         <div className={styles["label"]}>{section}</div>
+        {isRead && (
+          <div className={styles["check"]}>
+            Already read{" "}
+            <Icon size={18} icon={IconsEnum.Check} removeInlineStyle />
+          </div>
+        )}
         <button className={favBtnClassNames} onClick={handleFavClickButton}>
           {isFavorite ? "Remove from favorite" : "Add to favorite"}
           <Icon size={16} icon={IconsEnum.FavHeart} removeInlineStyle />
@@ -55,6 +121,7 @@ const Article: FC<ArticleProps> = ({
           href={url}
           target="_blank"
           rel="noreferrer noopener"
+          onClick={handleReadArticle}
         >
           Read more
         </a>

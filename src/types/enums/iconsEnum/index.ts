@@ -11,4 +11,5 @@ export enum IconsEnum {
   Cross = "cross",
   Location = "location",
   FavHeart = "fav-heart",
+  Check = "checkmark",
 }

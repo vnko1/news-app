@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies, headers } from "next/headers";
 import { auth } from "firebase-admin";
-import { customInitApp } from "@/services/firebase/adminConfig";
+import { customInitApp } from "@/services/firebase/admin";
 
 customInitApp();
 
@@ -10,6 +10,7 @@ export async function POST() {
 
   if (authorization?.startsWith("Bearer ")) {
     const idToken = authorization.split("Bearer ")[1];
+
     const decodedToken = await auth().verifyIdToken(idToken);
 
     if (decodedToken) {

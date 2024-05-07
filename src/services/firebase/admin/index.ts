@@ -6,10 +6,12 @@ const firebaseAdminConfig = {
     clientEmail: process.env.CLIENT_EMAIL,
     privateKey: process.env.PRIVATE_KEY,
   }),
+  databaseURL: process.env.DB_URL,
 };
 
 export function customInitApp() {
   if (getApps().length <= 0) {
-    initializeApp(firebaseAdminConfig);
+    return initializeApp(firebaseAdminConfig);
   }
+  return getApps()[0];
 }
