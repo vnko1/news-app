@@ -86,7 +86,7 @@ const Article: FC<ArticleProps> = ({
     classNames
   );
 
-  const favBtnClassNames = cn(styles["fav-btn"], {
+  const favBtnClassNames = cn(styles["fav-btn"], "fav-btn", {
     [styles["active"]]: isFavorite,
   });
 
