@@ -29,3 +29,8 @@
 .MuiMenu-list {
   @apply bg-white-1010 dark:bg-black-1010;
 }
+
+.MuiAccordionSummary-root,
+.MuiAccordionDetails-root {
+  @apply dark:bg-black-1010;
+}

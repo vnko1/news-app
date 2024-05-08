@@ -13,24 +13,22 @@ const Reads: FC<ReadsProps> = ({ reads }) => {
     const dates = getDateArr(reads);
     console.log("🚀 ~ dates:", dates);
 
-    return (
-      <Accordion>
-        {dates.map((el, id) => (
-          <div key={id}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
-              {el}
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className="cards-container"></div>
-            </AccordionDetails>
-          </div>
-        ))}
-      </Accordion>
-    );
+    return dates.map((el, i) => {
+      return (
+        <Accordion key={i}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
+          >
+            {el}
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="cards-container"></div>
+          </AccordionDetails>
+        </Accordion>
+      );
+    });
   }
 
   return (
