@@ -7,11 +7,11 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { Dayjs } from "dayjs";
 
 import { useOutsideEventHandler } from "@/hooks";
+import { ConstantsEnum, LinksEnum } from "@/types";
 import { Modal } from "@/components";
 
 import { CalendarProps } from "./Calendar.type";
 import styles from "./Calendar.module.scss";
-import { ConstantsEnum, LinksEnum } from "@/types";
 
 const Calendar: FC<CalendarProps> = ({
   value,
