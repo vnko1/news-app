@@ -7,4 +7,5 @@ export interface IArticle {
   pub_date: string;
   url: string;
   id: number | string;
+  read_date: string;
 }
