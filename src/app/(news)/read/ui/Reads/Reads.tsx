@@ -15,9 +15,9 @@ const Reads: FC<ReadsProps> = ({ reads }) => {
     const keys = Object.keys(reads);
     const readsArr = keys.map((key) => reads[key]);
 
-    return date.map((readDate, i) => {
+    return date.reverse().map((readDate, i) => {
       return (
-        <Accordion key={i}>
+        <Accordion key={i} defaultExpanded={i === 0}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
@@ -26,13 +26,11 @@ const Reads: FC<ReadsProps> = ({ reads }) => {
             {readDate}
           </AccordionSummary>
           <AccordionDetails>
-            <div className="cards-container">
-              {readsArr
-                .filter((read) => readDate === read.read_date)
-                .map((read) => (
-                  <Article key={read.id} {...read} />
-                ))}
-            </div>
+            {readsArr
+              .filter((read) => readDate === read.read_date)
+              .map((read) => (
+                <Article key={read.id} {...read} />
+              ))}
           </AccordionDetails>
         </Accordion>
       );
