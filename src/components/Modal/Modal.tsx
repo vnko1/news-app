@@ -20,18 +20,19 @@ const Modal: FC<ModalProps> = ({
   classNames,
   setActive,
   setVisible,
+  disableScroll = false,
 }) => {
   useSwipe(close);
 
   useEffect(() => {
-    if (active) {
+    if (active && disableScroll) {
       setVisible(true);
       document.body.classList.add("no-scroll");
     }
     return () => {
       document.body.classList.remove("no-scroll");
     };
-  }, [active, setVisible]);
+  }, [active, disableScroll, setVisible]);
 
   useEffect(() => {
     const handlePressESC = (e: { code: string }) => {

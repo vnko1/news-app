@@ -47,6 +47,7 @@ const Calendar: FC<CalendarProps> = ({
       {...props}
       nodeRef={modalRef}
       backDropClassName={`${styles["calendar"]} ${classNames}`}
+      disableScroll
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar disableFuture value={value} onChange={onHandleChange} />

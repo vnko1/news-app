@@ -22,6 +22,7 @@ const Popup: FC<PopupProps> = ({
       activeClassName={styles["active"]}
       backDropClassName={styles["popup"]}
       modalClassName={styles["popup__wrapper"]}
+      disableScroll
       {...props}
     >
       <ul className={styles["categories-list"]}>

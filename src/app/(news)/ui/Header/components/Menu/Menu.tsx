@@ -36,6 +36,7 @@ const Menu: FC<MenuProps> = ({
       backDropClassName={`${styles["backdrop"]} menu-t`}
       modalClassName={styles["menu"]}
       activeClassName={styles["active"]}
+      disableScroll
     >
       <div className={styles["head"]}>
         <Logo />
