@@ -7,13 +7,15 @@ import { NotFoundComponent } from "@/components";
 import { getDateArr } from "@/utils";
 
 import { ReadsProps } from "./Reads.type";
+import { Article } from "@/app/(news)/ui";
 
 const Reads: FC<ReadsProps> = ({ reads }) => {
   if (reads) {
-    const dates = getDateArr(reads);
-    console.log("🚀 ~ dates:", dates);
+    const date = getDateArr(reads);
+    const keys = Object.keys(reads);
+    const readsArr = keys.map((key) => reads[key]);
 
-    return dates.map((el, i) => {
+    return date.map((readDate, i) => {
       return (
         <Accordion key={i}>
           <AccordionSummary
@@ -21,10 +23,16 @@ const Reads: FC<ReadsProps> = ({ reads }) => {
             aria-controls="panel1-content"
             id="panel1-header"
           >
-            {el}
+            {readDate}
           </AccordionSummary>
           <AccordionDetails>
-            <div className="cards-container"></div>
+            <div className="cards-container">
+              {readsArr
+                .filter((read) => readDate === read.read_date)
+                .map((read) => (
+                  <Article key={read.id} {...read} />
+                ))}
+            </div>
           </AccordionDetails>
         </Accordion>
       );
