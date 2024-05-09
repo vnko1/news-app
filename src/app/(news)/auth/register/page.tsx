@@ -8,7 +8,7 @@ import styles from "../auth.module.scss";
 const fields = [
   { name: "email", label: "Enter your email", type: "text" },
   { name: "password", label: "Enter your password", type: "password" },
-  { name: "repeat_password", label: "Repeat your password", type: "password" },
+  { name: "confirmPassword", label: "Repeat your password", type: "password" },
 ];
 
 function RegisterPage() {

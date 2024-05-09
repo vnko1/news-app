@@ -19,7 +19,8 @@ export async function middleware(req: NextRequest) {
     return NextResponse.rewrite(new URL(LinksEnum.Login, req.url));
 
   if (
-    req.nextUrl.pathname.startsWith(LinksEnum.Login) &&
+    (req.nextUrl.pathname.startsWith(LinksEnum.Login) ||
+      req.nextUrl.pathname.startsWith(LinksEnum.Register)) &&
     responseAPI.status === 200
   )
     return NextResponse.rewrite(new URL(LinksEnum.Home, req.url));

@@ -8,43 +8,38 @@ import { login, signUp } from "@/lib";
 import { useProfileContext } from "@/context";
 
 import { loginSchema, regSchema } from "./schema";
-import { AuthFormProps } from "./AuthForm.type";
+import { AuthFormProps, FormValues } from "./AuthForm.type";
 import styles from "./AuthForm.module.scss";
 
-const AuthFrom: FC<AuthFormProps> = ({
-  fields,
-
-  btnText,
-  auth,
-}) => {
+const AuthFrom: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
   const { setUser } = useProfileContext();
   const { register, handleSubmit, formState } = useForm({
     resolver: zodResolver(auth === "register" ? regSchema : loginSchema),
   });
   const { errors } = formState;
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    // let userCred: UserCredential;
-    // if (auth === "register") userCred = await signUp(data);
-    // else userCred = await login(data);
-    // console.log(userCred);
-    // setUser({
-    //   name: userCred.user.displayName || "",
-    //   uid: userCred.user.uid,
-    //   email: userCred.user.email || "",
-    //   picture: userCred.user.photoURL || "",
-    // });
-    // fetch("/api/login", {
-    //   method: "POST",
-    //   headers: {
-    //     Authorization: `Bearer ${await userCred.user.getIdToken()}`,
-    //   },
-    // });
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles["form"]}>
+    <form
+      onSubmit={handleSubmit(async (data) => {
+        let userCred: UserCredential;
+        if (auth === "register") userCred = await signUp(data as FormValues);
+        else userCred = await login(data as FormValues);
+
+        setUser({
+          name: userCred.user.displayName || "",
+          uid: userCred.user.uid,
+          email: userCred.user.email || "",
+          picture: userCred.user.photoURL || "",
+        });
+        fetch("/api/login", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${await userCred.user.getIdToken()}`,
+          },
+        });
+      })}
+      className={styles["form"]}
+    >
       {fields.map((field) => {
         return (
           <label key={field.label} className={styles["form__label"]}>
@@ -65,7 +60,9 @@ const AuthFrom: FC<AuthFormProps> = ({
         );
       })}
 
-      <button type="submit">{btnText}</button>
+      <button className={styles["button"]} type="submit">
+        {btnText}
+      </button>
     </form>
   );
 };

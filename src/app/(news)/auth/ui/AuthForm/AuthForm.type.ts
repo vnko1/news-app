@@ -8,3 +8,9 @@ export type AuthFormProps = {
 
   auth: "login" | "register";
 };
+
+export type FormValues = {
+  email: string;
+  password: string;
+  confirmPassword?: string;
+};
