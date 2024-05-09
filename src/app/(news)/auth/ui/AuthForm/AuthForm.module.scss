@@ -1,2 +1,18 @@
 .form {
+  @apply flex flex-col gap-1-xs items-center w-full;
+
+  &__label {
+    @apply w-full flex flex-col items-start gap-1;
+  }
+  &__field {
+    @apply w-full px-1-xs py-0-xl outline-none border-b;
+  }
+}
+
+.text {
+  @apply text-base;
+}
+
+.error {
+  @apply text-xs text-red-500 text-right;
 }

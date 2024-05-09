@@ -5,3 +5,11 @@
     @apply bg-white-1000 tab:rounded-lg desc:max-w-[768px] flex flex-col items-center gap-[40px] py-[30px];
   }
 }
+
+.container {
+  @apply w-full flex flex-col gap-3-xs items-center;
+}
+
+.link {
+  @apply font-bold;
+}

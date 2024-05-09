@@ -1,6 +1,9 @@
-import { JSONParser } from "@/utils";
+import Link from "next/link";
+import { LinksEnum } from "@/types";
+
 import { AuthForm } from "../ui";
-import { schema } from "./schema";
+
+import styles from "../auth.module.scss";
 
 const fields = [
   { name: "email", label: "Enter your email", type: "text" },
@@ -10,12 +13,16 @@ const fields = [
 
 function RegisterPage() {
   return (
-    <AuthForm
-      auth="register"
-      btnText="Register Your account"
-      fields={fields}
-      schema={JSONParser(schema)}
-    />
+    <div className={styles["container"]}>
+      <AuthForm
+        auth="register"
+        btnText="Register Your account"
+        fields={fields}
+      />
+      <Link className={styles["link"]} href={LinksEnum.Login}>
+        Sign up if already have an account
+      </Link>
+    </div>
   );
 }
 
