@@ -1,16 +1,14 @@
 "use client";
 
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { getRedirectResult, signInWithRedirect } from "firebase/auth";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 
 import { useProfileContext } from "@/context";
-import Auth from "@/services/firebase/Auth";
-import styles from "./Authentication.module.scss";
 
-const authProvider = new Auth();
+import styles from "./Authentication.module.scss";
+import { LinksEnum } from "@/types";
 
 const Authentication: FC = () => {
   const router = useRouter();
@@ -18,40 +16,12 @@ const Authentication: FC = () => {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  useEffect(() => {
-    fetch("/api/login").then(async (res) => {
-      const cred = await res.json();
-      setUser(cred.user);
-    });
-  }, [setUser]);
-
-  useEffect(() => {
-    getRedirectResult(authProvider.auth).then(async (userCred) => {
-      if (!userCred) return;
-      setUser({
-        name: userCred.user.displayName || "",
-        uid: userCred.user.uid,
-        email: userCred.user.email || "",
-        picture: userCred.user.photoURL || "",
-      });
-      fetch("/api/login", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${await userCred.user.getIdToken()}`,
-        },
-      });
-    });
-  }, [setUser]);
-
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
   const close = () => {
     setAnchorEl(null);
-  };
-  const signIn = () => {
-    signInWithRedirect(authProvider.auth, authProvider.provider);
   };
 
   const signOut = async () => {
@@ -72,7 +42,11 @@ const Authentication: FC = () => {
         onClick={handleMenu}
         color="inherit"
       >
-        <Image alt="avatar" src={user.picture} width={24} height={24} />
+        {user.picture ? (
+          <Image alt="avatar" src={user.picture} width={24} height={24} />
+        ) : (
+          user.email
+        )}
       </IconButton>
       <Menu
         id="menu-appbar"
@@ -93,9 +67,20 @@ const Authentication: FC = () => {
       </Menu>
     </div>
   ) : (
-    <button className={styles["btn"]} onClick={signIn}>
-      Sign In
-    </button>
+    <>
+      <button
+        className={styles["btn"]}
+        onClick={() => router.push(LinksEnum.Login)}
+      >
+        Sign In
+      </button>
+      <button
+        className={styles["btn"]}
+        onClick={() => router.push(LinksEnum.Register)}
+      >
+        Register
+      </button>
+    </>
   );
 };
 

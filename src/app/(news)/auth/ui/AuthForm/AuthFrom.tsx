@@ -24,19 +24,20 @@ const AuthFrom: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
         let userCred: UserCredential;
         if (auth === "register") userCred = await signUp(data as FormValues);
         else userCred = await login(data as FormValues);
-
+        console.log(userCred);
         setUser({
-          name: userCred.user.displayName || "",
+          name: userCred.user.displayName,
           uid: userCred.user.uid,
-          email: userCred.user.email || "",
-          picture: userCred.user.photoURL || "",
+          email: userCred.user.email,
+          picture: userCred.user.photoURL,
         });
-        fetch("/api/login", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${await userCred.user.getIdToken()}`,
-          },
-        });
+
+        // fetch("/api/login", {
+        //   method: "POST",
+        //   headers: {
+        //     Authorization: `Bearer ${await userCred.user.getIdToken()}`,
+        //   },
+        // });
       })}
       className={styles["form"]}
     >

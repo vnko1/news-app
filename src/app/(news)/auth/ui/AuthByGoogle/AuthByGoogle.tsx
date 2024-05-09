@@ -24,10 +24,10 @@ const AuthByGoogle: FC = () => {
     getRedirectResult(authProvider.auth).then(async (userCred) => {
       if (!userCred) return;
       setUser({
-        name: userCred.user.displayName || "",
+        name: userCred.user.displayName,
         uid: userCred.user.uid,
-        email: userCred.user.email || "",
-        picture: userCred.user.photoURL || "",
+        email: userCred.user.email,
+        picture: userCred.user.photoURL,
       });
       fetch("/api/login", {
         method: "POST",
