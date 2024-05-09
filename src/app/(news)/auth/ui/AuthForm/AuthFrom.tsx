@@ -24,10 +24,11 @@ const AuthFrom: FC<AuthFormProps> = ({
   const { errors } = formState;
 
   const onSubmit = async (data) => {
-    let userCred: UserCredential;
-    if (auth === "register") userCred = await signUp(data);
-    else userCred = await login(data);
-    console.log(userCred);
+    console.log(data);
+    // let userCred: UserCredential;
+    // if (auth === "register") userCred = await signUp(data);
+    // else userCred = await login(data);
+    // console.log(userCred);
     // setUser({
     //   name: userCred.user.displayName || "",
     //   uid: userCred.user.uid,

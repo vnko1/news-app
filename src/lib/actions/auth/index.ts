@@ -23,6 +23,7 @@ export async function signUp(cred: {
   email: string;
   password: string;
 }): Promise<UserCredential> {
+  console.log(cred);
   const res = await authProvider.register(cred.email, cred.password);
   return JSONParser(res as UserCredential);
 }
