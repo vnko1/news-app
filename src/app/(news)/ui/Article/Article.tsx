@@ -60,7 +60,7 @@ const Article: FC<ArticleProps> = ({
         await deleteFavoriteCard(user.uid, id + "");
       }
     } else {
-      router.replace(LinksEnum.Auth);
+      router.replace(LinksEnum.Login);
     }
   };
 
