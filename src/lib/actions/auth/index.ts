@@ -2,6 +2,7 @@
 
 import Auth from "@/services/firebase/Auth";
 import { JSONParser } from "@/utils";
+import { UserCredential } from "firebase/auth";
 
 const authProvider = new Auth();
 
@@ -10,18 +11,18 @@ export async function currentUser() {
   return JSONParser(res);
 }
 
-export async function login(
-  email: string = "andri@mail.com",
-  password: string = "123456"
-) {
-  const res = await authProvider.login(email, password);
-  return JSONParser(res);
+export async function login(cred: {
+  email: string;
+  password: string;
+}): Promise<UserCredential> {
+  const res = await authProvider.login(cred.email, cred.password);
+  return JSONParser(res as UserCredential);
 }
 
-export async function register(
-  email: string = "andri@mail.com",
-  password: string = "123456"
-) {
-  const res = await authProvider.register(email, password);
-  return JSONParser(res);
+export async function signUp(cred: {
+  email: string;
+  password: string;
+}): Promise<UserCredential> {
+  const res = await authProvider.register(cred.email, cred.password);
+  return JSONParser(res as UserCredential);
 }
