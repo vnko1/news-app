@@ -1,0 +1,7 @@
+.auth {
+  @apply pt-[40px] pb-[60px] tab:pt-[48px] tab:pb-[100px] desc:pt-[60px] desc:pb-[300px];
+
+  &__wrapper {
+    @apply bg-white-1000 tab:rounded-lg desc:max-w-[768px] flex flex-col items-center gap-[40px] py-[30px];
+  }
+}

@@ -6,4 +6,3 @@ export { default as NotFoundComponent } from "./NotFound/NotFound";
 export { RadioButton } from "./Fields";
 export { default as Loader } from "./Loader/Loader";
 export { default as Calendar } from "./Calendar/Calendar";
-export { default as Authentication } from "./Authentication/Authentication";
