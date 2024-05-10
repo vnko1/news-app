@@ -1,0 +1,30 @@
+.form {
+  @apply flex flex-col gap-2-xs items-center w-full;
+
+  &__label {
+    @apply w-full flex flex-col items-start gap-1;
+  }
+
+  &__wrapper {
+    @apply relative block w-full;
+  }
+
+  &__field {
+    @apply w-full px-1-xs py-0-xl outline-none border-b;
+  }
+}
+
+.icon-btn {
+  @apply absolute top-1/2 -translate-y-1/2 right-[10px];
+}
+
+.text {
+  @apply text-base;
+}
+
+.button {
+  @apply font-bold rounded-3xl border border-black-1000 px-1-md py-0-xl;
+}
+.error {
+  @apply text-xs text-red-500 text-right;
+}

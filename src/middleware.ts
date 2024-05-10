@@ -4,7 +4,12 @@ import { LinksEnum } from "./types";
 export async function middleware(req: NextRequest) {
   const session = req.cookies.get("session");
 
-  if (!session) return NextResponse.rewrite(new URL(LinksEnum.Auth, req.url));
+  if (
+    !session &&
+    (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
+      req.nextUrl.pathname.startsWith(LinksEnum.Read))
+  )
+    return NextResponse.rewrite(new URL(LinksEnum.Login, req.url));
 
   const responseAPI = await fetch(new URL("/", req.url) + "api/login", {
     headers: {
@@ -16,10 +21,15 @@ export async function middleware(req: NextRequest) {
       req.nextUrl.pathname.startsWith(LinksEnum.Read)) &&
     responseAPI.status !== 200
   )
-    return NextResponse.rewrite(new URL(LinksEnum.Auth, req.url));
+    return NextResponse.rewrite(new URL(LinksEnum.Login, req.url));
 
   if (
-    req.nextUrl.pathname.startsWith(LinksEnum.Auth) &&
+    req.nextUrl.pathname.startsWith(LinksEnum.Register) &&
+    responseAPI.status === 200
+  )
+    return NextResponse.rewrite(new URL(LinksEnum.Home, req.url));
+  if (
+    req.nextUrl.pathname.startsWith(LinksEnum.Login) &&
     responseAPI.status === 200
   )
     return NextResponse.rewrite(new URL(LinksEnum.Home, req.url));
@@ -28,5 +38,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/favorite", "/read", "/auth"],
+  matcher: ["/favorite", "/read", "/auth/login", "/auth/register"],
 };

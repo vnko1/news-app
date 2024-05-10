@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies, headers } from "next/headers";
 import { auth } from "firebase-admin";
+
 import { customInitApp } from "@/services/firebase/admin";
 
 customInitApp();
@@ -35,17 +36,15 @@ export async function POST() {
 }
 
 export async function GET() {
-  const session = cookies().get("session")?.value || "";
+  const session = cookies().get("session")?.value;
 
-  if (!session) {
+  if (!session || session === "undefined")
     return NextResponse.json({ isLogged: false }, { status: 401 });
-  }
 
   const decodedClaims = await auth().verifySessionCookie(session, true);
 
-  if (!decodedClaims) {
+  if (!decodedClaims)
     return NextResponse.json({ isLogged: false }, { status: 401 });
-  }
 
   return NextResponse.json(
     { isLogged: true, user: decodedClaims },

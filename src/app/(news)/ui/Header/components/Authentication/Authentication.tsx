@@ -3,18 +3,16 @@
 import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { getRedirectResult, signInWithRedirect } from "firebase/auth";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { Menu, MenuItem } from "@mui/material";
 
+import { LinksEnum } from "@/types";
 import { useProfileContext } from "@/context";
-import Auth from "@/services/firebase/Auth";
-import styles from "./Authentication.module.scss";
 
-const authProvider = new Auth();
+import styles from "./Authentication.module.scss";
 
 const Authentication: FC = () => {
   const router = useRouter();
-  const { user, setUser, setFavId } = useProfileContext();
+  const { user, setUser, setFavId, setReadId } = useProfileContext();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -25,24 +23,6 @@ const Authentication: FC = () => {
     });
   }, [setUser]);
 
-  useEffect(() => {
-    getRedirectResult(authProvider.auth).then(async (userCred) => {
-      if (!userCred) return;
-      setUser({
-        name: userCred.user.displayName || "",
-        uid: userCred.user.uid,
-        email: userCred.user.email || "",
-        picture: userCred.user.photoURL || "",
-      });
-      fetch("/api/login", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${await userCred.user.getIdToken()}`,
-        },
-      });
-    });
-  }, [setUser]);
-
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -50,30 +30,31 @@ const Authentication: FC = () => {
   const close = () => {
     setAnchorEl(null);
   };
-  const signIn = () => {
-    signInWithRedirect(authProvider.auth, authProvider.provider);
-  };
 
   const signOut = async () => {
     close();
     await fetch("/api/logout", { method: "POST" });
     setFavId([]);
+    setReadId([]);
     setUser(null);
     router.refresh();
   };
 
   return user ? (
-    <div className={styles["btn"]}>
-      <IconButton
-        size="large"
-        aria-label="account of current user"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
-        onClick={handleMenu}
-        color="inherit"
-      >
-        <Image alt="avatar" src={user.picture} width={24} height={24} />
-      </IconButton>
+    <div className={styles["wrapper"]}>
+      <button className={styles["btn"]} onClick={handleMenu}>
+        {user.picture ? (
+          <Image
+            className={styles["img"]}
+            alt="avatar"
+            src={user.picture}
+            width={24}
+            height={24}
+          />
+        ) : (
+          user.email
+        )}
+      </button>
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}
@@ -93,9 +74,20 @@ const Authentication: FC = () => {
       </Menu>
     </div>
   ) : (
-    <button className={styles["btn"]} onClick={signIn}>
-      Sign In
-    </button>
+    <div className={styles["wrapper"]}>
+      <button
+        className={styles["btn"]}
+        onClick={() => router.push(LinksEnum.Login)}
+      >
+        Sign In
+      </button>
+      <button
+        className={styles["btn"]}
+        onClick={() => router.push(LinksEnum.Register)}
+      >
+        Register
+      </button>
+    </div>
   );
 };
 

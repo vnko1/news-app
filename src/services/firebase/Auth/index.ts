@@ -8,6 +8,7 @@ import {
   signOut,
   User,
 } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 import FireBaseApi from "../Firebase";
 
 class AuthApi extends FireBaseApi {
@@ -29,6 +30,7 @@ class AuthApi extends FireBaseApi {
   }
 
   get auth() {
+    this.authenticate;
     return this.authenticate;
   }
 
@@ -46,7 +48,8 @@ class AuthApi extends FireBaseApi {
 
       return userCred;
     } catch (error) {
-      return error;
+      if (error instanceof FirebaseError) return error;
+      throw new Error("Something wrong");
     }
   }
 
@@ -60,7 +63,8 @@ class AuthApi extends FireBaseApi {
 
       return userCred;
     } catch (error) {
-      return error;
+      if (error instanceof FirebaseError) return error;
+      throw new Error("Something wrong");
     }
   }
 

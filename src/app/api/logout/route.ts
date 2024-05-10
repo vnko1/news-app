@@ -9,5 +9,6 @@ export async function POST() {
   };
 
   cookies().set(options);
+
   return NextResponse.json({}, { status: 200 });
 }

@@ -12,4 +12,6 @@ export enum IconsEnum {
   Location = "location",
   FavHeart = "fav-heart",
   Check = "checkmark",
+  EYE = "eye",
+  CLOSE_EYE = "eye-off",
 }
