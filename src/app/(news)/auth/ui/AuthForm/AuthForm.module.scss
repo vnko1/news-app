@@ -1,12 +1,21 @@
 .form {
-  @apply flex flex-col gap-1-xs items-center w-full;
+  @apply flex flex-col gap-2-xs items-center w-full;
 
   &__label {
     @apply w-full flex flex-col items-start gap-1;
   }
+
+  &__wrapper {
+    @apply relative block w-full;
+  }
+
   &__field {
     @apply w-full px-1-xs py-0-xl outline-none border-b;
   }
+}
+
+.icon-btn {
+  @apply absolute top-1/2 -translate-y-1/2 right-[10px];
 }
 
 .text {

@@ -1,5 +1,5 @@
 "use client";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,13 +7,14 @@ import { UserCredential } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
 import { useProfileContext } from "@/context";
-import { LinksEnum } from "@/types";
+import { IconsEnum, LinksEnum } from "@/types";
 
 import Auth from "@/services/firebase/Auth";
 
 import { loginSchema, regSchema } from "./schema";
 import { AuthFormProps } from "./AuthForm.type";
 import styles from "./AuthForm.module.scss";
+import { Icon } from "@/components";
 
 const authProvider = new Auth();
 
@@ -24,6 +25,8 @@ const AuthForm: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
     resolver: zodResolver(auth === "register" ? regSchema : loginSchema),
   });
   const { errors } = formState;
+
+  const [hidePass, setHidePass] = useState(true);
 
   return (
     <form
@@ -64,13 +67,32 @@ const AuthForm: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
         return (
           <label key={field.label} className={styles["form__label"]}>
             <span className={styles["text"]}>{field.label}</span>
-            <input
-              {...register(field.name)}
-              id={field.name}
-              name={field.name}
-              type={field.type}
-              className={styles["form__field"]}
-            />
+            <span className={styles["form__wrapper"]}>
+              <input
+                {...register(field.name)}
+                id={field.name}
+                name={field.name}
+                type={
+                  field.type === "password"
+                    ? hidePass
+                      ? "password"
+                      : "text"
+                    : field.type
+                }
+                className={styles["form__field"]}
+              />
+              {field.type === "password" ? (
+                <button
+                  className={styles["icon-btn"]}
+                  onClick={() => setHidePass(!hidePass)}
+                >
+                  <Icon
+                    size={24}
+                    icon={hidePass ? IconsEnum.EYE : IconsEnum.CLOSE_EYE}
+                  />
+                </button>
+              ) : null}
+            </span>
             {errors[field.name] ? (
               <span className={styles["error"]}>
                 {errors[field.name]?.message as string}

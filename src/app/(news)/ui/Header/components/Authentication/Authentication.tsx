@@ -12,7 +12,7 @@ import styles from "./Authentication.module.scss";
 
 const Authentication: FC = () => {
   const router = useRouter();
-  const { user, setUser, setFavId } = useProfileContext();
+  const { user, setUser, setFavId, setReadId } = useProfileContext();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -35,6 +35,7 @@ const Authentication: FC = () => {
     close();
     await fetch("/api/logout", { method: "POST" });
     setFavId([]);
+    setReadId([]);
     setUser(null);
     router.refresh();
   };
