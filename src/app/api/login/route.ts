@@ -3,6 +3,7 @@ import { cookies, headers } from "next/headers";
 import { auth } from "firebase-admin";
 
 import { customInitApp } from "@/services/firebase/admin";
+import { revalidatePath } from "next/cache";
 
 customInitApp();
 
@@ -31,7 +32,7 @@ export async function POST() {
       cookies().set(options);
     }
   }
-
+  revalidatePath("/", "layout");
   return NextResponse.json({}, { status: 200 });
 }
 
