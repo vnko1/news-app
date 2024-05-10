@@ -14,13 +14,6 @@ const AuthByGoogle: FC = () => {
   const { setUser } = useProfileContext();
 
   useEffect(() => {
-    fetch("/api/login").then(async (res) => {
-      const cred = await res.json();
-      setUser(cred.user);
-    });
-  }, [setUser]);
-
-  useEffect(() => {
     getRedirectResult(authProvider.auth).then(async (userCred) => {
       if (!userCred) return;
       setUser({

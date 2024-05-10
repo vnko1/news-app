@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IconButton, Menu, MenuItem } from "@mui/material";
@@ -15,6 +15,13 @@ const Authentication: FC = () => {
   const { user, setUser, setFavId } = useProfileContext();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  useEffect(() => {
+    fetch("/api/login").then(async (res) => {
+      const cred = await res.json();
+      setUser(cred.user);
+    });
+  }, [setUser]);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

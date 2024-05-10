@@ -1,17 +1,20 @@
 "use client";
 import React, { FC } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserCredential } from "firebase/auth";
 
 import { login, signUp } from "@/lib";
 import { useProfileContext } from "@/context";
+import { LinksEnum } from "@/types";
 
 import { loginSchema, regSchema } from "./schema";
 import { AuthFormProps, FormValues } from "./AuthForm.type";
 import styles from "./AuthForm.module.scss";
 
 const AuthFrom: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
+  const router = useRouter();
   const { setUser } = useProfileContext();
   const { register, handleSubmit, formState } = useForm({
     resolver: zodResolver(auth === "register" ? regSchema : loginSchema),
@@ -38,6 +41,8 @@ const AuthFrom: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
         //     Authorization: `Bearer ${await userCred.user.getIdToken()}`,
         //   },
         // });
+
+        router.push(LinksEnum.Home);
       })}
       className={styles["form"]}
     >
