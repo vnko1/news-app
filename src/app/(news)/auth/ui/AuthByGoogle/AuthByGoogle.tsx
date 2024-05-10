@@ -5,7 +5,9 @@ import React, { FC, useEffect } from "react";
 import { getRedirectResult, signInWithRedirect } from "firebase/auth";
 
 import { useProfileContext } from "@/context";
+
 import Auth from "@/services/firebase/Auth";
+
 import styles from "./AuthByGoogle.module.scss";
 
 const authProvider = new Auth();

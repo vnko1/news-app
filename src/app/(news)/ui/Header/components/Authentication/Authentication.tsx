@@ -5,10 +5,10 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Menu, MenuItem } from "@mui/material";
 
+import { LinksEnum } from "@/types";
 import { useProfileContext } from "@/context";
 
 import styles from "./Authentication.module.scss";
-import { LinksEnum } from "@/types";
 
 const Authentication: FC = () => {
   const router = useRouter();

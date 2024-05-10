@@ -6,13 +6,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserCredential } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
-import { login, signUp } from "@/lib";
 import { useProfileContext } from "@/context";
 import { LinksEnum } from "@/types";
 
+import Auth from "@/services/firebase/Auth";
+
 import { loginSchema, regSchema } from "./schema";
-import { AuthFormProps, FormValues } from "./AuthForm.type";
+import { AuthFormProps } from "./AuthForm.type";
 import styles from "./AuthForm.module.scss";
+
+const authProvider = new Auth();
 
 const AuthForm: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
   const router = useRouter();
@@ -26,32 +29,34 @@ const AuthForm: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
     <form
       onSubmit={handleSubmit(async (data) => {
         clearErrors();
-        let userCred;
+        let userCred: UserCredential | FirebaseError;
 
-        if (auth === "register") userCred = await signUp(data as FormValues);
-        else userCred = await login(data as FormValues);
+        if (auth === "register")
+          userCred = await authProvider.register(data.email, data.password);
+        else userCred = await authProvider.login(data.email, data.password);
 
-        if ("code" in userCred) {
-          setError("button", {
+        if ("code" in userCred)
+          return setError("button", {
             type: "custom",
             message: userCred.code.split("/")[1].split("-").join(" "),
           });
-        }
-        // setUser({
-        //   name: userCred.user.displayName,
-        //   uid: userCred.user.uid,
-        //   email: userCred.user.email,
-        //   picture: userCred.user.photoURL,
-        // });
+        const idToken = await userCred.user.getIdToken();
 
-        // fetch("/api/login", {
-        //   method: "POST",
-        //   headers: {
-        //     Authorization: `Bearer ${await userCred.user.getIdToken()}`,
-        //   },
-        // });
+        setUser({
+          name: userCred.user.displayName,
+          uid: userCred.user.uid,
+          email: userCred.user.email,
+          picture: userCred.user.photoURL,
+        });
 
-        // router.push(LinksEnum.Home);
+        fetch("/api/login", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        });
+
+        router.push(LinksEnum.Home);
       })}
       className={styles["form"]}
     >
