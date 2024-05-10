@@ -42,7 +42,7 @@ const AuthFrom: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
         //   },
         // });
 
-        router.push(LinksEnum.Home);
+        // router.push(LinksEnum.Home);
       })}
       className={styles["form"]}
     >

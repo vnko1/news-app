@@ -3,7 +3,7 @@
 import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { Menu, MenuItem } from "@mui/material";
 
 import { useProfileContext } from "@/context";
 
@@ -40,21 +40,20 @@ const Authentication: FC = () => {
   };
 
   return user ? (
-    <div className={styles["btn"]}>
-      <IconButton
-        size="large"
-        aria-label="account of current user"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
-        onClick={handleMenu}
-        color="inherit"
-      >
+    <div className={styles["wrapper"]}>
+      <button className={styles["btn"]} onClick={handleMenu}>
         {user.picture ? (
-          <Image alt="avatar" src={user.picture} width={24} height={24} />
+          <Image
+            className={styles["img"]}
+            alt="avatar"
+            src={user.picture}
+            width={24}
+            height={24}
+          />
         ) : (
           user.email
         )}
-      </IconButton>
+      </button>
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}
@@ -74,7 +73,7 @@ const Authentication: FC = () => {
       </Menu>
     </div>
   ) : (
-    <>
+    <div className={styles["wrapper"]}>
       <button
         className={styles["btn"]}
         onClick={() => router.push(LinksEnum.Login)}
@@ -87,7 +86,7 @@ const Authentication: FC = () => {
       >
         Register
       </button>
-    </>
+    </div>
   );
 };
 
