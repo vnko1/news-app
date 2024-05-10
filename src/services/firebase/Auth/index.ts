@@ -7,7 +7,9 @@ import {
   GoogleAuthProvider,
   signOut,
   User,
+  UserCredential,
 } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 import FireBaseApi from "../Firebase";
 
 class AuthApi extends FireBaseApi {
@@ -36,7 +38,10 @@ class AuthApi extends FireBaseApi {
     return this.googleProvider;
   }
 
-  async register(email: string, password: string) {
+  async register(
+    email: string,
+    password: string
+  ): Promise<UserCredential | FirebaseError | Error> {
     try {
       const userCred = await createUserWithEmailAndPassword(
         this.authenticate,
@@ -46,11 +51,15 @@ class AuthApi extends FireBaseApi {
 
       return userCred;
     } catch (error) {
-      return error;
+      if (error instanceof FirebaseError) return error;
+      throw new Error("Something wrong");
     }
   }
 
-  async login(email: string, password: string) {
+  async login(
+    email: string,
+    password: string
+  ): Promise<UserCredential | FirebaseError | Error> {
     try {
       const userCred = await signInWithEmailAndPassword(
         this.authenticate,
@@ -60,7 +69,8 @@ class AuthApi extends FireBaseApi {
 
       return userCred;
     } catch (error) {
-      return error;
+      if (error instanceof FirebaseError) return error;
+      throw new Error("Something wrong");
     }
   }
 

@@ -1,2 +1,2 @@
-export { default as AuthForm } from "./AuthForm/AuthFrom";
+export { default as AuthForm } from "./AuthForm/AuthForm";
 export { default as AuthByGoogle } from "./AuthByGoogle/AuthByGoogle";
