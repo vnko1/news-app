@@ -4,11 +4,7 @@ import { LinksEnum } from "./types";
 export async function middleware(req: NextRequest) {
   const session = req.cookies.get("session");
 
-  if (
-    !session &&
-    (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
-      req.nextUrl.pathname.startsWith(LinksEnum.Read))
-  ) {
+  if (!session) {
     return NextResponse.redirect(new URL(LinksEnum.Login, req.url));
   }
 
@@ -26,17 +22,9 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL(LinksEnum.Login, req.url));
   }
 
-  if (
-    (req.nextUrl.pathname.startsWith(LinksEnum.Register) ||
-      req.nextUrl.pathname.startsWith(LinksEnum.Login)) &&
-    responseAPI.status === 200
-  ) {
-    return NextResponse.redirect(new URL(LinksEnum.Home, req.url));
-  }
-
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/favorite", "/read", "/login", "/register"],
+  matcher: ["/favorite", "/read"],
 };
