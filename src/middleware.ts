@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { LinksEnum } from "./types";
 
 const BASE_URL = process.env.BASE_URL;
 
 export async function middleware(req: NextRequest) {
   const session = req.cookies.get("session");
-
+  const currentPath = req.nextUrl.pathname;
+  console.log("🚀 ~ middleware ~ currentPath:", currentPath);
   if (
     !session &&
-    (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
-      req.nextUrl.pathname.startsWith(LinksEnum.Read))
+    (currentPath.startsWith("/favorite") || currentPath.startsWith("/read"))
   ) {
-    return NextResponse.rewrite(new URL(LinksEnum.Login, req.url));
+    console.log("session => ", currentPath, session);
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
   const responseAPI = await fetch(BASE_URL + "api/login", {
@@ -22,23 +22,22 @@ export async function middleware(req: NextRequest) {
   console.log("🚀 ~ responseAPI ~ responseAPI:", responseAPI.statusText);
 
   if (
-    (req.nextUrl.pathname.startsWith(LinksEnum.Register) ||
-      req.nextUrl.pathname.startsWith(LinksEnum.Login)) &&
+    (currentPath.startsWith("/register") || currentPath.startsWith("/login")) &&
     responseAPI.status === 200
   ) {
-    console.log("🚀 ~ middleware ~ status === 200:", LinksEnum.Home);
+    console.log("🚀 ~ middleware ~ status === 200:", currentPath);
 
-    return NextResponse.rewrite(new URL(LinksEnum.Home, req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   if (
-    (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
-      req.nextUrl.pathname.startsWith(LinksEnum.Read)) &&
+    (currentPath.startsWith("/favorite") || currentPath.startsWith("/read")) &&
     responseAPI.status !== 200
   ) {
-    console.log("🚀 ~ middleware ~ status !== 200:", LinksEnum.Login);
-    return NextResponse.rewrite(new URL(LinksEnum.Login, req.url));
+    console.log("🚀 ~ middleware ~ status !== 200:", "/login");
+    return NextResponse.redirect(new URL("/login", req.url));
   }
+  console.log("🚀 ~ middleware ~ NextResponse:", "NextResponse");
 
   return NextResponse.next();
 }
