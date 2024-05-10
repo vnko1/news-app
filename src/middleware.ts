@@ -5,43 +5,30 @@ const BASE_URL = process.env.BASE_URL;
 export async function middleware(req: NextRequest) {
   const session = req.cookies.get("session");
   const currentPath = req.nextUrl.pathname;
-  console.log("🚀 ~ middleware ~ currentPath:", currentPath);
-  if (
-    !session &&
-    (currentPath.startsWith("/favorite") || currentPath.startsWith("/read"))
-  ) {
-    console.log("session => ", currentPath, session);
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+
+  if (!session) return NextResponse.redirect(new URL("/", req.url));
 
   const responseAPI = await fetch(BASE_URL + "api/login", {
     headers: {
       Cookie: `session=${session?.value}`,
     },
   });
-  console.log("🚀 ~ responseAPI ~ responseAPI:", responseAPI.statusText);
 
-  if (
-    (currentPath.startsWith("/register") || currentPath.startsWith("/login")) &&
-    responseAPI.status === 200
-  ) {
-    console.log("🚀 ~ middleware ~ status === 200:", currentPath);
-
+  if (currentPath.startsWith("/register") && responseAPI.status === 200)
     return NextResponse.redirect(new URL("/", req.url));
-  }
 
-  if (
-    (currentPath.startsWith("/favorite") || currentPath.startsWith("/read")) &&
-    responseAPI.status !== 200
-  ) {
-    console.log("🚀 ~ middleware ~ status !== 200:", "/login");
+  if (currentPath.startsWith("/login") && responseAPI.status === 200)
+    return NextResponse.redirect(new URL("/", req.url));
+
+  if (currentPath.startsWith("/favorite") && responseAPI.status !== 200)
     return NextResponse.redirect(new URL("/login", req.url));
-  }
-  console.log("🚀 ~ middleware ~ NextResponse:", "NextResponse");
+
+  if (currentPath.startsWith("/read") && responseAPI.status !== 200)
+    return NextResponse.redirect(new URL("/login", req.url));
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/favorite", "/read", "/login", "/register"],
+  matcher: ["/favorite", "/read"],
 };
