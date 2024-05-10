@@ -9,7 +9,6 @@ export async function middleware(req: NextRequest) {
     (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
       req.nextUrl.pathname.startsWith(LinksEnum.Read))
   ) {
-    console.log("🚀 ~ middleware ~ session:", session);
     return NextResponse.redirect(new URL(LinksEnum.Login, req.url));
   }
 
@@ -19,18 +18,11 @@ export async function middleware(req: NextRequest) {
     },
   });
 
-  console.log("🚀 ~ responseAPI ~ responseAPI:", responseAPI.status);
-
   if (
     (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
       req.nextUrl.pathname.startsWith(LinksEnum.Read)) &&
     responseAPI.status !== 200
   ) {
-    console.log(
-      "🚀 ~ middleware ~ req.nextUrl.pathname:",
-      req.nextUrl.pathname
-    );
-
     return NextResponse.redirect(new URL(LinksEnum.Login, req.url));
   }
 
