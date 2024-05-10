@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
     (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
       req.nextUrl.pathname.startsWith(LinksEnum.Read))
   ) {
-    return NextResponse.redirect(new URL(LinksEnum.Login, req.url));
+    return NextResponse.rewrite(new URL(LinksEnum.Login, req.url));
   }
 
   const responseAPI = await fetch(BASE_URL + "api/login", {
@@ -22,19 +22,22 @@ export async function middleware(req: NextRequest) {
   console.log("🚀 ~ responseAPI ~ responseAPI:", responseAPI.statusText);
 
   if (
-    (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
-      req.nextUrl.pathname.startsWith(LinksEnum.Read)) &&
-    responseAPI.status !== 200
-  ) {
-    return NextResponse.redirect(new URL(LinksEnum.Login, req.url));
-  }
-
-  if (
     (req.nextUrl.pathname.startsWith(LinksEnum.Register) ||
       req.nextUrl.pathname.startsWith(LinksEnum.Login)) &&
     responseAPI.status === 200
   ) {
-    return NextResponse.redirect(new URL(LinksEnum.Home, req.url));
+    console.log("🚀 ~ middleware ~ status === 200:", LinksEnum.Home);
+
+    return NextResponse.rewrite(new URL(LinksEnum.Home, req.url));
+  }
+
+  if (
+    (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
+      req.nextUrl.pathname.startsWith(LinksEnum.Read)) &&
+    responseAPI.status !== 200
+  ) {
+    console.log("🚀 ~ middleware ~ status !== 200:", LinksEnum.Login);
+    return NextResponse.rewrite(new URL(LinksEnum.Login, req.url));
   }
 
   return NextResponse.next();
