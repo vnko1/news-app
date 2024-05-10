@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,25 +8,29 @@ import { FirebaseError } from "firebase/app";
 
 import { useProfileContext } from "@/context";
 import { IconsEnum, LinksEnum } from "@/types";
+import { Icon } from "@/components";
 
 import Auth from "@/services/firebase/Auth";
 
 import { loginSchema, regSchema } from "./schema";
 import { AuthFormProps } from "./AuthForm.type";
 import styles from "./AuthForm.module.scss";
-import { Icon } from "@/components";
 
 const authProvider = new Auth();
 
 const AuthForm: FC<AuthFormProps> = ({ fields, btnText, auth }) => {
   const router = useRouter();
-  const { setUser } = useProfileContext();
+  const { setUser, user } = useProfileContext();
   const { register, handleSubmit, setError, clearErrors, formState } = useForm({
     resolver: zodResolver(auth === "register" ? regSchema : loginSchema),
   });
   const { errors } = formState;
 
   const [hidePass, setHidePass] = useState(true);
+
+  useEffect(() => {
+    if (user) router.push(LinksEnum.Home);
+  }, [router, user]);
 
   return (
     <form
