@@ -8,14 +8,19 @@ export async function middleware(req: NextRequest) {
     !session &&
     (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
       req.nextUrl.pathname.startsWith(LinksEnum.Read))
-  )
+  ) {
+    console.log("🚀 ~ middleware ~ session:", session);
     return NextResponse.redirect(new URL(LinksEnum.Login, req.url));
+  }
 
   const responseAPI = await fetch(new URL("/", req.url) + "api/login", {
     headers: {
       Cookie: `session=${session?.value}`,
     },
   });
+
+  console.log("🚀 ~ responseAPI ~ responseAPI:", responseAPI);
+
   if (
     (req.nextUrl.pathname.startsWith(LinksEnum.Favorite) ||
       req.nextUrl.pathname.startsWith(LinksEnum.Read)) &&
