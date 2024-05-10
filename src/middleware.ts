@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { LinksEnum } from "./types";
 
 const BASE_URL = process.env.BASE_URL;
 
@@ -9,8 +8,7 @@ export async function middleware(req: NextRequest) {
   console.log("🚀 ~ middleware ~ currentPath:", currentPath);
   if (
     !session &&
-    (currentPath.startsWith("/favorite") ||
-      currentPath.startsWith(LinksEnum.Read))
+    (currentPath.startsWith("/favorite") || currentPath.startsWith("/read"))
   ) {
     console.log("session => ", currentPath, session);
     return NextResponse.redirect(new URL("/login", req.url));
